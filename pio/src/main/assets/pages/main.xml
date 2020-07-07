@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items>
+    <group title="容器管理">
+        <action>
+            <title>启动</title>
+             <param name="start">
+                <option value="start_auto">[自动选择]</option>
+                <option value="start_chroot">[chroot]</option>
+                <option value="start_proot">[proot]</option>
+                <option value="start_proot_termux">[termux-proot]</option>
+            </param>
+            <param name="addcmd" label="附加参数" title="" placeholder="" type="text" />
+            <set>sh $TOOLKIT/service.sh $start</set>
+        </action>
+           <action>
+            <title>关闭</title>
+            <set>sh $TOOLKIT/service.sh stop_rootfs</set>
+        </action>
+            <page config="pages/reboot_rootfs.xml" title="重启" />
+              <action>
+            <title>运行终端命令</title>
+            <param name="cmd2" label="命令" title="" placeholder="" type="text" />
+             <param name="exec">
+                <option value="exec_auto">[自动选择]</option>
+                <option value="exec_chroot">[chroot]</option>
+                <option value="exec_proot">[proot]</option>
+                <option value="exec_proot_termux">[termux-proot]</option>
+            </param>
+            <param name="userid" label="运行用户" title="" placeholder="root" type="text" />
+            <set>sh $TOOLKIT/service.sh $exec</set>
+        </action>
+    </group>
+</items>
+
+
+<items>
+    <group>
+<page config="pages/settings.xml" title="设置" />
+ </group>
+</items>
+
+<items>
+    <group title="高级选项">
+        <page config="pages/shellinabox.xml" title="ShellInabox" />
+        <page config="pages/repo.xml" title="系统仓库" />
+        <page config="pages/patch.xml" title="系统补丁" />
+        <page config="pages/service.xml" title="LinuxLoader核心驱动" />
+        <page config="pages/test_env.xml" title="运行环境测试" />
+    </group>
+</items>

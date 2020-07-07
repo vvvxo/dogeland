@@ -1,0 +1,22 @@
+<group>
+<action>
+            <title>安装</title>
+             <set>cp $TOOLKIT/service.sh $rootfs/</set>
+</action>
+</group>
+<group>
+<action>
+            <title>移除</title>
+             <set>$TOOLKIT/service.sh $rootfs/</set>
+</action>
+<group>
+<group>
+        <text>
+            <title>为什么要安装?</title>
+            <desc>
+            LinuxLoader Service即是Rootfs与此APP连接的桥梁
+            在未来更新中，可以在Rootfs内部调用一键启动ssh,xfce,vnc....
+            能增加启动容器的成功性.
+            </desc>
+        </text>
+    </group>

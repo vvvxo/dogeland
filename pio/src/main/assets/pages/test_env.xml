@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<group>
+    <group>
+        <action>
+            <title>运行环境测试</title>
+            <desc>测试toolkit目录中核心组件是否生效</desc>
+            <set>
+                echo '-------------'
+                echo '当前busybox版本：'
+                busybox | grep BusyBox
+                echo ''
+                echo '-------------'
+                echo '当前运行目录：'
+                pwd
+                echo '-------------'
+                echo "service.sh状态 :"
+                $TOOLKIT/service.sh about
+                echo '-------------'
+                echo "proot状态 :"
+                export platform=$($TOOLKIT/service.sh platform)
+                $TOOLKIT/proot-$platform --help
+                echo '-------------'
+                echo "chroot状态 :"
+                $TOOLKIT/busybox chroot
+            </set>
+        </action>
+    </group>
+    
+     <group>
+       <action>
+        <title>Service版本</title>
+        <set>$TOOLKIT/service.sh</set>
+        </action>
+      </group>
+         
+          <group>
+       <action>
+        <title>fakeroot</title>
+        <set>sh $TOOLS/fakeroot id</set>
+        </action>
+      </group>
+         
+    <group>
+        <action>
+            <title>环境变量</title>
+            <set>$TOOLKIT/service.sh var</set>
+        </action>
+</group>
