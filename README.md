@@ -4,7 +4,7 @@ Run Linux on Android.
 
 注意:本应用还在开发阶段，bug得以致命,慎用!!!  
 
-[中文用户高速下载](https://gitee.com/Flytreels/DogeLand-App/releases/1.2.0.1)
+[中文用户高速下载](https://gitee.com/Flytreels/DogeLand-App/releases/)
 
 目前仅兼容使用LinuxDeploy的Rootfs  
 (无法切换到Root用户  
