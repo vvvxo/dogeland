@@ -1,5 +1,20 @@
+<page>
 <group>
 <action>
             <title>Ashmem</title>
+            <desc>只在运行某些图形界面程序出现问题时，才使用此补丁</desc>
+            <param name="archs">
+                <option value="arm_64">arm64</option>
+                <option value="arm">arm</option>
+                <option value="x86">x86</option>
+                <option value="x86_64">x86_64</option>
+            </param>
+            <set>
+            echo '正在安装补丁'
+            cp $TOOLS/patchs/Ashmem/$archs/* $rootfs/usr/local/lib/
+            echo "安装完成"
+            exit
+            </set>
 </action>
 </group>
+</page>

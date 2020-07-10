@@ -25,6 +25,7 @@
                 <option value="exec_chroot">[chroot]</option>
                 <option value="exec_proot">[proot]</option>
                 <option value="exec_proot_termux">[termux-proot]</option>
+                <option value="exec_localshell">[local-shell]</option>
             </param>
             <param name="userid" label="运行用户" title="" placeholder="root" type="text" />
             <set>sh $TOOLKIT/service.sh $exec</set>

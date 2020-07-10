@@ -1,5 +1,11 @@
 #!/system/bin/sh
-# Busybox 
+# DATA2_DIR
+if [ -d "$DATA2_DIR" ];then
+  echo "">/dev/null
+  else
+  mkdir $DATA2_DIR/
+fi
+# Busybox
 function busybox_install() {
     for applet in `./busybox --list`; do
         case "$applet" in
@@ -12,7 +18,6 @@ function busybox_install() {
         esac
     done
 }
-
 if [[ ! "$TOOLKIT" = "" ]]; then
     cd "$TOOLKIT"
     if [[ ! -f arch ]]; then
@@ -45,3 +50,9 @@ fi
 if [[ ! -f $TOOLKIT/proot ]]; then
 ln -s $TOOLKIT/lib/$platform/lib_proot.so $TOOLKIT/proot
 fi
+# ShellInabox
+if [[ ! -f $TOOLKIT/shellinaboxd ]]; then
+ln -s $TOOLKIT/shellinaboxd_arm $TOOLKIT/shellinaboxd_arm_64
+ln -s $TOOLKIT/shellinaboxd_$platform  $TOOLKIT/shellinaboxd
+fi
+rm -rf $TOOLKIT/install_bin.sh

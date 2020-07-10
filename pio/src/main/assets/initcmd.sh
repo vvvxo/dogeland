@@ -1,31 +1,30 @@
 #!/system/bin/sh
 script_path="$1"
-#
-
+# Core
+export PATH="$PATH:$TOOLKIT"
 export EXECUTOR_PATH=$({EXECUTOR_PATH})
 export START_DIR=$({START_DIR})
 export PACKAGE_NAME=$({PACKAGE_NAME})
 export SDCARD_PATH=$({SDCARD_PATH})
-
-export TOOLS=$({TOOLKIT})/toolkit/
 export TOOLKIT=$({TOOLKIT})
-
+export TOOLS=$({TOOLKIT})/toolkit/
 export DATA2_DIR=/$SDCARD_PATH/Android/data/$PACKAGE_NAME/
-export CONFIG_DIR=$DATA2_DIR/config/
 export platform=$(sh $TOOLKIT/service.sh platform)
+# PRoot
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/
+export PROOT_TMP_DIR=$TOOLKIT
+export PROOT_LOADER=$TOOLKIT/lib/$platform/lib_loader.so
+export PROOT_LOADER_32=$TOOLKIT/lib/$platform/lib_loader32.so
+# Config
+export CONFIG_DIR=$DATA2_DIR/config/
 export confs=$(cat $CONFIG_DIR/.id.conf)
 export confid=$confs
 export cmd=$(cat $CONFIG_DIR/$confs/cmd.conf)
 export rootfs=$(cat $CONFIG_DIR/$confs/rootfs.conf)
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/
-
-export PROOT_TMP_DIR=$TOOLKIT
-export PROOT_LOADER=$TOOLKIT/lib/$platform/lib_loader.so
-export PROOT_LOADER_32=$TOOLKIT/lib/$platform/lib_loader32.so
+# Run Command
 
 if [[ -f "$TOOLKIT/install_bin.sh" ]]; then
-    sh "$TOOLKIT/install_bin.sh"
+  sh $TOOLKIT/install_bin.sh
 fi
 
 if [[ -f "$CONFIG_DIR/$confs/rootfs.conf" ]]; then
@@ -42,15 +41,6 @@ if [[ -f "$CONFIG_DIR/$confs/cmd.conf" ]]; then
   sleep 1
 fi
 
-if [ -d "$DATA2_DIR" ];then
-  echo "">/dev/null
-  else
-  mkdir $DATA2_DIR/
-fi
-
-if [[ ! "$TOOLKIT" = "" ]]; then
-    PATH="$PATH:$TOOLKIT"
-fi
 if [[ "$execute_path" != "" ]] && [[ -d "$execute_path" ]]
 then
     cd "$execute_path"

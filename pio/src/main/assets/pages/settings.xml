@@ -1,3 +1,4 @@
+ <page>
  <group title="设置">
      <action>
          <title>Rootfs路径</title>
@@ -9,24 +10,36 @@
             <param name="Input" label="" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/service.sh set_initcmd</set>
         </action>
+          <action>
+            <title>删除Rootfs</title>
+             <param name="type">
+                <option value="">取消</option>
+                <option value="rm_rootfsdir*">确定删除</option>
+            </param>
+            <set>sh $TOOLKIT/service.sh $type</set>
+        </action>
           </group>
           
              <group title="配置文件设置">
+              <action>
+            <title>查看正在使用的配置</title>
+            <set>echo "$confid"</set>
+        </action>
                <action>
             <title>新建</title>
-             <param name="conid" label="配置名称" title="Tips: 存储在APK" placeholder="请输入." type="text" />
+             <param name="mkconf" label="配置名称" title="Tips: 存储在APK" placeholder="请输入." type="text" />
             <set>$TOOLKIT/service.sh mk_conf</set>
         </action>
             <action>
             <title>切换</title>
-             <param name="conid" label="配置名称" title="" placeholder="请输入." type="text" />
+             <param name="swconf" label="配置名称" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/service.sh sw_conf</set>
             
         </action>
          <action>
             <title>删除</title>
-             <param name="confid" label="配置名称" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/service.sh rm_conf</set>
+             <param name="delconf" label="配置名称" title="" placeholder="请输入." type="text" />
+            <set>$TOOLKIT/service.sh del_conf</set>
             
         </action>
     </group>
@@ -43,6 +56,7 @@
                 <option value="echo 已取消">取消</option>
                 <option value="rm -rf $TOOLKIT/*">继续</option>
             </param>
-            <set>sh $test</set>
+            <set>$test</set>
         </action>
     </group>
+    </page>

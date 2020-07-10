@@ -1,4 +1,4 @@
-  <action>
+<action>
             <title>↓选择系统包</title>
             <param name="file" label="文件选择" type="file"
                 suffix="tgz"

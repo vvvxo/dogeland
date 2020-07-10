@@ -1,1 +1,0 @@
-cp $TOOLS/patchs/Ashmem/$platform/* $rootfs/usr/local/lib/

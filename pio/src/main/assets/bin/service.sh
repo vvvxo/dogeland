@@ -43,33 +43,31 @@ platform()
 # mount
 mount_part(){
 if [ -d "$rootfs/" ];then
-  msg "- / ...done"
+  msg "">/dev/null
   else
   msg "- / ...fail "
   exit
 fi
 if [ -d "$rootfs/proc/1/" ];then
- msg "- /proc ...done"
+ msg "">/dev/null
   else
  msg "- /proc ..."
    mount -o bind /proc $rootfs/proc
- sleep 1
 fi
 if [ -d "$rootfs/sys/kernel/" ];then
- msg "- /sys ...done "
+ msg "">/dev/null
   else
  msg "- /sys ..."
   mount -o bind /sys $rootfs/sys
-  sleep 1
 fi
 if [ -d "$rootfs/sdcard/" ];then
-  msg "- /sdcard ...done"
+  msg "">/dev/null
   else
   msg "- /sdcard ..."
   mount -o bind -t sdcardfs $rootfs/sdcard
 fi
 if [ -d "$rootfs/dev/block/" ];then
-  msg "- /dev ...done"
+  msg "">/dev/null
   else
   msg "- /dev ..."
   mount -o bind /dev/ $rootfs/dev
@@ -88,6 +86,8 @@ mount -o bind /dev/pts $rootfs/dev/pts
 #fi
 
 if [ ! -e "/dev/tty0" ]; then
+  msg "">/dev/null
+  else
   msg "/dev/tty ... "
   ln -s /dev/null /dev/tty0
 fi
@@ -97,8 +97,6 @@ fi
 #   [ -d "/dev/net" ] || mkdir -p /dev/net
 #   mknod /dev/net/tun c 10 200
 #fi
-msg
-msg "- Done"
 }
 
 # umount
@@ -123,9 +121,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/us
 }
 
 start_chroot(){
-msg ""
-msg "- 正在加载"
-msg ""
 mount_part
 set_env
 $TOOLKIT/busybox chroot $rootfs $cmd $addcmd
@@ -152,9 +147,6 @@ sleep 1
 }
 
 start_proot(){
-msg ""
-msg "- 正在加载"
-msg ""
 set_env
 $TOOLKIT/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd $addcmd
 msg "- Done"
@@ -162,9 +154,6 @@ sleep 1
 }
 
 start_proot_termux(){
-msg ""
-msg "- 正在加载"
-msg ""
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   echo ""
   else
@@ -177,6 +166,10 @@ msg "- Done"
 sleep 1
 }
 
+stop_rootfs(){
+pkill sshd
+pkill sh
+}
 #
 # Linux Exec
 #
@@ -184,18 +177,17 @@ sleep 1
 exec_chroot(){
 mount_part
 set_env
-msg "- 正在推送"
+msg "- Pushing"
 msg "$cmd2">$rootfs/runcmd.sh
 chmod 0777 $rootfs/runcmd.sh
 msg
 msg
-msg "- 正在执行"
-msg ""
+msg "- Running"
+msg
 msg
 $TOOLKIT/chroot "$rootfs" /bin/su -c $userid /runcmd.sh
 msg
-msg
-msg "- 正在清理"
+msg "- Cleaning"
 rm $rootfs/runcmd.sh
 }
 
@@ -251,6 +243,10 @@ msg "- Cleaning"
 rm $rootfs/runcmd.sh
 }
 
+exec_localshell(){
+sleep 1
+$cmd2
+}
 #
 # Other
 #
@@ -259,11 +255,11 @@ $TOOLS/debootstrap --help
 }
 
 rm_rootfsdir() {
-msg "正在取消挂载"
+msg "- 正在取消挂载"
 umount
-msg "正在移除"
+msg "- 正在删除"
 rm -rf $rootfs/*
-msg "完成"
+msg "- 删除完成"
 }
 
 help() {
@@ -356,10 +352,10 @@ set_rootfsdir() {
 if [ ! -n "$Input" ]; then
 msg "- 检测到没有输入内容,取消更改."
     else
-    msg "- 正在修改"
+    msg "- 正在修改Rootfs路径"
     rm -rf $CONFIG_DIR/$confid/rootfs.conf
     msg "$Input">$CONFIG_DIR/$confid/rootfs.conf
-    msg "- 完成"
+    msg "- 完成,已设置 $Input"
     fi
 }
 
@@ -367,48 +363,52 @@ set_initcmd() {
 if [ ! -n "$Input" ]; then
  msg "- 检测到没有输入内容,取消更改."
 else
- msg "- 正在更改"
+ msg "- 正在修改"
  rm -rf $CONFIG_DIR/$confid/cmd.conf
  msg "$Input">$CONFIG_DIR/$confid/cmd.conf
- msg "- 完成"
+ msg "- 完成,已修改 $Input"
 fi
 }
 
 mk_conf() {
-msg "- 正在创建配置 $confid"
-mkdir $CONFIG_DIR/
-mkdir $CONFIG_DIR/$confid/
-msg "/data/cache/linux">$CONFIG_DIR/$confid/rootfs.conf
-msg "/bin/sh">$CONFIG_DIR/$confid/cmd.conf
-echo "- 正在切换配置"
+if [ -d "$CONFIG_DIR/" ];then
+  echo
+  else
+  mkdir $CONFIG_DIR
+fi
+msg "- 正在创建配置 $mkconf"
+mkdir $CONFIG_DIR/$mkconf/
+msg "/data/cache/linux">$CONFIG_DIR/$mkconf/rootfs.conf
+msg "/bin/sh">$CONFIG_DIR/$mkconf/cmd.conf
+echo "- 正在切换配置 $mkconf"
 rm $CONFIG_DIR/.id.conf
-msg "$confid">$CONFIG_DIR/.id.conf
-msg '完成'
+msg "$mkconf">$CONFIG_DIR/.id.conf
+msg '- 完成,已创建 $mkconf'
 exit
 }
 
-rm_conf() {
-if [ ! -n "$confid" ]; then
+del_conf() {
+if [ ! -n "$delconf" ]; then
   msg "- 检测到没有输入内容,取消更改."
 else
-  msg "- 正在删除配置 $confid"
+  msg "- 正在删除配置 $delconf"
   sleep 1
-  rm -rf $CONFIG_DIR/$confid
-  msg "- 完成"
+  rm -rf $CONFIG_DIR/$delconf
+  msg "- 完成,已删除 $delconf"
   sleep 1
   exit
 fi
 }
 
 sw_conf() {
-if [ ! -n "$confid" ]; then
+if [ ! -n "$swconf" ]; then
   msg "- 检测到没有输入内容,取消更改."
 else
-  msg "- 正在删除配置 $confid"
+  msg "- 正在切换配置 $swconf"
   sleep 1
   rm -rf $CONFIG_DIR/.id.conf
-  msg "$confid">$CONFIG_DIR/.id.conf
-  msg "- 完成"
+  msg "$swconf">$CONFIG_DIR/.id.conf
+  msg "- 完成,已切换 $swconf"
   sleep 1
   exit
 fi
@@ -456,6 +456,5 @@ if [ ! -n "${1}" ]; then
   help
   exit
 fi
-
 umask 000
 ${1}
