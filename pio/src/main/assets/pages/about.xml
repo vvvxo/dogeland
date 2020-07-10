@@ -31,6 +31,6 @@
 <group>
 <items>
     <group>
-<page config="pages/faststep.xml" title="快速开始↗" />
+<page config="pages/main.xml" title="快速开始↗" />
  </group>
 </items>

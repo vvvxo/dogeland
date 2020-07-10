@@ -52,21 +52,21 @@ if [ -d "$rootfs/proc/1/" ];then
  msg "- /proc ...done"
   else
  msg "- /proc ..."
-   mount -t proc proc $rootfs/proc
+   mount -o bind /proc $rootfs/proc
  sleep 1
 fi
 if [ -d "$rootfs/sys/kernel/" ];then
  msg "- /sys ...done "
   else
  msg "- /sys ..."
-  mount -t sysfs sys $rootfs/sys
+  mount -o bind /sys $rootfs/sys
   sleep 1
 fi
 if [ -d "$rootfs/sdcard/" ];then
   msg "- /sdcard ...done"
   else
   msg "- /sdcard ..."
-  mount -o bind /data/media $rootfs/sdcard
+  mount -o bind -t sdcardfs $rootfs/sdcard
 fi
 if [ -d "$rootfs/dev/block/" ];then
   msg "- /dev ...done"
@@ -77,7 +77,7 @@ fi
 msg "- /dev/shm ..."
 mount -o bind /dev/shm $rootfs/dev/shm
 msg "- /dev/pts ..."
-mount -o bind -t devpts devpts $rootfs/dev/pts
+mount -o bind /dev/pts $rootfs/dev/pts
 
 #if [ ! -e "/dev/fd" -o ! -e "/dev/stdin" -o ! -e "/dev/stdout" -o ! -e "/dev/stderr" ]; then
 # msg "/dev/fd ... "
@@ -124,7 +124,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/us
 
 start_chroot(){
 msg ""
-msg "- Loading"
+msg "- 正在加载"
 msg ""
 mount_part
 set_env
@@ -137,31 +137,40 @@ start_auto(){
 msg
 if [ `id -u` -eq 0 ];then
    start_chroot
+   exit
 else
    echo "">/dev/null
 fi
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   start_proot_termux
+  exit
   else
   start_proot
+  exit
 fi
 sleep 1
 }
 
 start_proot(){
 msg ""
-msg "- Loading"
+msg "- 正在加载"
 msg ""
 set_env
-$TOOLKIT/proot-$platform -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd $addcmd
+$TOOLKIT/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd $addcmd
 msg "- Done"
 sleep 1
 }
 
 start_proot_termux(){
 msg ""
-msg "- Loading"
+msg "- 正在加载"
 msg ""
+if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
+  echo ""
+  else
+  echo "- 不支持的操作"
+  exit 255
+fi
 set_env
 /data/data/com.termux/files/usr/bin/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd $addcmd
 msg "- Done"
@@ -175,18 +184,18 @@ sleep 1
 exec_chroot(){
 mount_part
 set_env
-msg "- Pushing"
+msg "- 正在推送"
 msg "$cmd2">$rootfs/runcmd.sh
 chmod 0777 $rootfs/runcmd.sh
 msg
 msg
-msg "- Running"
+msg "- 正在执行"
 msg ""
 msg
 $TOOLKIT/chroot "$rootfs" /bin/su -c $userid /runcmd.sh
 msg
 msg
-msg "- Cleaning"
+msg "- 正在清理"
 rm $rootfs/runcmd.sh
 }
 
@@ -194,13 +203,16 @@ exec_auto(){
 msg
 if [ `id -u` -eq 0 ];then
    exec_chroot
+   exit
 else
    echo "">/dev/null
 fi
 if [ -f "/data/data/com.termux/files/usr/bin/" ];then
   exec_proot_termux
+  exit
   else
   exec_proot
+  exit
 fi
 sleep 1
 }
@@ -213,13 +225,19 @@ chmod 0777 $rootfs/runcmd.sh
 msg
 msg "- Running"
 msg ""
-$TOOLKIT/proot-$platform -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root /bin/su -c $userid /runcmd.sh
+$TOOLKIT/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root /bin/su -c $userid /runcmd.sh
 msg
 msg "- Cleaning"
 rm -rf $rootfs/runcmd.sh
 }
 
 exec_proot_termux(){
+if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
+  echo ""
+  else
+  echo "- 不支持的操作"
+  exit 255
+fi
 set_env
 msg "- Pushing"
 msg "$cmd2">$rootfs/runcmd.sh

@@ -1,22 +1,28 @@
 #!/system/bin/sh
 script_path="$1"
 #
+
 export EXECUTOR_PATH=$({EXECUTOR_PATH})
 export START_DIR=$({START_DIR})
 export PACKAGE_NAME=$({PACKAGE_NAME})
 export SDCARD_PATH=$({SDCARD_PATH})
-#
+
 export TOOLS=$({TOOLKIT})/toolkit/
 export TOOLKIT=$({TOOLKIT})
-# Config Loader
+
 export DATA2_DIR=/$SDCARD_PATH/Android/data/$PACKAGE_NAME/
 export CONFIG_DIR=$DATA2_DIR/config/
-export LOG_EXPORT=/dev/null
 export platform=$(sh $TOOLKIT/service.sh platform)
 export confs=$(cat $CONFIG_DIR/.id.conf)
-export confid=$(cat $CONFIG_DIR/.id.conf)
+export confid=$confs
 export cmd=$(cat $CONFIG_DIR/$confs/cmd.conf)
 export rootfs=$(cat $CONFIG_DIR/$confs/rootfs.conf)
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/
+
+export PROOT_TMP_DIR=$TOOLKIT
+export PROOT_LOADER=$TOOLKIT/lib/$platform/lib_loader.so
+export PROOT_LOADER_32=$TOOLKIT/lib/$platform/lib_loader32.so
 
 if [[ -f "$TOOLKIT/install_bin.sh" ]]; then
     sh "$TOOLKIT/install_bin.sh"

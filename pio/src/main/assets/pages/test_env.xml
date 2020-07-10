@@ -17,11 +17,12 @@
                 $TOOLKIT/service.sh about
                 echo '-------------'
                 echo "proot状态 :"
-                export platform=$($TOOLKIT/service.sh platform)
-                $TOOLKIT/proot-$platform --help
+                $TOOLKIT/proot --help
                 echo '-------------'
                 echo "chroot状态 :"
                 $TOOLKIT/busybox chroot
+                echo "debootstrap 状态 :"
+                sh $TOOLS/debootstrap
             </set>
         </action>
     </group>
@@ -32,14 +33,6 @@
         <set>$TOOLKIT/service.sh</set>
         </action>
       </group>
-         
-          <group>
-       <action>
-        <title>fakeroot</title>
-        <set>sh $TOOLS/fakeroot id</set>
-        </action>
-      </group>
-         
     <group>
         <action>
             <title>环境变量</title>

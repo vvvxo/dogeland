@@ -9,7 +9,7 @@ unset LD_PRELOAD TMP TEMP TMPDIR || true
 export PATH
 
 ###########################################################################
-DEBOOTSTRAP_DIR=$TOOLS/debootstrapsrc/
+DEBOOTSTRAP_DIR=$TOOLS/
 
 . "$DEBOOTSTRAP_DIR/functions"
 exec 4>&1

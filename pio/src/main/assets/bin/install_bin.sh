@@ -27,17 +27,21 @@ fi
 if [ -d "$CONFIG_DIR/default/" ];then
   echo "">/dev/null
   else
-  mkdir $DATA2_DIR > $LOG_EXPORT
-  mkdir $CONFIG_DIR > $LOG_EXPORT
-  mkdir $CONFIG_DIR/default >$LOG_EXPORT
+  mkdir $DATA2_DIR > /dev/null
+  mkdir $CONFIG_DIR > /dev/null
+  mkdir $CONFIG_DIR/default >/dev/null
   echo "default" >$CONFIG_DIR/.id.conf
   echo "" > $CONFIG_DIR/default/rootfs.conf
   echo "" > $CONFIG_DIR/default/cmd.conf
 fi
 
 # PkgDetails
-if [[ ! -f pkgdetails ]]; then
+if [[ ! -f $TOOLKIT/pkgdetails ]]; then
     ln -s $TOOLKIT/pkgdetails_arm $TOOLKIT/pkgdetails_arm_64
     ln -s $TOOLKIT/pkgdetails_x86 $TOOLKIT/pkgdetails_x86_64
     ln -s $TOOLKIT/pkgdetails_$platform $TOOLKIT/pkgdetails
+fi
+# Proot
+if [[ ! -f $TOOLKIT/proot ]]; then
+ln -s $TOOLKIT/lib/$platform/lib_proot.so $TOOLKIT/proot
 fi
