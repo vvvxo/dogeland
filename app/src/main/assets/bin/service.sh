@@ -35,7 +35,21 @@ platform()
     ;;
     esac
 }
-
+selinux_inactive()
+{
+    if [ -e "/sys/fs/selinux/enforce" ]; then
+        return $(cat /sys/fs/selinux/enforce)
+    else
+        return 0
+    fi
+}
+loop_support() {
+    if [ -n "$(losetup -f >/dev/null)" ]; then
+        return 1
+    else
+        return 0
+    fi
+}
 #
 # Core
 #
@@ -102,14 +116,7 @@ fi
 # umount
 
 # loop
-loop_support() {
-    if [ -n "$(losetup -f)" ]; then
-        msg "你的设备不支持loop,无法挂载镜像"
-        exit
-    else
-        msg ""
-    fi
-}
+
 #
 # Loader
 #
@@ -417,35 +424,43 @@ fi
 # Other
 #
 
-var() {
-msg '核心框架定义'
-msg ''
-msg "EXECUTOR_PATH=$EXECUTOR_PATH"
-msg "START_DIR=$START_DIR"
-msg "TEMP_DIR=$TEMP_DIR"
-msg "ANDROID_UID=$ANDROID_UID"
-msg "ANDROID_SDK=$ANDROID_SDK"
-msg "SDCARD_PATH=$SDCARD_PATH"
-msg "TOOLKIT=$TOOLKIT"
-sleep 1
-msg 'env 命令:'
-env
-msg ''
-sleep 1
+device_status() {
+    model=$(getprop ro.product.model)
+    if [ -n "$model" ]; then
+        msg -n "设备: "
+        msg "$model"
+    fi
 
-msg 'set 命令'
-msg ''
-set
-msg ''
-sleep 1
+    android=$(getprop ro.build.version.release)
+    if [ -n "$android" ]; then
+        msg -n "安卓版本: "
+        msg "$android"
+    fi
 
-msg 'export -p 命令'
-msg ''
-export -p
-msg ''
-msg ''
-msg ''
-sleep 1
+    msg -n "容器已安装操作系统:"
+    export linux_version=$(cat $rootfs/etc/issue)
+    msg "$linux_version"
+
+    msg -n "CPU架构: "
+    msg "$(uname -m)"
+
+    msg -n "内核版本: "
+    msg "$(uname -r)"
+
+    msg -n "内存: "
+    mem_status=$(sed -n '1,p' /proc/meminfo)
+    msg "$mem_status"
+
+    msg -n "SELinux: "
+    selinux_inactive && msg "关闭" || msg "开启"
+
+    msg -n "支持 Loop:"
+    loop_support && msg "是" || msg "否"
+
+    msg "文件系统支持:"
+    supported_fs=$(cat /proc/filesystems)
+    msg "$supported_fs"
+
 }
 
 # Run Command

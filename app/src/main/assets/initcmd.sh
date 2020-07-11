@@ -1,12 +1,12 @@
 #!/system/bin/sh
 script_path="$1"
 # Core
-export PATH="$PATH:$TOOLKIT"
 export EXECUTOR_PATH=$({EXECUTOR_PATH})
 export START_DIR=$({START_DIR})
 export PACKAGE_NAME=$({PACKAGE_NAME})
 export SDCARD_PATH=$({SDCARD_PATH})
 export TOOLKIT=$({TOOLKIT})
+export PATH="$PATH:$TOOLKIT"
 export TOOLS=$({TOOLKIT})/toolkit/
 export DATA2_DIR=/$SDCARD_PATH/Android/data/$PACKAGE_NAME/
 export platform=$(sh $TOOLKIT/service.sh platform)

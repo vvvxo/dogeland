@@ -2,7 +2,7 @@
 <group>
     <group>
         <action>
-            <title>运行环境测试</title>
+            <title>核心组件测试</title>
             <desc>测试toolkit目录中核心组件是否生效</desc>
             <set>
                 echo '-------------'
@@ -26,16 +26,10 @@
             </set>
         </action>
     </group>
-    
-     <group>
-       <action>
-        <title>Service版本</title>
-        <set>$TOOLKIT/service.sh</set>
-        </action>
-      </group>
+ 
     <group>
         <action>
-            <title>环境变量</title>
-            <set>$TOOLKIT/service.sh var</set>
+            <title>设备状态</title>
+            <set>$TOOLKIT/service.sh device_status</set>
         </action>
 </group>
