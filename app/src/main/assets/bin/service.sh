@@ -78,7 +78,7 @@ if [ -d "$rootfs/sdcard/" ];then
   msg "">/dev/null
   else
   msg "- /sdcard ..."
-  mount -o bind -t sdcardfs $rootfs/sdcard
+  mount -o bind $SDCARD_PATH $rootfs/mnt
 fi
 if [ -d "$rootfs/dev/block/" ];then
   msg "">/dev/null
@@ -102,7 +102,7 @@ mount -o bind /dev/pts $rootfs/dev/pts
 if [ ! -e "/dev/tty0" ]; then
   msg "">/dev/null
   else
-  msg "/dev/tty ... "
+  msg "- /dev/tty ... "
   ln -s /dev/null /dev/tty0
 fi
 
@@ -192,7 +192,27 @@ msg
 msg "- Running"
 msg
 msg
+if [ -f "$rootfs/bin/su" ];then
 $TOOLKIT/chroot "$rootfs" /bin/su -c $userid /runcmd.sh
+else
+if [ -f "$rootfs/bin/sh" ];then
+$TOOLKIT/chroot "$rootfs" /bin/sh /runcmd.sh
+else
+if [ -f "$rootfs/bin/ash" ];then
+$TOOLKIT/chroot "$rootfs" /bin/ash /runcmd.sh
+else
+if [ -f "$rootfs/bin/bash" ];then
+$TOOLKIT/chroot "$rootfs" /bin/bash /runcmd.sh
+else
+echo "不支持的操作"
+echo
+fi
+echo
+fi
+echo
+fi
+echo
+fi
 msg
 msg "- Cleaning"
 rm $rootfs/runcmd.sh
@@ -218,16 +238,11 @@ sleep 1
 
 exec_proot(){
 set_env
-msg "- Pushing"
-msg "$cmd2">$rootfs/runcmd.sh
-chmod 0777 $rootfs/runcmd.sh
 msg
 msg "- Running"
 msg ""
-$TOOLKIT/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root /bin/su -c $userid /runcmd.sh
+$TOOLKIT/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
 msg
-msg "- Cleaning"
-rm -rf $rootfs/runcmd.sh
 }
 
 exec_proot_termux(){
@@ -240,7 +255,7 @@ fi
 set_env
 msg "- Pushing"
 msg "$cmd2">$rootfs/runcmd.sh
-chmod 0777 $rootfs/runcmd.sh
+chmod 755 $rootfs/runcmd.sh
 msg
 msg "- Running"
 msg ""
@@ -424,7 +439,7 @@ fi
 # Other
 #
 
-device_status() {
+device_info() {
     model=$(getprop ro.product.model)
     if [ -n "$model" ]; then
         msg -n "设备: "
@@ -438,7 +453,11 @@ device_status() {
     fi
 
     msg -n "容器已安装操作系统:"
+    if [ -f "$rootfs/etc/issue" ];then
     export linux_version=$(cat $rootfs/etc/issue)
+    else
+    export linux_version="未安装或无法识别"
+    fi
     msg "$linux_version"
 
     msg -n "CPU架构: "

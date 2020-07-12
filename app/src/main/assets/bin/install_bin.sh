@@ -9,7 +9,7 @@ fi
 function busybox_install() {
     for applet in `./busybox --list`; do
         case "$applet" in
-        "sh"|"busybox"|"shell"|"swapon"|"swapoff"|"mkswap")
+        "swapon"|"swapoff"|"mkswap")
             echo 'Skip' > /dev/null
         ;;
         *)
@@ -25,7 +25,7 @@ if [[ ! "$TOOLKIT" = "" ]]; then
     rm $TOOLKIT/busybox
     mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
     busybox_install
-    rm $TOOLKIT/busybox_$platform
+    rm $TOOLKIT/busybox_*
     fi
 fi
 # Default Config Install
@@ -45,6 +45,12 @@ if [[ ! -f $TOOLKIT/pkgdetails ]]; then
     ln -s $TOOLKIT/pkgdetails_arm $TOOLKIT/pkgdetails_arm_64
     ln -s $TOOLKIT/pkgdetails_x86 $TOOLKIT/pkgdetails_x86_64
     ln -s $TOOLKIT/pkgdetails_$platform $TOOLKIT/pkgdetails
+fi
+# Cache
+if [ -d "$DATA2_DIR/cache/" ];then
+  echo "">/dev/null
+  else
+  mkdir $DATA2_DIR/cache/
 fi
 # Proot
 if [[ ! -f $TOOLKIT/proot ]]; then

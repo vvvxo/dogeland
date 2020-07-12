@@ -1,48 +1,19 @@
 <action>
-            <title>↓选择系统包</title>
+            <title>↓选择并安装系统包</title>
             <param name="file" label="文件选择" type="file"
-                suffix="tgz"
+                suffix="tar.xz"
                 value="" />
-            <param name="rootfs2" label="安装路径" title="" placeholder="/data/local/linux/" type="text" />
+            <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
             <set>
-            echo "$file">$TOOLKIT/bootstrap/system/status.txt
-            echo "$rootfs2">$TOOLKIT/bootstrap/system/status2.txt
+            echo "正在释放系统包"
+            mkdir $START_DIR/$rootfs2/ >/dev/null
+            tar -xvf $file -C $START_DIR/$rootfs2/ >/dev/null
+            echo "正在设置系统"
+            sh $TOOLS/cli/cli.sh -p $DATA2_DIR/cli.conf deploy -c >/dev/null
+            echo "正在执行附加操作
+            rm -rf $CONFIG_DIR/$confid/rootfs.conf
+            echo " $START_DIR/$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
+            export system=$(cat $START_DIR/$rootfs2/etc/issue)
+            echo " $system 安装成功"
             </set>
         </action>
-  <action>
-            <title>↓设置要安装的组件</title>
-            <param name="ssh" label="SSH" type="switch" />
-            <param name="xfcevnc" label="Xfce4桌面+VNC" type="switch" />
-            <param name="service" label="容器驱动" type="switch" />
-            <set>
-            echo "是否安装SSH $ssh 是否安装xfce+vnc桌面 $xfcevnc 是否安装容器驱动 $service"
-            echo "$ssh">$TOOLKIT/bootstrap/ssh/status.txt
-            echo "$xfcevnc">$TOOLKIT/bootstrap/xfcevnc/status.txt
-            echo "$service">$TOOLKIT/bootstrap/service/status.txt
-            </set>
-</action>
-    <action>
-            <title>↓设置系统参数</title>
-            <param name="dns" label="DNS" title="" placeholder="8.8.8.8" type="text" />
-            <param name="user" label="用户名" title="" placeholder="faq" type="text" />
-            <param name="passwd" label="密码" title="DNS" placeholder="123456" type="text" />
-            <set>
-            echo "$dns">$TOOLKIT/bootstrap/system/dns/status.txt
-            echo "$user">$TOOLKIT/bootstrap/system/user/status.txt
-            echo "$passwd">$TOOLKIT/bootstrap/system/passwd/status.txt
-            echo '已设置：' $dns $user $passwd
-            </set>
-        </action>
-  <action>
-            <title>↓现在开始</title>
-            <param name="install">
-                <option value="no">再想想</option>
-                <option value="yes">确认并安装</option>
-            </param>
-            <set>
-            echo "$install">$TOOLKIT/bootstrap/start/status.txt
-            echo "已设置：$install"
-            sleep 1
-            sh $TOOLKIT/bootstrap/start/main.sh $install
-            </set>
- </action>

@@ -8,11 +8,12 @@ export SDCARD_PATH=$({SDCARD_PATH})
 export TOOLKIT=$({TOOLKIT})
 export PATH="$PATH:$TOOLKIT"
 export TOOLS=$({TOOLKIT})/toolkit/
+export PREFIX=$START_DIR
 export DATA2_DIR=/$SDCARD_PATH/Android/data/$PACKAGE_NAME/
 export platform=$(sh $TOOLKIT/service.sh platform)
 # PRoot
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/
-export PROOT_TMP_DIR=$TOOLKIT
+export PROOT_TMP_DIR=$DATA2_DIR/cache/
 export PROOT_LOADER=$TOOLKIT/lib/$platform/lib_loader.so
 export PROOT_LOADER_32=$TOOLKIT/lib/$platform/lib_loader32.so
 # Config

@@ -7,7 +7,7 @@
 <group>
 <action>
             <title>移除</title>
-             <set>$TOOLKIT/service.sh $rootfs/</set>
+             <set>rm -rf $rootfs/service.sh</set>
 </action>
 <group>
 <group>

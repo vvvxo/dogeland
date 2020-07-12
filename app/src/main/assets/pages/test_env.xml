@@ -29,7 +29,7 @@
  
     <group>
         <action>
-            <title>设备状态</title>
-            <set>$TOOLKIT/service.sh device_status</set>
+            <title>设备信息</title>
+            <set>$TOOLKIT/service.sh device_info</set>
         </action>
 </group>

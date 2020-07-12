@@ -1,0 +1,93 @@
+loader(){
+export PATH="$PATH:$TOOLKIT"
+export EXECUTOR_PATH=/data/user/0/me.flytree.dogeland/files/initcmd.sh
+export START_DIR=/data/user/0/me.flytree.dogeland/files
+export PACKAGE_NAME=me.flytree.dogeland
+export SDCARD_PATH=/storage/emulated/0
+export TOOLKIT=/data/user/0/me.flytree.dogeland/files/bin
+export TOOLS=/data/user/0/me.flytree.dogeland/files/bin/toolkit/
+export DATA2_DIR=/$SDCARD_PATH/Android/data/$PACKAGE_NAME/
+export platform=$(sh $TOOLKIT/service.sh platform)
+# PRoot
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/
+export PROOT_TMP_DIR=$TOOLKIT
+export PROOT_LOADER=$TOOLKIT/lib/$platform/lib_loader.so
+export PROOT_LOADER_32=$TOOLKIT/lib/$platform/lib_loader32.so
+# Config
+export CONFIG_DIR=$DATA2_DIR/config/
+export confs=$(cat $CONFIG_DIR/.id.conf)
+export confid=$confs
+export cmd=$(cat $CONFIG_DIR/$confs/cmd.conf)
+export rootfs=$(cat $CONFIG_DIR/$confs/rootfs.conf)
+# Run Command
+}
+opts() {
+clear
+  echo
+  echo "#########################"
+  echo "#  DogeLand++ Magisk 控制台工具"
+  echo "#"
+  echo "#  1. 启动 Rootfs"
+  echo "#"
+  echo "#  2. 设置"
+  echo "#"
+  echo "#  3. 高级选项"
+  echo "#"
+  echo "#########################"
+  echo
+  printf "[请输入选项]"
+  read Input
+    case "$Input" in
+      1 ) start;;
+      2 ) setting;;
+      3 ) settings;;
+      x ) quit;;
+      * ) opts;;
+    esac
+}
+start() {
+clear
+  echo
+  echo "#########################"
+  echo "#  DogeLand++ Magisk 控制台工具"
+  echo "#  - 选择启动方式:"
+  echo "#  1. 自动选择"
+  echo "#"
+  echo "#  2. proot"
+  echo "#"
+  echo "#  3. chroot"
+  echo "#"
+  echo "#########################"
+  echo
+  printf "[请输入选项]"
+  read Input
+    case "$Input" in
+      1 ) start_auto;;
+      2 ) start_proot;;
+      3 ) start_chroot;;
+      x ) opts;;
+      * ) opts;;
+    esac
+}
+start_auto(){
+clear
+sh $TOOLKIT/service.sh start_auto
+}
+start_proot(){
+clear
+sh $TOOLKIT/service.sh start_proot
+}
+start_chroot(){
+clear
+sh $TOOLKIT/service.sh start_chroot
+}
+setting(){
+echo "暂不支持"
+sleep 2
+}
+setting2(){
+echo "暂不支持"
+sleep 2
+}
+loader
+opts

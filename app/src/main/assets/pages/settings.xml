@@ -27,7 +27,7 @@
         </action>
                <action>
             <title>新建</title>
-             <param name="mkconf" label="配置名称" title="Tips: 存储在APK" placeholder="请输入." type="text" />
+             <param name="mkconf" label="配置名称" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/service.sh mk_conf</set>
         </action>
             <action>
