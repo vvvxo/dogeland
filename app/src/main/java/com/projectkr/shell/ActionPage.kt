@@ -22,7 +22,7 @@ import com.omarea.krscript.executor.ScriptEnvironmen
 import com.omarea.krscript.model.*
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.FileChooserRender
-import com.flytree.dogeland.permissions.CheckRootStatus
+import me.flytree.dogeland.permissions.CheckRootStatus
 import java.lang.Exception
 
 
