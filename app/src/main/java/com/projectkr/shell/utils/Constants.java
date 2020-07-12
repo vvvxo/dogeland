@@ -1,4 +1,4 @@
-package com.flytree.dogeland.utils;
+package me.flytree.dogeland.utils;
 
 public interface Constants {
     String cpu_dir = "/sys/devices/system/cpu/cpu0/";

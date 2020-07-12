@@ -1,4 +1,4 @@
-package com.flytree.dogeland.ui
+package me.flytree.dogeland.ui
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TabHost
 import android.widget.TextView
-import com.flytree.dogeland.R
+import me.flytree.dogeland.R
 
 class TabIconHelper(private var tabHost: TabHost, private var activity: Activity) {
     private var views = ArrayList<View>()

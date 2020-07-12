@@ -1,4 +1,4 @@
-package com.flytree.dogeland;
+package me.flytree.dogeland;
 
 public class BatteryStatus {
     public long time;

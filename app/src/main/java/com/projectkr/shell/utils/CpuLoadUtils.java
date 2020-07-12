@@ -1,4 +1,4 @@
-package com.flytree.dogeland.utils;
+package me.flytree.dogeland.utils;
 
 import android.annotation.SuppressLint;
 

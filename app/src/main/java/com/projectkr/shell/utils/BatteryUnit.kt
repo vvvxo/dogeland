@@ -3,7 +3,7 @@ package com.omarea.shell.units
 import com.omarea.common.shell.KeepShellPublic
 import com.omarea.common.shell.KernelProrp
 import com.omarea.common.shell.RootFile
-import com.flytree.dogeland.BatteryStatus
+import me.flytree.dogeland.BatteryStatus
 import java.io.File
 
 /**

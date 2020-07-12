@@ -1,4 +1,4 @@
-package com.flytree.dogeland
+package me.flytree.dogeland
 
 import android.Manifest
 import android.app.Activity
@@ -31,7 +31,7 @@ import com.omarea.krscript.config.PageConfigReader
 import com.omarea.krscript.model.*
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.FileChooserRender
-import com.omarea.vtools.FloatMonitor
+import me.flytree.dogeland.FloatMonitor
 import me.flytree.dogeland.permissions.CheckRootStatus
 import me.flytree.dogeland.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.*

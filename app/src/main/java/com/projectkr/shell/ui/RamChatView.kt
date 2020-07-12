@@ -1,4 +1,4 @@
-package com.flytree.dogeland.ui
+package me.flytree.dogeland.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
-import com.flytree.dogeland.R
+import me.flytree.dogeland.R
 
 class RamChatView : View {
     //-------------必须给的数据相关-------------
