@@ -32,8 +32,8 @@ import com.omarea.krscript.model.*
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.FileChooserRender
 import com.omarea.vtools.FloatMonitor
-import com.flytree.dogeland.permissions.CheckRootStatus
-import com.flytree.dogeland.ui.TabIconHelper
+import me.flytree.dogeland.permissions.CheckRootStatus
+import me.flytree.dogeland.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
