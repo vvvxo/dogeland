@@ -1,4 +1,4 @@
-package me.flytree.dogeland
+package com.omarea.vtools
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
@@ -14,12 +14,12 @@ import android.view.WindowManager.LayoutParams
 import android.widget.TextView
 import android.widget.Toast
 import com.omarea.shell.units.BatteryUnit
-import me.flytree.dogeland.R
-import me.flytree.dogeland.ui.FloatMonitorBatteryView
-import me.flytree.dogeland.ui.FloatMonitorChartView
-import me.flytree.dogeland.utils.CpuFrequencyUtils
-import me.flytree.dogeland.utils.CpuLoadUtils
-import me.flytree.dogeland.utils.GpuUtils
+import com.projectkr.shell.R
+import com.projectkr.shell.ui.FloatMonitorBatteryView
+import com.projectkr.shell.ui.FloatMonitorChartView
+import com.projectkr.shell.utils.CpuFrequencyUtils
+import com.projectkr.shell.utils.CpuLoadUtils
+import com.projectkr.shell.utils.GpuUtils
 import java.util.*
 
 class FloatMonitor(context: Context) {

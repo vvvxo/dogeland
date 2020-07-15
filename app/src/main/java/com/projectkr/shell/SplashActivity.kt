@@ -1,4 +1,4 @@
-package me.flytree.dogeland
+package com.projectkr.shell
 
 import android.Manifest
 import android.app.Activity
@@ -16,7 +16,7 @@ import android.view.View
 import android.widget.TextView
 import com.omarea.common.shell.ShellExecutor
 import com.omarea.krscript.executor.ScriptEnvironmen
-import me.flytree.dogeland.permissions.CheckRootStatus
+import com.projectkr.shell.permissions.CheckRootStatus
 import kotlinx.android.synthetic.main.activity_splash.*
 import java.io.BufferedReader
 import java.io.DataOutputStream

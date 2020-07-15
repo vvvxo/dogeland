@@ -1,13 +1,13 @@
 <resources>
     <string name="btn_confirm">确定</string>
-    <string name="shell_executor">脚本执行器</string>
+    <string name="shell_executor">命令执行</string>
     <string name="btn_cancel">取消</string>
     <string name="btn_skip">跳过</string>
     <string name="btn_exit">退出</string>
     <string name="btn_hide">隐藏</string>
     <string name="btn_execute">执行</string>
-    <string name="onloading">正在加载数据…</string>
-    <string name="kr_shell_completed">脚本运行结束</string>
+    <string name="onloading">正在加载…</string>
+    <string name="kr_shell_completed">!Done</string>
     <string name="kr_shell_finish_error">运行结束，但出现错误</string>
     <string name="script_losted">脚本资源丢失\n</string>
     <string name="btn_copy_output">复制输出</string>

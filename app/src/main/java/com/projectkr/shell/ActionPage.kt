@@ -1,4 +1,4 @@
-package 
+package com.projectkr.shell
 
 import android.Manifest
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -22,7 +22,7 @@ import com.omarea.krscript.executor.ScriptEnvironmen
 import com.omarea.krscript.model.*
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.FileChooserRender
-import me.flytree.dogeland.permissions.CheckRootStatus
+import com.projectkr.shell.permissions.CheckRootStatus
 import java.lang.Exception
 
 

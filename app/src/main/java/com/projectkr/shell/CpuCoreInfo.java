@@ -1,4 +1,4 @@
-package me.flytree.dogeland;
+package com.projectkr.shell;
 
 public class CpuCoreInfo {
     public String minFreq;

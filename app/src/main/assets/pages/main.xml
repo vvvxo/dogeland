@@ -16,7 +16,6 @@
             <title>关闭</title>
             <set>sh $TOOLKIT/service.sh stop_rootfs</set>
         </action>
-            <page config="pages/reboot_rootfs.xml" title="重启" />
               <action>
             <title>运行终端命令</title>
             <param name="cmd2" label="命令" title="" placeholder="" type="text" />
@@ -46,6 +45,9 @@
         <page config="pages/repo.xml" title="系统仓库" />
         <page config="pages/patch.xml" title="系统补丁" />
         <page config="pages/service.xml" title="LinuxLoader核心驱动" />
-        <page config="pages/test_env.xml" title="运行环境测试" />
+        <action>
+            <title>运行环境测试</title>
+            <set>sh $TOOLKIT/service.sh env_info</set>
+        </action>
     </group>
 </items>

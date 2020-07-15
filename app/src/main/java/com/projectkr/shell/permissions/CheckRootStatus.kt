@@ -1,4 +1,4 @@
-package me.flytree.dogeland.permissions
+package com.projectkr.shell.permissions
 
 import android.Manifest
 import android.app.AlertDialog
@@ -9,7 +9,7 @@ import android.os.Looper
 import androidx.core.content.PermissionChecker
 import com.omarea.common.shell.KeepShellPublic
 import com.omarea.common.ui.DialogHelper
-import me.flytree.dogeland.R
+import com.projectkr.shell.R
 import kotlin.system.exitProcess
 
 /**

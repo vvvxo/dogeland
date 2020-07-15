@@ -1,4 +1,4 @@
-package me.flytree.dogeland.ui;
+package com.projectkr.shell.ui;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.omarea.common.ui.DialogHelper;
 import com.omarea.common.ui.ProgressBarDialog;
-import me.flytree.dogeland.R;
+import com.projectkr.shell.R;
 
 import java.io.File;
 import java.io.FileFilter;

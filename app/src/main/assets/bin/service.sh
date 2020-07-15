@@ -1,9 +1,9 @@
 # DogeLand Service
-# v2.0.4
+# v2.1.1
 # 
-# license: 
+# license: GPL-v2.0
 #
-VERSION=2.0.4-alpha
+VERSION=2.1.1_BETA
 #
 # Common
 #
@@ -44,7 +44,7 @@ selinux_inactive()
     fi
 }
 loop_support() {
-    if [ -n "$(losetup -f >/dev/null)" ]; then
+    if [ -n "$(losetup -f)" ]; then
         return 1
     else
         return 0
@@ -53,15 +53,16 @@ loop_support() {
 #
 # Core
 #
-
-# mount
-mount_part(){
-if [ -d "$rootfs/" ];then
+check_rootfs(){
+if [ -d "$rootfs" ];then
   msg "">/dev/null
   else
   msg "- / ...fail "
-  exit
+  exit 255
 fi
+}
+# mount
+mount_part(){
 if [ -d "$rootfs/proc/1/" ];then
  msg "">/dev/null
   else
@@ -91,14 +92,6 @@ mount -o bind /dev/shm $rootfs/dev/shm
 msg "- /dev/pts ..."
 mount -o bind /dev/pts $rootfs/dev/pts
 
-#if [ ! -e "/dev/fd" -o ! -e "/dev/stdin" -o ! -e "/dev/stdout" -o ! -e "/dev/stderr" ]; then
-# msg "/dev/fd ... "
-#  [ -e "/dev/fd" ] || ln -s /proc/self/fd /dev/
-#  [ -e "/dev/stdin" ] || ln -s /proc/self/fd/0 /dev/stdin
-#  [ -e "/dev/stdout" ] || ln -s /proc/self/fd/1 /dev/stdout
-#  [ -e "/dev/stderr" ] || ln -s /proc/self/fd/2 /dev/stderr
-#fi
-
 if [ ! -e "/dev/tty0" ]; then
   msg "">/dev/null
   else
@@ -106,15 +99,17 @@ if [ ! -e "/dev/tty0" ]; then
   ln -s /dev/null /dev/tty0
 fi
 
-#if [ ! -e "/dev/net/tun" ]; then
-#   msg -n "/dev/net/tun ... "
-#   [ -d "/dev/net" ] || mkdir -p /dev/net
-#   mknod /dev/net/tun c 10 200
-#fi
 }
 
 # umount
-
+umount_part(){
+umount $rootfs/proc
+umount $rootfs/sys
+umount $rootfs/dev/pts
+umount $rootfs/dev/shm
+umount $rootfs/dev
+umount $rootfs/mnt
+}
 # loop
 
 #
@@ -125,23 +120,26 @@ unset TMP TEMP TMPDIR LD_PRELOAD LD_DEBUG
 HOME=/root
 LANG=C.UTF-8
 PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games
+PATH=$PATH:$addpath
 }
 
 start_chroot(){
+check_rootfs
 mount_part
 set_env
-$TOOLKIT/busybox chroot $rootfs $cmd $addcmd
+$TOOLKIT/busybox chroot $addcmd $rootfs $cmd
 msg "- All Done"
 sleep 1
 }
 
 start_auto(){
+check_rootfs
 msg
 if [ `id -u` -eq 0 ];then
    start_chroot
    exit
 else
-   echo "">/dev/null
+   msg "">/dev/null
 fi
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   start_proot_termux
@@ -154,27 +152,32 @@ sleep 1
 }
 
 start_proot(){
+check_rootfs
 set_env
-$TOOLKIT/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd $addcmd
+$TOOLKIT/proot $addcmd -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
 msg "- Done"
 sleep 1
 }
 
 start_proot_termux(){
+check_rootfs
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
-  echo ""
+  msg ""
   else
-  echo "- 不支持的操作"
+  msg "- 不支持的操作"
   exit 255
 fi
 set_env
-/data/data/com.termux/files/usr/bin/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd $addcmd
+/data/data/com.termux/files/usr/bin/proot $addcmd -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
 msg "- Done"
 sleep 1
 }
 
 stop_rootfs(){
 pkill sshd
+pkill proot
+pkill busybox
+pkill bash
 pkill sh
 }
 #
@@ -182,6 +185,7 @@ pkill sh
 #
 
 exec_chroot(){
+check_rootfs
 mount_part
 set_env
 msg "- Pushing"
@@ -204,14 +208,14 @@ else
 if [ -f "$rootfs/bin/bash" ];then
 $TOOLKIT/chroot "$rootfs" /bin/bash /runcmd.sh
 else
-echo "不支持的操作"
-echo
+msg "不支持的操作"
+msg
 fi
-echo
+msg
 fi
-echo
+msg
 fi
-echo
+msg
 fi
 msg
 msg "- Cleaning"
@@ -220,11 +224,12 @@ rm $rootfs/runcmd.sh
 
 exec_auto(){
 msg
+check_rootfs
 if [ `id -u` -eq 0 ];then
    exec_chroot
    exit
 else
-   echo "">/dev/null
+   msg "">/dev/null
 fi
 if [ -f "/data/data/com.termux/files/usr/bin/" ];then
   exec_proot_termux
@@ -237,6 +242,7 @@ sleep 1
 }
 
 exec_proot(){
+check_rootfs
 set_env
 msg
 msg "- Running"
@@ -246,10 +252,11 @@ msg
 }
 
 exec_proot_termux(){
+check_rootfs
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
-  echo ""
+  msg ""
   else
-  echo "- 不支持的操作"
+  msg "- 不支持的操作"
   exit 255
 fi
 set_env
@@ -315,7 +322,7 @@ DogeLand Service
 
  https://github.com/Flytreels/LinuxLoader
 
-license:
+license: GPL-v2
 
 ABOUT
 }
@@ -394,7 +401,7 @@ fi
 
 mk_conf() {
 if [ -d "$CONFIG_DIR/" ];then
-  echo
+  msg
   else
   mkdir $CONFIG_DIR
 fi
@@ -402,7 +409,7 @@ msg "- 正在创建配置 $mkconf"
 mkdir $CONFIG_DIR/$mkconf/
 msg "/data/cache/linux">$CONFIG_DIR/$mkconf/rootfs.conf
 msg "/bin/sh">$CONFIG_DIR/$mkconf/cmd.conf
-echo "- 正在切换配置 $mkconf"
+msg "- 正在切换配置 $mkconf"
 rm $CONFIG_DIR/.id.conf
 msg "$mkconf">$CONFIG_DIR/.id.conf
 msg '- 完成,已创建 $mkconf'
@@ -439,24 +446,23 @@ fi
 # Other
 #
 
-device_info() {
+env_info() {
     model=$(getprop ro.product.model)
     if [ -n "$model" ]; then
         msg -n "设备: "
         msg "$model"
     fi
-
-    android=$(getprop ro.build.version.release)
-    if [ -n "$android" ]; then
+    android_version=$(getprop ro.build.version.release)
+    if [ -n "$android_version" ]; then
         msg -n "安卓版本: "
-        msg "$android"
+        msg "Android $android_version"
     fi
 
     msg -n "容器已安装操作系统:"
     if [ -f "$rootfs/etc/issue" ];then
     export linux_version=$(cat $rootfs/etc/issue)
     else
-    export linux_version="未安装或无法识别"
+    export linux_version="  未安装或无法识别"
     fi
     msg "$linux_version"
 
@@ -479,7 +485,22 @@ device_info() {
     msg "文件系统支持:"
     supported_fs=$(cat /proc/filesystems)
     msg "$supported_fs"
+    
+    msg '当前busybox版本:'
+    busybox | grep BusyBox
 
+    msg "当前运行路径:"
+    pwd
+    
+    msg ""
+    msg "Service:"
+    sh $TOOLKIT/service.sh about
+
+    msg "PRoot版本:"
+    $TOOLKIT/proot -V
+
+    msg "chroot状态:"
+    $TOOLKIT/busybox chroot
 }
 
 # Run Command

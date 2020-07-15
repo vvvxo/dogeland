@@ -6,7 +6,19 @@
              <param name="passwd" label="" title="密码" placeholder="1" type="text" />
              <param name="shell" label="" title="命令行" placeholder="/system/bin/sh" type="text" />
               <param name="group" label="" title="运行用户" placeholder="0" type="text" />
-             <set>$TOOLKIT/shellinaboxd -u $group -g $group -c $TOOLKIT -b --shell=$shell:$login:$passwd</set>
+             <set>
+             if [[ "$platform" != "x86" ]]
+             then
+             echo "!不支持你的设备"
+             exit 1
+             fi
+             if [[ "$platform" != "x86_64" ]]
+             then
+             echo "!不支持你的设备"
+             exit 1
+             fi
+             $TOOLKIT/shellinaboxd -u $group -g $group -c $TOOLKIT -b --shell=$shell:$login:$passwd
+             </set>
 </action>
 </group>
 <group>

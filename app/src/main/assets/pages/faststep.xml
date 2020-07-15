@@ -7,7 +7,7 @@
             <set>
             echo "正在释放系统包"
             mkdir $START_DIR/$rootfs2/ >/dev/null
-            tar -xvf $file -C $START_DIR/$rootfs2/ >/dev/null
+            tar xz $file -C $START_DIR/$rootfs2/ >/dev/null
             echo "正在设置系统"
             sh $TOOLS/cli/cli.sh -p $DATA2_DIR/cli.conf deploy -c >/dev/null
             echo "正在执行附加操作

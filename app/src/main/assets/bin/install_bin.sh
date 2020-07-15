@@ -1,4 +1,7 @@
-#!/system/bin/sh
+#
+# DogeLand Core Files Installer
+#
+echo "- 正在初始化(报错属于现象)"
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
@@ -22,10 +25,10 @@ if [[ ! "$TOOLKIT" = "" ]]; then
     cd "$TOOLKIT"
     if [[ ! -f arch ]]; then
     export platform=$(sh $TOOLKIT/service.sh platform)
-    rm $TOOLKIT/busybox
+    rm -rf $TOOLKIT/busybox
     mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
     busybox_install
-    rm $TOOLKIT/busybox_*
+    rm -rf $TOOLKIT/busybox_*
     fi
 fi
 # Default Config Install
@@ -61,4 +64,13 @@ if [[ ! -f $TOOLKIT/shellinaboxd ]]; then
 ln -s $TOOLKIT/shellinaboxd_arm $TOOLKIT/shellinaboxd_arm_64
 ln -s $TOOLKIT/shellinaboxd_$platform  $TOOLKIT/shellinaboxd
 fi
-rm -rf $TOOLKIT/install_bin.sh
+# Other
+if [[ ! -f $START_DIR/issue ]]; then
+mv $TOOLKIT/issue $START_DIR/
+fi
+if [[ ! -f $START_DIR/LICENSE ]]; then
+mv $TOOLKIT/LICENSE $START_DIR/
+fi
+# Kill
+echo "- 初始化完成🍉"
+rm -rf $TOOLKIT/install_bin.sh && rm -rf $TOOLKIT/install_bin.sh

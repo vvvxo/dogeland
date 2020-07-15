@@ -1,4 +1,4 @@
-package me.flytree.dogeland.ui
+package com.projectkr.shell.ui
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -9,7 +9,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.DecelerateInterpolator
-import me.flytree.dogeland.R
+import com.projectkr.shell.R
 
 
 class FloatMonitorChartView : View {
