@@ -9,10 +9,10 @@ Run Linux on android.
   3. 导入Linux系统包
   4. 设置相关参数
   5. 点击"启动"选项按钮来启动容器。
-  6. 通过 CLI、SSH、VNC 等方式连接容器
- 最低支持Android 5
+  6. 通过 CLI、SSH、VNC 等方式连接容器  
+ 最低支持Android 5  
  ARM,ARM64,X86,X86_64均已支持  
-[下载最新版本]
+[下载最新版本](www.baidu.com)  
 本应用同时兼容LinuxDeploy安装的系统，只设置安装路径与命令行即可使用。  
 ![UBQd8U.png](https://s1.ax1x.com/2020/07/16/UBQd8U.png)
 ![UBQ0v4.png](https://s1.ax1x.com/2020/07/16/UBQ0v4.png)
