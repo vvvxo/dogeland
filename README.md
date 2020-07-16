@@ -14,9 +14,15 @@ Run Linux on android.
  最低支持Android 5  
  ARM,ARM64,X86,X86_64均已支持  
 ### 使用
-[下载最新版本](www.baidu.com)  
+[下载最新版本](https://github.com/WhiteSky-Team/DogeLand-App/releases/)  
 本应用同时兼容LinuxDeploy安装的系统，只设置安装路径与命令行即可使用。  
 ![UBQd8U.png](https://s1.ax1x.com/2020/07/16/UBQd8U.png)
 ![UBQ0v4.png](https://s1.ax1x.com/2020/07/16/UBQ0v4.png)
 ![UB117n.png](https://s1.ax1x.com/2020/07/16/UB117n.png)
 ![UB1Gt0.png](https://s1.ax1x.com/2020/07/16/UB1Gt0.png)
+### 已知bug
+1.chroot模式下的ssh无法切换到su用户和sudo不可用(但可直接使用ROOT帐号登录,问题暂时解决)    
+2. App 免ROOT模式不完善  
+等待后续更新吧  
+
+如果您知道这些问题如何解决，请立刻提交issue,感谢支持.
