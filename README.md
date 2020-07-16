@@ -16,3 +16,7 @@ Run Linux on android.
 ![UBQ0v4.png](https://s1.ax1x.com/2020/07/16/UBQ0v4.png)
 ![UBQw2F.png](https://s1.ax1x.com/2020/07/16/UBQw2F.png)
 ![UBQDKJ.png](https://s1.ax1x.com/2020/07/16/UBQDKJ.png)
+![UB117n.png](https://s1.ax1x.com/2020/07/16/UB117n.png)
+![UB18kq.png](https://s1.ax1x.com/2020/07/16/UB18kq.png)
+![UB1Gt0.png](https://s1.ax1x.com/2020/07/16/UB1Gt0.png)
+![UB1l0s.png](https://s1.ax1x.com/2020/07/16/UB1l0s.png)
