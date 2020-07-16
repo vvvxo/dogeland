@@ -10,6 +10,7 @@ Run Linux on android.
   4. 设置相关参数
   5. 点击"启动"选项按钮来启动容器。
   6. 通过 CLI、SSH、VNC 等方式连接容器  
+  Tips: 启动SSH推荐安装支持组件，快捷启动SSH服务  
 ### 设备要求
  最低支持Android 5  
  ARM,ARM64,X86,X86_64均已支持  
