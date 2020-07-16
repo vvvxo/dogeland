@@ -24,3 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Store generated APK file
+      uses: actions/upload-artifact@v1
+      with:
+        name: dogeland-app
+        path: ./app/build/outputs/apk/debug/app-debug.apk
