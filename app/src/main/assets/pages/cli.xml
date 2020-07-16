@@ -1,13 +1,13 @@
 <group>
 <action>
             <title>安装</title>
-             <set>cp $TOOLKIT/service.sh $rootfs/</set>
+             <set>cp $TOOLKIT/cli.sh $rootfs/</set>
 </action>
 </group>
 <group>
 <action>
             <title>移除</title>
-             <set>rm -rf $rootfs/service.sh</set>
+             <set>rm -rf $rootfs/cli.sh</set>
 </action>
 <group>
 <group>

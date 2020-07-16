@@ -11,10 +11,10 @@
            1. 给本应用 超级用户（Root） 权限。
            2. 正常连接至互联网。
            3. 配置安装选项。
-           4. 开始安装。
+           4. 安装系统包。
            5. 等待安装完成。
            6. 点击"启动"按钮来启动容器。
-           7. 通过 CLI、SSH、VNC 等方式连接容器。
+           7. 通过 CLI、SSH、VNC 等方式连接到容器。
 
 
         </desc>
@@ -28,9 +28,8 @@
             </desc>
         </text>
 </group>
-<group>
 <items>
-    <group>
+<group>
 <page config="pages/faststep.xml" title="快速开始↗" />
  </group>
-</items>
+ </items>

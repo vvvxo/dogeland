@@ -3,12 +3,12 @@
      <action>
          <title>Rootfs路径</title>
              <param name="Input" label="" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/service.sh set_rootfsdir</set>
+            <set>$TOOLKIT/cli.sh set_rootfsdir</set>
              </action>
         <action>
             <title>初始化命令行</title>
             <param name="Input" label="" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/service.sh set_initcmd</set>
+            <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
           <action>
             <title>删除Rootfs</title>
@@ -16,7 +16,7 @@
                 <option value="">取消</option>
                 <option value="rm_rootfsdir*">确定删除</option>
             </param>
-            <set>sh $TOOLKIT/service.sh $type</set>
+            <set>sh $TOOLKIT/cli.sh $type</set>
         </action>
           </group>
           
@@ -28,18 +28,18 @@
                <action>
             <title>新建</title>
              <param name="mkconf" label="配置名称" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/service.sh mk_conf</set>
+            <set>$TOOLKIT/cli.sh mk_conf</set>
         </action>
             <action>
             <title>切换</title>
              <param name="swconf" label="配置名称" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/service.sh sw_conf</set>
+            <set>$TOOLKIT/cli.sh sw_conf</set>
             
         </action>
          <action>
             <title>删除</title>
              <param name="delconf" label="配置名称" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/service.sh del_conf</set>
+            <set>$TOOLKIT/cli.sh del_conf</set>
             
         </action>
     </group>

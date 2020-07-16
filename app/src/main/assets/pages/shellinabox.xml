@@ -9,11 +9,15 @@
              <set>
              if [[ "$platform" != "x86" ]]
              then
+             echo "">/dev/null
+             else
              echo "!不支持你的设备"
              exit 1
              fi
              if [[ "$platform" != "x86_64" ]]
              then
+             echo "">/dev/null
+             else
              echo "!不支持你的设备"
              exit 1
              fi

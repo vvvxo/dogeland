@@ -1,4 +1,4 @@
-# DogeLand Service
+# DogeLand CLI
 # v2.1.1
 # 
 # license: GPL-v2.0
@@ -55,10 +55,10 @@ loop_support() {
 #
 check_rootfs(){
 if [ -d "$rootfs" ];then
-  msg "">/dev/null
+  return 1
   else
   msg "- / ...fail "
-  exit 255
+  return 0 && exit 255
 fi
 }
 # mount
@@ -124,7 +124,7 @@ PATH=$PATH:$addpath
 }
 
 start_chroot(){
-check_rootfs
+check_rootfs 
 mount_part
 set_env
 $TOOLKIT/busybox chroot $addcmd $rootfs $cmd
@@ -133,7 +133,6 @@ sleep 1
 }
 
 start_auto(){
-check_rootfs
 msg
 if [ `id -u` -eq 0 ];then
    start_chroot
@@ -152,7 +151,7 @@ sleep 1
 }
 
 start_proot(){
-check_rootfs
+check_rootfs 
 set_env
 $TOOLKIT/proot $addcmd -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
 msg "- Done"
@@ -160,7 +159,7 @@ sleep 1
 }
 
 start_proot_termux(){
-check_rootfs
+check_rootfs 
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   msg ""
   else
@@ -185,7 +184,7 @@ pkill sh
 #
 
 exec_chroot(){
-check_rootfs
+check_rootfs 
 mount_part
 set_env
 msg "- Pushing"
@@ -224,7 +223,7 @@ rm $rootfs/runcmd.sh
 
 exec_auto(){
 msg
-check_rootfs
+check_rootfs 
 if [ `id -u` -eq 0 ];then
    exec_chroot
    exit
@@ -242,7 +241,7 @@ sleep 1
 }
 
 exec_proot(){
-check_rootfs
+check_rootfs 
 set_env
 msg
 msg "- Running"
@@ -252,7 +251,7 @@ msg
 }
 
 exec_proot_termux(){
-check_rootfs
+check_rootfs 
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   msg ""
   else
@@ -260,28 +259,20 @@ if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   exit 255
 fi
 set_env
-msg "- Pushing"
-msg "$cmd2">$rootfs/runcmd.sh
-chmod 755 $rootfs/runcmd.sh
 msg
 msg "- Running"
 msg ""
-/data/data/com.termux/files/usr/bin/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root /bin/su -c $userid /runcmd.sh
+/data/data/com.termux/files/usr/bin/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
 msg
-msg "- Cleaning"
-rm $rootfs/runcmd.sh
 }
 
 exec_localshell(){
-sleep 1
+msg
 $cmd2
 }
 #
 # Other
 #
-deploy_linux(){
-$TOOLS/debootstrap --help
-}
 
 rm_rootfsdir() {
 msg "- 正在取消挂载"
@@ -295,7 +286,7 @@ help() {
 cat <<HELP
 
 USAGE:
-   service.sh COMMAND ...
+   cli.sh [COMMAND] ...
 
 COMMANDS:
    [...] 
@@ -306,7 +297,9 @@ COMMANDS:
    exec_chroot: 使用chroot运行Linux命令
    exec_proot: 使用proot运行Linux命令
    
-   set_env: 设置Linux运行环境
+   set_env: 设置Linux终端环境
+   
+   env_info: 运行环境测试
    
 HELP
 }
@@ -315,12 +308,9 @@ about()
 {
 cat <<ABOUT
 
-DogeLand Service
-版本: $VERSION
+DogeLand CLI $VERSION
 
 本应用程序安装指定的 GNU / Linux 发行版 , 并在chroot或proot容器中运行.
-
- https://github.com/Flytreels/LinuxLoader
 
 license: GPL-v2
 
@@ -344,6 +334,8 @@ rm -rf /run/sshd
 rm -rf /var/run/sshd
 mkdir /run/sshd /var/run/sshd
 ssh-keygen -A
+chmod 555 /run/sshd
+echo "- Tip: 如果卡在这里或无报错,说明已经启动成功"
 /usr/sbin/sshd -p 22
 }
 
@@ -458,7 +450,7 @@ env_info() {
         msg "Android $android_version"
     fi
 
-    msg -n "容器已安装操作系统:"
+    msg -n "容器已安装系统:"
     if [ -f "$rootfs/etc/issue" ];then
     export linux_version=$(cat $rootfs/etc/issue)
     else
@@ -493,8 +485,8 @@ env_info() {
     pwd
     
     msg ""
-    msg "Service:"
-    sh $TOOLKIT/service.sh about
+    msg "CLI版本:"
+    sh $TOOLKIT/cli.sh about
 
     msg "PRoot版本:"
     $TOOLKIT/proot -V

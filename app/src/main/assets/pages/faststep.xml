@@ -7,9 +7,9 @@
             <set>
             echo "正在释放系统包"
             mkdir $START_DIR/$rootfs2/ >/dev/null
-            tar xz $file -C $START_DIR/$rootfs2/ >/dev/null
+            tar XJf $file -C $START_DIR/$rootfs2/ >/dev/null
             echo "正在设置系统"
-            sh $TOOLS/cli/cli.sh -p $DATA2_DIR/cli.conf deploy -c >/dev/null
+            sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $TOOLKIT/linuxdeploy-cli/cli.conf deploy -c >/dev/null
             echo "正在执行附加操作
             rm -rf $CONFIG_DIR/$confid/rootfs.conf
             echo " $START_DIR/$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf

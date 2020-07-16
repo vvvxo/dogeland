@@ -10,11 +10,11 @@
                 <option value="start_proot_termux">[termux-proot]</option>
             </param>
             <param name="addcmd" label="附加参数" title="" placeholder="" type="text" />
-            <set>sh $TOOLKIT/service.sh $start</set>
+            <set>sh $TOOLKIT/cli.sh $start</set>
         </action>
            <action>
             <title>关闭</title>
-            <set>sh $TOOLKIT/service.sh stop_rootfs</set>
+            <set>sh $TOOLKIT/cli.sh stop_rootfs</set>
         </action>
               <action>
             <title>运行终端命令</title>
@@ -27,7 +27,7 @@
                 <option value="exec_localshell">[local-shell]</option>
             </param>
             <param name="userid" label="运行用户" title="" placeholder="root" type="text" />
-            <set>sh $TOOLKIT/service.sh $exec</set>
+            <set>sh $TOOLKIT/cli.sh $exec</set>
         </action>
     </group>
 </items>
@@ -43,11 +43,11 @@
     <group title="高级选项">
         <page config="pages/shellinabox.xml" title="ShellInabox" />
         <page config="pages/repo.xml" title="系统仓库" />
-        <page config="pages/patch.xml" title="系统补丁" />
-        <page config="pages/service.xml" title="LinuxLoader核心驱动" />
+        <page config="pages/patchs.xml" title="系统补丁" />
+        <page config="pages/cli.xml" title="LinuxLoader核心驱动" />
         <action>
             <title>运行环境测试</title>
-            <set>sh $TOOLKIT/service.sh env_info</set>
+            <set>sh $TOOLKIT/cli.sh env_info</set>
         </action>
     </group>
 </items>

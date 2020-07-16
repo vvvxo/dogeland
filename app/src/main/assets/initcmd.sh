@@ -9,7 +9,7 @@ export TOOLKIT=$({TOOLKIT})
 export DATA2_DIR="/$SDCARD_PATH/Android/data/$PACKAGE_NAME/"
 export CONFIG_DIR="$DATA2_DIR/config/"
 # PATH
-export platform=$(sh $TOOLKIT/service.sh platform)
+export platform=$(sh $TOOLKIT/cli.sh platform)
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/"
 export PATH="$PATH:$TOOLKIT"
 export PREFIX=$START_DIR
@@ -19,6 +19,8 @@ export PROOT_TMP_DIR="$DATA2_DIR/cache/"
 export PROOT_LOADER="$TOOLKIT/lib/$platform/lib_loader.so"
 if [[ "$platform" != "x86_64" ]]
 then
+echo "">/dev/null
+else
 export PROOT_LOADER_32="$TOOLKIT/lib/$platform/lib_loader32.so"
 fi
 # Config

@@ -1,4 +1,3 @@
-<page>
 <group>
 <action>
             <title>Ashmem</title>
@@ -11,10 +10,10 @@
             </param>
             <set>
             echo '正在安装补丁'
-            cp $TOOLS/patchs/Ashmem/$archs/* $rootfs/usr/local/lib/
+            sh $TOOLKIT/cli.sh check_rootfs
+            cp $TOOLKIT/lib/$archs/libandroid-shmem.so $rootfs/usr/local/lib/
             echo "安装完成"
             exit
             </set>
 </action>
 </group>
-</page>

@@ -24,11 +24,11 @@ function busybox_install() {
 if [[ ! "$TOOLKIT" = "" ]]; then
     cd "$TOOLKIT"
     if [[ ! -f arch ]]; then
-    export platform=$(sh $TOOLKIT/service.sh platform)
+    export platform=$(sh $TOOLKIT/cli.sh platform)
     rm -rf $TOOLKIT/busybox
     mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
     busybox_install
-    rm -rf $TOOLKIT/busybox_*
+    rm -rf $TOOLKIT/busybox_arm_64 $TOOLKIT/busybox_arm $TOOLKIT/busybox_x86 $TOOLKIT/busybox_x86_64
     fi
 fi
 # Default Config Install
