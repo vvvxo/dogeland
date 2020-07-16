@@ -1,4 +1,5 @@
 # DogeLand-App
+![AutoBuild](https://github.com/WhiteSky-Team/DogeLand-App/workflows/Java%20CI%20with%20Gradle/badge.svg)
 Run Linux on Android.  
 [中文用户](https://github.com/WhiteSky-Team/DogeLand-App/blob/master/README_zh.md)  
 Linux solution for running Android out of the box  
