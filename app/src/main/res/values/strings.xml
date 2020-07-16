@@ -1,8 +1,5 @@
 <resources>
-    <!--重要内容，谨慎修改-->
-    <string name="kr_script_config">kr-script.conf</string>
-
-    <!--是否强制获取ROOT-->
+    <string name="kr_script_config">app.conf</string>
     <bool name="force_root">false</bool>
 
     <string name="app_name">DogeLand</string>
@@ -29,7 +26,7 @@
     <string name="about_title">关于 · DogeLand</string>
     <string name="appliction_desc">本应用程序安装指定的 GNU / Linux 发行版,并在chroot 或 proot容器运行.</string>
     <string name="appliction_name">DogeLand</string>
-    <string name="appliction_author">v1.2.0_5</string>
+    <string name="appliction_author">v1.2.0_5_build</string>
     <string name="engine_version_name">[Kr-Script3.1.0]</string>
     <string name="system_ram">系统内存</string>
     <string name="hardware_ram">物理内存</string>
