@@ -1,4 +1,4 @@
-# DogeLand-App
+9# DogeLand-App
 Run Linux on android.
 开箱即用的Android运行Linux解决方案
 ## 快速上手
@@ -11,4 +11,5 @@ Run Linux on android.
   5. 点击"启动"选项按钮来启动容器。
   6. 通过 CLI、SSH、VNC 等方式连接容器
            
-本应用同时兼容LinuxDeploy安装的系统，只需下面操作即可
+本应用同时兼容LinuxDeploy安装的系统，只设置安装路径与命令行即可使用。
+[![UBQd8U.th.png](https://s1.ax1x.com/2020/07/16/UBQd8U.th.png)](https://imgchr.com/i/UBQd8U) [![UBQ0v4.th.png](https://s1.ax1x.com/2020/07/16/UBQ0v4.th.png)](https://imgchr.com/i/UBQ0v4) [![UBQw2F.th.png](https://s1.ax1x.com/2020/07/16/UBQw2F.th.png)](https://imgchr.com/i/UBQw2F) [![UBQDKJ.th.png](https://s1.ax1x.com/2020/07/16/UBQDKJ.th.png)](https://imgchr.com/i/UBQDKJ)
