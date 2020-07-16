@@ -173,11 +173,15 @@ sleep 1
 }
 
 stop_rootfs(){
+echo "- 正在关闭容器"
 pkill sshd
+pkill xfce4
+pkill vncserver
 pkill proot
 pkill busybox
 pkill bash
 pkill sh
+echo "- 容器关闭成功"
 }
 #
 # Linux Exec
