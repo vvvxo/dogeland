@@ -1,7 +1,7 @@
 # DogeLand-App
 Run Linux on Android.  
-[中文用户](https://github.com/WhiteSky-Team/DogeLand-App/blob/master/README_zh.md)
- Linux solution for running Android out of the box
+[中文用户](https://github.com/WhiteSky-Team/DogeLand-App/blob/master/README_zh.md)  
+Linux solution for running Android out of the box  
  ## Quick start
  This application installs the selected GNU/Linux distribution and runs it in the chroot / proot container.
   Steps for usage:  
