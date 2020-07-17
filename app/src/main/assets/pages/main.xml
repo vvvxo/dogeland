@@ -36,13 +36,13 @@
 <items>
     <group>
 <page config="pages/settings.xml" title="设置" />
+<page html="https://whitesky-team.github.io/repo.html" title="系统仓库" />
  </group>
 </items>
 
 <items>
     <group title="高级选项">
         <page config="pages/shellinabox.xml" title="ShellInabox" />
-        <page config="pages/repo.xml" title="系统仓库" />
         <page config="pages/patchs.xml" title="系统补丁" />
         <page config="pages/cli.xml" title="LinuxLoader核心驱动" />
         <action>
