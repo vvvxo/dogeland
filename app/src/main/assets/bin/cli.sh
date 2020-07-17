@@ -473,6 +473,9 @@ cp $TOOLKIT/cli.sh $rootfs2/
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh sshd_start">$CONFIG_DIR/$confid/cmd.conf
 echo "- 安装成功"
+echo "- 正在读取系统信息"
+cat $rootfs2/info.log
+echo "全部完成"
 }
 env_info() {
     model=$(getprop ro.product.model)
