@@ -463,7 +463,11 @@ fi
 echo "- 正在安装 $file 系统包"
 rm -rf $rootfs2
 mkdir $rootfs2/
-tar -xzvf $file -C $rootfs2 >/dev/null
+if [ `id -u` -eq 0 ];then
+ tar -xzvf $file -C $rootfs2 >/dev/null
+else
+ proot --link2symlink tar -xzvf $file -C $rootfs2 >/dev/null
+fi
 echo "- 正在设置相关文件"
 sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $cliconf deploy -c >/dev/null
 echo "- 正在执行附加操作"
