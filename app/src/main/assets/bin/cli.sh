@@ -461,14 +461,15 @@ if [ ! -n "$cliconf" ]; then
     msg "">/dev/null
 fi
 echo "- 正在安装 $file 系统包"
-mkdir $rootfs2/ >/dev/null
-tar -xzvf $file -C $START_DIR/$rootfs2/ >/dev/null
+rm -rf $rootfs2
+mkdir $rootfs2/
+tar -xzvf $file -C $rootfs2 >/dev/null
 echo "- 正在设置相关文件"
 sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $cliconf deploy -c >/dev/null
 echo "- 正在执行附加操作"
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
-echo "$START_DIR/$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
-export system=$(cat $START_DIR/$rootfs2/etc/issue)
+echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
+export system=$(cat $$rootfs2/etc/issue)
 echo " $system 安装成功"
 }
 env_info() {
