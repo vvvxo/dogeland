@@ -43,6 +43,12 @@ if [ -d "$CONFIG_DIR/default/" ];then
   echo "" > $CONFIG_DIR/default/cmd.conf
 fi
 
+# PkgDetails
+if [[ ! -f $TOOLKIT/pkgdetails ]]; then
+    ln -s $TOOLKIT/pkgdetails_arm $TOOLKIT/pkgdetails_arm_64
+    ln -s $TOOLKIT/pkgdetails_x86 $TOOLKIT/pkgdetails_x86_64
+    ln -s $TOOLKIT/pkgdetails_$platform $TOOLKIT/pkgdetails
+fi
 # Cache
 if [ -d "$DATA2_DIR/cache/" ];then
   echo "">/dev/null
@@ -52,6 +58,11 @@ fi
 # Proot
 if [[ ! -f $TOOLKIT/proot ]]; then
 ln -s $TOOLKIT/lib/$platform/lib_proot.so $TOOLKIT/proot
+fi
+# ShellInabox
+if [[ ! -f $TOOLKIT/shellinaboxd ]]; then
+ln -s $TOOLKIT/shellinaboxd_arm $TOOLKIT/shellinaboxd_arm_64
+ln -s $TOOLKIT/shellinaboxd_$platform  $TOOLKIT/shellinaboxd
 fi
 # Other
 if [[ ! -f $START_DIR/issue ]]; then

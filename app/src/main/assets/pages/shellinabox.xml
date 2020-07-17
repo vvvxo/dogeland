@@ -21,7 +21,7 @@
              echo "!不支持你的设备"
              exit 1
              fi
-             $TOOLKIT/shellinaboxd_arm -u $group -g $group -c $TOOLKIT -b --shell=$shell:$login:$passwd
+             $TOOLKIT/shellinaboxd -u $group -g $group -c $TOOLKIT -b --shell=$shell:$login:$passwd
              </set>
 </action>
 </group>

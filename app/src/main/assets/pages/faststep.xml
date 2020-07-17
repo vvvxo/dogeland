@@ -1,19 +1,13 @@
 <action>
-            <title>↓选择并安装系统包</title>
+            <title>↓快速安装包</title>
             <param name="file" label="文件选择" type="file"
-                suffix="tar.xz"
+                suffix="tgz"
                 value="" />
-            <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
+            <param name="rootfs2" label="安装路径" title="$START_DIR/linux/" placeholder="" type="text" />
+             <param name="cliconf" label="配置文件选择" type="file"
+                suffix="conf"
+                value="" />
             <set>
-            echo "正在释放系统包"
-            mkdir $START_DIR/$rootfs2/ >/dev/null
-            tar XJf $file -C $START_DIR/$rootfs2/ >/dev/null
-            echo "正在设置系统"
-            sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $TOOLKIT/linuxdeploy-cli/cli.conf deploy -c >/dev/null
-            echo "正在执行附加操作
-            rm -rf $CONFIG_DIR/$confid/rootfs.conf
-            echo " $START_DIR/$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
-            export system=$(cat $START_DIR/$rootfs2/etc/issue)
-            echo " $system 安装成功"
+            sh $TOOLKIT/cli.sh deploy_linux
             </set>
         </action>
