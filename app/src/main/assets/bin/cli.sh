@@ -469,8 +469,10 @@ sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $cliconf deploy -c >/dev/null
 echo "- 正在执行附加操作"
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
-export system=$(cat $$rootfs2/etc/issue)
-echo " $system 安装成功"
+cp $TOOLKIT/cli.sh $rootfs2/
+rm -rf $CONFIG_DIR/$confid/cmd.conf
+echo "/bin/bash /cli.sh sshd_start">$CONFIG_DIR/$confid/cmd.conf
+echo "- 安装成功"
 }
 env_info() {
     model=$(getprop ro.product.model)
