@@ -501,6 +501,7 @@ mkdir $rootfs2/sys
 mkdir $rootfs2/dev
 mkdir $rootfs2/proc
 mkdir $rootfs2/mnt
+chmod -R 0777 $rootfs/
 echo "- 正在执行附加操作"
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
