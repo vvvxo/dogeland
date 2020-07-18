@@ -23,12 +23,6 @@ echo "">/dev/null
 else
 export PROOT_LOADER_32="$TOOLKIT/lib/$platform/lib_loader32.so"
 fi
-if [[ "$platform" != "arm_64" ]]
-then
-echo "">/dev/null
-else
-export PROOT_LOADER_32="$TOOLKIT/lib/$platform/lib_loader32.so"
-fi
 # Config
 export confid="$(cat $CONFIG_DIR/.id.conf)"
 export cmd=$(cat $CONFIG_DIR/$confid/cmd.conf)
