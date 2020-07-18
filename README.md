@@ -4,6 +4,7 @@ Run Linux on Android.
 Currently supports Android 6+  
 [简体中文](https://github.com/WhiteSky-Team/DogeLand-App/blob/master/README_zh.md)  
 Linux solution for running Android out of the box  
+[Android5-6 users please click here](https://github.com/WhiteSky-Team/DogeLand-AppLite)
 ## Quick start
  This application installs the selected GNU/Linux distribution and runs it in the chroot / proot container.
   Steps for usage:  
