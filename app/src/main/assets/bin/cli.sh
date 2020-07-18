@@ -335,8 +335,10 @@ rm -rf /var/run/sshd
 mkdir /run/sshd /var/run/sshd
 ssh-keygen -A
 chmod 555 /run/sshd
-echo "- Tip: 如果卡在这里或无报错,说明已经启动成功"
-/usr/sbin/sshd -p 22
+echo "- Tip:"
+echo "如果卡在这里或无报错,说明已经启动成功"
+echo "SSH Port: 22222"
+/usr/sbin/sshd -p 22222
 }
 
 sshd_stop()
@@ -479,6 +481,7 @@ echo "/bin/bash /cli.sh sshd_start">$CONFIG_DIR/$confid/cmd.conf
 echo "- 安装成功"
 echo "- 正在读取系统信息"
 cat $rootfs2/info.log
+echo ""
 echo "全部完成"
 }
 env_info() {
@@ -535,7 +538,11 @@ env_info() {
     $TOOLKIT/proot -V
 
     msg "chroot状态:"
-    $TOOLKIT/busybox chroot
+   if [ `id -u` -eq 0 ];then
+   $TOOLKIT/busybox chroot
+   else
+   echo "检测到无ROOT权限,已禁用chroot"
+   fi
 }
 
 # Run Command
