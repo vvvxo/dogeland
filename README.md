@@ -1,9 +1,10 @@
 # DogeLand-App
 ![AutoBuild](https://github.com/WhiteSky-Team/DogeLand-App/workflows/Java%20CI%20with%20Gradle/badge.svg)  
 Run Linux on Android.  
+Currently supports Android 6+  
 [简体中文](https://github.com/WhiteSky-Team/DogeLand-App/blob/master/README_zh.md)  
 Linux solution for running Android out of the box  
- ## Quick start
+## Quick start
  This application installs the selected GNU/Linux distribution and runs it in the chroot / proot container.
   Steps for usage:  
    1. Give this application super user (Root) permission.
