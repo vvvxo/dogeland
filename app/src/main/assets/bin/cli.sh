@@ -120,7 +120,7 @@ unset TMP TEMP TMPDIR LD_PRELOAD LD_DEBUG
 HOME=/root
 LANG=C.UTF-8
 PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games
-PATH=$PATH:$addpath
+PATH=$PATH:$PATH2
 }
 
 start_chroot(){
@@ -281,7 +281,7 @@ $cmd2
 set_path(){
 echo "- 正在设置PATH..."
 rm -rf $CONFIG_DIR/$confid/path.conf
-echo "$addpaths">$CONFIG_DIR/$confid/path.conf
+echo "$Input">$CONFIG_DIR/$confid/path.conf
 echo "- 完成"
 }
 del_rootfs() {

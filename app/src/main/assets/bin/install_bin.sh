@@ -48,6 +48,7 @@ if [ -d "$CONFIG_DIR/default/" ];then
   echo "default" >$CONFIG_DIR/.id.conf
   echo "" > $CONFIG_DIR/default/rootfs.conf
   echo "" > $CONFIG_DIR/default/cmd.conf
+  echo "" > $CONFIG_DIR/default/path.conf
 fi
 # Cache
 if [ -d "$DATA2_DIR/cache/" ];then

@@ -13,7 +13,7 @@ export platform=$(sh $TOOLKIT/cli.sh platform)
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/"
 export PATH="$PATH:$TOOLKIT"
 export PREFIX=$START_DIR
-export PATH2=$($CONFIG_DIR/$confid/addpath.conf)
+export PATH2=$($CONFIG_DIR/$confid/path.conf)
 # PRoot
 export PROOT_TMP_DIR="$DATA2_DIR/cache/"
 export PROOT_LOADER="$TOOLKIT/lib/$platform/lib_loader.so"
