@@ -26,7 +26,7 @@
     <string name="about_title">关于 · DogeLand</string>
     <string name="appliction_desc">本应用程序安装指定的 GNU / Linux 发行版,并在chroot 或 proot容器运行.</string>
     <string name="appliction_name">DogeLand</string>
-    <string name="appliction_author">v1.2.0_7_build</string>
+    <string name="appliction_author">v1.2.0-9_build</string>
     <string name="engine_version_name">[Kr-Script3.1.0]</string>
     <string name="system_ram">系统内存</string>
     <string name="hardware_ram">物理内存</string>

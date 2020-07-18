@@ -1,7 +1,8 @@
 #
 # DogeLand Core Files Installer
 #
-echo "- 正在初始化(报错属于现象)"
+
+echo "- 正在初始化(报错属于正常🐳现象)"
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
@@ -73,4 +74,5 @@ mv $TOOLKIT/LICENSE $START_DIR/
 fi
 # Kill
 echo "- 初始化完成🍉"
+touch $TOOLKIT/.install_bin_done
 rm -rf $TOOLKIT/install_bin.sh && rm -rf $TOOLKIT/install_bin.sh

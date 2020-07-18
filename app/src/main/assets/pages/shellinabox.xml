@@ -28,6 +28,6 @@
 <group>
 <action>
             <title>关闭</title>
-             <set>$TOOLKIT/pkill shellinaboxd</set>
+             <set>pkill shellinaboxd</set>
 </action>
 <group>

@@ -1,9 +1,9 @@
 # DogeLand CLI
-# v2.1.1
+# v2.1.2
 # 
 # license: GPL-v2.0
 #
-VERSION=2.1.1_BETA
+VERSION=2.1.2_BETA
 #
 # Common
 #
@@ -176,8 +176,13 @@ stop_rootfs(){
 pkill sshd
 pkill proot
 pkill busybox
+pkill vncserver
+pkill dropbear
+pkill zsh
 pkill bash
 pkill sh
+pkill chroot
+pkill proot
 }
 #
 # Linux Exec
@@ -274,7 +279,7 @@ $cmd2
 # Other
 #
 
-rm_rootfsdir() {
+del_rootfs() {
 msg "- 正在取消挂载"
 umount
 msg "- 正在删除"
@@ -335,12 +340,21 @@ rm -rf /var/run/sshd
 mkdir /run/sshd /var/run/sshd
 ssh-keygen -A
 chmod 555 /run/sshd
-echo "- Tip:"
-echo "如果卡在这里或无报错,说明已经启动成功"
-echo "SSH Port: 22222"
+echo "- Tip: 如果卡在这里或无报错,说明已经启动成功"
+echo "- SSH Port: 22222"
 /usr/sbin/sshd -p 22222
 }
-
+dropbear_start(){
+msg "- dropbear::start..."
+rm -rf /etc/dropbear
+mkdir /etc/dropbear
+dropbearkey -t dss -s 1024 -f /etc/dropbear/dropbear_dss_host_key
+dropbearkey -t rsa -s 2048 -f /etc/dropbear/dropbear_rsa_host_key
+dropbearkey -t ecdsa -s 521 -f /etc/dropbear/dropbear_ecdsa_host_key
+echo "- Tip: 如果卡在这里或无报错,说明已经启动成功"
+echo "- SSH Port: 22222"
+dropbear -E -p 22222
+}
 sshd_stop()
 {
 msg "- sshd::stop..."
@@ -463,7 +477,6 @@ if [ ! -n "$cliconf" ]; then
     msg "">/dev/null
 fi
 echo "- 正在安装 $file 系统包"
-rm -rf $rootfs2
 mkdir $rootfs2/
 if [ `id -u` -eq 0 ];then
  tar -xzvf $file -C $rootfs2 >/dev/null
@@ -472,6 +485,10 @@ else
 fi
 echo "- 正在设置相关文件"
 sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $cliconf deploy -c >/dev/null
+mkdir $rootfs2/sys
+mkdir $rootfs2/dev
+mkdir $rootfs2/proc
+mkdir $rootfs2/mnt
 echo "- 正在执行附加操作"
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
@@ -479,10 +496,6 @@ cp $TOOLKIT/cli.sh $rootfs2/
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh sshd_start">$CONFIG_DIR/$confid/cmd.conf
 echo "- 安装成功"
-echo "- 正在读取系统信息"
-cat $rootfs2/info.log
-echo ""
-echo "全部完成"
 }
 env_info() {
     model=$(getprop ro.product.model)
@@ -525,7 +538,7 @@ env_info() {
     msg "$supported_fs"
     
     msg '当前busybox版本:'
-    busybox | grep BusyBox
+    $TOOLKIT/busybox | grep BusyBox
 
     msg "当前运行路径:"
     pwd
@@ -538,11 +551,10 @@ env_info() {
     $TOOLKIT/proot -V
 
     msg "chroot状态:"
-   if [ `id -u` -eq 0 ];then
-   $TOOLKIT/busybox chroot
-   else
-   echo "检测到无ROOT权限,已禁用chroot"
-   fi
+    $TOOLKIT/busybox chroot
+    msg "文件相关:"
+    file $TOOLKIT/busybox
+    file $TOOLKIT/proot
 }
 
 # Run Command

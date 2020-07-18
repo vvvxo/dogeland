@@ -14,7 +14,7 @@
             <title>删除Rootfs</title>
              <param name="type">
                 <option value="">取消</option>
-                <option value="rm_rootfsdir*">确定删除</option>
+                <option value="del_rootfs*">确定删除</option>
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>
         </action>
