@@ -10,6 +10,11 @@
             <param name="Input" label="" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
+        <action>
+            <title>设置自定义 PATH</title>
+            <param name="Input" label="" title="" placeholder="请输入." type="text" />
+            <set>$TOOLKIT/cli.sh set_path</set>
+        </action>
           <action>
             <title>删除Rootfs</title>
              <param name="type">

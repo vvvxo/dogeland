@@ -1,9 +1,9 @@
 # DogeLand CLI
-# v2.1.2
+# v2.1.3
 # 
 # license: GPL-v2.0
 #
-VERSION=2.1.2_BETA
+VERSION=2.1.3_BETA
 #
 # Common
 #
@@ -153,7 +153,7 @@ sleep 1
 start_proot(){
 check_rootfs 
 set_env
-$TOOLKIT/proot $addcmd -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
+$TOOLKIT/proot $addcmd -0 --link2symlink -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
 msg "- Done"
 sleep 1
 }
@@ -167,7 +167,7 @@ if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   exit 255
 fi
 set_env
-/data/data/com.termux/files/usr/bin/proot $addcmd -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
+/data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
 msg "- Done"
 sleep 1
 }
@@ -251,7 +251,7 @@ set_env
 msg
 msg "- Running"
 msg ""
-$TOOLKIT/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
+$TOOLKIT/proot --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
 msg
 }
 
@@ -267,7 +267,7 @@ set_env
 msg
 msg "- Running"
 msg ""
-/data/data/com.termux/files/usr/bin/proot -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
+/data/data/com.termux/files/usr/bin/proot --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
 msg
 }
 
@@ -278,7 +278,12 @@ $cmd2
 #
 # Other
 #
-
+set_path(){
+echo "- 正在设置PATH..."
+rm -rf $CONFIG_DIR/$confid/path.conf
+echo "$addpaths">$CONFIG_DIR/$confid/path.conf
+echo "- 完成"
+}
 del_rootfs() {
 msg "- 正在取消挂载"
 umount
@@ -346,11 +351,10 @@ echo "- SSH Port: 22222"
 }
 dropbear_start(){
 msg "- dropbear::start..."
-rm -rf /etc/dropbear
-mkdir /etc/dropbear
-dropbearkey -t dss -s 1024 -f /etc/dropbear/dropbear_dss_host_key
-dropbearkey -t rsa -s 2048 -f /etc/dropbear/dropbear_rsa_host_key
-dropbearkey -t ecdsa -s 521 -f /etc/dropbear/dropbear_ecdsa_host_key
+#rm -rf /etc/dropbear && mkdir /etc/dropbear
+#dropbearkey -t dss -s 1024 -f /etc/dropbear/dropbear_dss_host_key
+#dropbearkey -t rsa -s 2048 -f /etc/dropbear/dropbear_rsa_host_key
+#dropbearkey -t ecdsa -s 521 -f /etc/dropbear/dropbear_ecdsa_host_key
 echo "- Tip: 如果卡在这里或无报错,说明已经启动成功"
 echo "- SSH Port: 22222"
 dropbear -E -p 22222
@@ -360,6 +364,11 @@ sshd_stop()
 msg "- sshd::stop..."
 kill -9 /run/sshd.pid /var/run/sshd.pid
 pkill sshd
+}
+dropbear_stop()
+{
+msg "- dropbear::stop..."
+pkill dropbear
 }
 
 sshd_config()
@@ -481,6 +490,9 @@ mkdir $rootfs2/
 if [ `id -u` -eq 0 ];then
  tar -xzvf $file -C $rootfs2 >/dev/null
 else
+echo "前排提示:无ROOT解压过程会卡死"
+echo "耐心等待,不要停止运行,等待3分钟强制停止即可"
+sleep 3
  proot --link2symlink tar -xzvf $file -C $rootfs2 >/dev/null
 fi
 echo "- 正在设置相关文件"
@@ -495,6 +507,12 @@ echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
 cp $TOOLKIT/cli.sh $rootfs2/
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh sshd_start">$CONFIG_DIR/$confid/cmd.conf
+echo "- 正在解析系统信息"
+if [ -f "$rootfs2/info.log" ];then
+cat $rootfs2/info.log
+else
+echo "- 找不到文件,可能不是官方包或者包损坏也可能解压失败"
+fi
 echo "- 安装成功"
 }
 env_info() {
@@ -559,11 +577,8 @@ env_info() {
 
 # Run Command
 
-export platform=$(platform)
 if [ ! -n "${1}" ]; then
   about
-  help
-  exit
 fi
 umask 000
 ${1}
