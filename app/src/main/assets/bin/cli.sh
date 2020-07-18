@@ -488,12 +488,12 @@ fi
 echo "- 正在安装 $file 系统包"
 mkdir $rootfs2/
 if [ `id -u` -eq 0 ];then
- tar -xzvf $file -C $rootfs2 >/dev/null
+busybox tar -xzvf $file -C $rootfs2 >/dev/null
 else
 echo "前排提示:无ROOT解压过程会卡死"
 echo "耐心等待,不要停止运行,等待3分钟强制停止即可"
-sleep 3
- proot --link2symlink tar -xzvf $file -C $rootfs2 >/dev/null
+sleep 8
+proot --link2symlink busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
 echo "- 正在设置相关文件"
 sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $cliconf deploy -c >/dev/null
