@@ -35,7 +35,6 @@ if [[ ! "$TOOLKIT" = "" ]]; then
     rm -rf $TOOLKIT/busybox
     mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
     busybox_install
-    rm -rf $TOOLKIT/busybox*
     fi
 fi
 # Default Config Install
