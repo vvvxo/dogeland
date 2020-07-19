@@ -1,6 +1,7 @@
 # DogeLand-App
 Run Linux on android.
 开箱即用的Android运行Linux解决方案
+已支持免ROOT运行🐳🐳🐳
 ## 快速上手
 本应用程序安装选定的 GNU/Linux 发行版，并在 chroot / proot 容器中运行。
  使用步骤：  
