@@ -1,4 +1,1 @@
-include ':app', ':krscript', ':common', ':terminal-view', ':terminal-emulator', ':terminal-term'
-project(':terminal-view').projectDir = new File('termux-app/terminal-view')
-project(':terminal-emulator').projectDir = new File('termux-app/terminal-emulator')
-project(':terminal-term').projectDir = new File('termux-app/terminal-term')
+include ':app', ':krscript', ':common'
