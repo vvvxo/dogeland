@@ -19,7 +19,7 @@
             <title>删除Rootfs</title>
              <param name="type">
                 <option value="">取消</option>
-                <option value="del_rootfs*">确定删除</option>
+                <option value="del_rootfs">确定删除</option>
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>
         </action>
@@ -48,7 +48,7 @@
             
         </action>
     </group>
-       <group title="高级设置">
+       <group title="危险设置">
                <action>
             <title>安装运行环境</title>
             <set>

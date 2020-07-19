@@ -71,6 +71,7 @@ fi
 if [[ ! -f $START_DIR/LICENSE ]]; then
 mv $TOOLKIT/LICENSE $START_DIR/
 fi
+ln -s /system/bin/sh $TOOLKIT/sh
 # Kill
 echo "- 初始化完成🍉"
 echo "" >$START_DIR/install_bin_done

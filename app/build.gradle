@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1209
-        versionName "1.2.0_9_build"
+        versionName "1.2.1-0_build"
     }
     buildTypes {
         release {

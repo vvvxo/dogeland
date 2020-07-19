@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <items>
-    <group title="容器管理">
+    <group>
         <action>
             <title>启动</title>
              <param name="start">
@@ -24,7 +24,7 @@
                 <option value="exec_chroot">[chroot]</option>
                 <option value="exec_proot">[proot]</option>
                 <option value="exec_proot_termux">[termux-proot]</option>
-                <option value="exec_localshell">[local-shell]</option>
+                <option value="exec_localshell">[本地Shell]</option>
             </param>
             <param name="userid" label="运行用户" title="" placeholder="root" type="text" />
             <set>sh $TOOLKIT/cli.sh $exec</set>
@@ -40,11 +40,18 @@
 </items>
 
 <items>
-    <group title="高级选项">
+    <group>
         <page config="pages/shellinabox.xml" title="ShellInabox" />
-        <page config="pages/repo.xml" title="系统仓库" />
+         <action>
+            <title>系统仓库</title>
+            <set>
+            echo "- 正在尝试打开浏览器🐳"
+            am start --user 0 -a android.intent.action.VIEW -d https://whitesky-team.github.io/repo.html > /dev/null
+            edho "- 完成🐳"
+            </set>
+        </action>
         <page config="pages/patchs.xml" title="系统补丁" />
-        <page config="pages/cli.xml" title="LinuxLoader核心驱动" />
+        <page config="pages/cli.xml" title="容器支持组件" />
         <action>
             <title>运行环境测试</title>
             <set>sh $TOOLKIT/cli.sh env_info</set>

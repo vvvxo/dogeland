@@ -1,6 +1,6 @@
 <action>
-            <title>↓快速安装包</title>
-            <param name="file" label="文件选择" type="file"
+            <title>↓快速安装系统包</title>
+            <param name="file" label="系统包选择" type="file"
                 suffix="tgz"
                 value="" />
             <param name="rootfs2" label="安装路径" title="$START_DIR/linux/" placeholder="" type="text" />

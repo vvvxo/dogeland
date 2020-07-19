@@ -9,9 +9,9 @@
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="reboot_confirm">确定重启并重置容器吗?</string>
-    <string name="custom">定制</string>
+    <string name="custom">设置</string>
     <string name="switchs">开关</string>
-    <string name="btn_exit">退出</string>
+    <string name="btn_exit">返回</string>
     <string name="btn_hide">隐藏</string>
     <string name="float_monitor_tips">双击悬浮窗即可关闭，或按住拖动调整位置</string>
     <string name="permission_float">请授权显示悬浮窗权限!</string>
@@ -26,7 +26,7 @@
     <string name="about_title">关于 · DogeLand</string>
     <string name="appliction_desc">本应用程序安装指定的 GNU / Linux 发行版,并在chroot 或 proot容器运行.</string>
     <string name="appliction_name">DogeLand</string>
-    <string name="appliction_author">v1.2.0-9_build</string>
+    <string name="appliction_author">v1.2.1-0_build</string>
     <string name="engine_version_name">[Kr-Script3.1.0]</string>
     <string name="system_ram">系统内存</string>
     <string name="hardware_ram">物理内存</string>
