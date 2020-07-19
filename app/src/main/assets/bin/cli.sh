@@ -351,10 +351,10 @@ echo "- SSH Port: 22222"
 }
 dropbear_start(){
 msg "- dropbear::start..."
-#rm -rf /etc/dropbear && mkdir /etc/dropbear
-#dropbearkey -t dss -s 1024 -f /etc/dropbear/dropbear_dss_host_key
-#dropbearkey -t rsa -s 2048 -f /etc/dropbear/dropbear_rsa_host_key
-#dropbearkey -t ecdsa -s 521 -f /etc/dropbear/dropbear_ecdsa_host_key
+rm -rf /etc/dropbear && mkdir /etc/dropbear
+dropbearkey -t dss -s 1024 -f /etc/dropbear/dropbear_dss_host_key
+dropbearkey -t rsa -s 2048 -f /etc/dropbear/dropbear_rsa_host_key
+dropbearkey -t ecdsa -s 521 -f /etc/dropbear/dropbear_ecdsa_host_key
 echo "- Tip: 如果卡在这里或无报错,说明已经启动成功"
 echo "- SSH Port: 22222"
 dropbear -E -p 22222
@@ -370,12 +370,6 @@ dropbear_stop()
 msg "- dropbear::stop..."
 pkill dropbear
 }
-
-sshd_config()
-{
-msg
-}
-
 
 #
 # Config
@@ -486,11 +480,12 @@ if [ ! -n "$cliconf" ]; then
     msg "">/dev/null
 fi
 echo "- 正在安装 $file 系统包"
+rm -rf $rootfs2
 mkdir $rootfs2/
 if [ `id -u` -eq 0 ];then
  tar -xzvf $file -C $rootfs2 >/dev/null
 else
-echo "前排提示:无ROOT解压过程会卡死"
+echo "前排提示:部分设备无ROOT解压过程会大量报错导致卡死界面"
 echo "耐心等待,不要停止运行,等待3分钟强制停止即可"
 sleep 3
  proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
