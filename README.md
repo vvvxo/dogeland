@@ -2,6 +2,7 @@
 ![AutoBuild](https://github.com/WhiteSky-Team/DogeLand-App/workflows/Java%20CI%20with%20Gradle/badge.svg)  
 Run Linux on Android.  
 [简体中文](https://github.com/WhiteSky-Team/DogeLand-App/blob/master/README_zh.md)  
+Supports running without root privileges  
 Linux solution for running Android out of the box  
  ## Quick start
  This application installs the selected GNU/Linux distribution and runs it in the chroot / proot container.
