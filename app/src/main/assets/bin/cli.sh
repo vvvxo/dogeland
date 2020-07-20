@@ -8,6 +8,11 @@ VERSION=2.1.3_BETA
 #
 # Common
 #
+if [ -d "/usr/" ];then
+  unset TOOLKIT
+  else
+  echo "">/dev/null
+fi
 source $TOOLKIT/include/core/version.sh
 source $TOOLKIT/include/core/help.sh
 source $TOOLKIT/include/core/stop_rootfs.sh
