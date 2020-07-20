@@ -11,9 +11,9 @@ else
 echo "- 正在初始化(报错属于正常🐳现象)"
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
-  echo "">/dev/null
-  else
   mkdir $DATA2_DIR/
+  else
+  echo "">/dev/null
 fi
 # Busybox
 function busybox_install() {

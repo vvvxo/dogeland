@@ -4,7 +4,6 @@
 # license: GPL-v2.0
 #
 start_chroot(){
-unset TOOLKIT
 check_rootfs 
 mount_part
 set_env

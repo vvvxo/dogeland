@@ -33,7 +33,7 @@ if [ `id -u` -eq 0 ];then
  tar -xzvf $file -C $rootfs2 >/dev/null
 else
 echo "前排提示:部分设备无ROOT解压过程会大量报错导致卡死界面"
-echo "耐心等待,不要停止运行,等待3分钟强制停止即可"
+echo "         耐心等待,不要停止运行,等待3分钟强制停止即可"
 sleep 3
  proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
@@ -47,7 +47,9 @@ echo "- 正在执行附加操作"
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
 cp $TOOLKIT/cli.sh $rootfs2/
-cp -R $TOOLKIT/include $rootfs2/
+sed -i '1 i\unset TOOLKIT' $rootfs2/cli.sh
+mkdir $rootfs2/include/
+cp -R $TOOLKIT/include/* $rootfs2/include/
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "- 正在解析系统信息"

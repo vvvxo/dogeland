@@ -3,6 +3,7 @@
             <title>安装</title>
              <set>
              cp $TOOLKIT/cli.sh $rootfs/
+             sed -i '1 i\unset TOOLKIT' $rootfs/cli.sh
              cp -R $TOOLKIT/include $rootfs/
              </set>
 </action>
