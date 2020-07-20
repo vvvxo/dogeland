@@ -3,7 +3,7 @@
             <title>安装</title>
              <set>
              cp $TOOLKIT/cli.sh $rootfs/
-             cp $TOOLKIT/include $rootfs/
+             cp -R $TOOLKIT/include $rootfs/
              </set>
 </action>
 </group>
