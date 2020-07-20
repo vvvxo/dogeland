@@ -47,8 +47,9 @@ echo "- 正在执行附加操作"
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
 cp $TOOLKIT/cli.sh $rootfs2/
+cp $TOOLKIT/include $rootfs2/
 rm -rf $CONFIG_DIR/$confid/cmd.conf
-echo "/bin/bash /cli.sh sshd_start">$CONFIG_DIR/$confid/cmd.conf
+echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "- 正在解析系统信息"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
