@@ -5,6 +5,7 @@
 #
 start_auto(){
 echo
+unset TOOLKIT
 if [ `id -u` -eq 0 ];then
    start_chroot
    exit
