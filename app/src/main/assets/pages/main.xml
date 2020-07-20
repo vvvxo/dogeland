@@ -47,7 +47,7 @@
             <set>
             echo "- 正在尝试打开浏览器🐳"
             am start --user 0 -a android.intent.action.VIEW -d https://whitesky-team.github.io/repo.html > /dev/null
-            edho "- 完成🐳"
+            echo "- 完成🐳"
             </set>
         </action>
         <page config="pages/patchs.xml" title="系统补丁" />
