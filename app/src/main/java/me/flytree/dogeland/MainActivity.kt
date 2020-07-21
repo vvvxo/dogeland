@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -29,7 +30,7 @@ import com.omarea.common.ui.ProgressBarDialog
 import com.omarea.krscript.config.PageConfigReader
 import com.omarea.krscript.model.*
 import com.omarea.krscript.ui.ActionListFragment
-import com.omarea.krscript.ui.ParamsFileChooserRender
+import com.omarea.krscript.ui.FileChooserRender
 import com.omarea.vtools.FloatMonitor
 import me.flytree.dogeland.permissions.CheckRootStatus
 import me.flytree.dogeland.ui.TabIconHelper
@@ -186,7 +187,35 @@ class MainActivity : AppCompatActivity() {
                 if (clickableNode is RunnableNode) {
                     intent.putExtra("autoRunItemId", clickableNode.key)
                 }
-                intent.putExtra("page", page)
+
+                page.run {
+                    intent.putExtra("title", "" + title)
+
+                    if (activity.isNotEmpty()) {
+                        intent.putExtra("activity", activity)
+                    }
+                    if (onlineHtmlPage.isNotEmpty()) {
+                        intent.putExtra("onlineHtmlPage", onlineHtmlPage)
+                    }
+                    if (beforeRead.isNotEmpty()) {
+                        intent.putExtra("beforeRead", beforeRead)
+                    }
+                    if (pageConfigPath.isNotEmpty()) {
+                        intent.putExtra("config", pageConfigPath)
+                    }
+                    if (pageConfigSh.isNotEmpty()) {
+                        intent.putExtra("pageConfigSh", pageConfigSh)
+                    }
+                    if (afterRead.isNotEmpty()) {
+                        intent.putExtra("afterRead", afterRead)
+                    }
+                    if (loadSuccess.isNotEmpty()) {
+                        intent.putExtra("loadSuccess", loadSuccess)
+                    }
+                    if (loadFail.isNotEmpty()) {
+                        intent.putExtra("loadFail", loadFail)
+                    }
+                }
 
                 addToFavoritesHandler.onAddToFavorites(clickableNode, intent)
             }
@@ -195,13 +224,13 @@ class MainActivity : AppCompatActivity() {
                 _openPage(pageNode)
             }
 
-            override fun openFileChooser(fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface): Boolean {
+            override fun openFileChooser(fileSelectedInterface: FileChooserRender.FileSelectedInterface): Boolean {
                 return chooseFilePath(fileSelectedInterface)
             }
         }
     }
 
-    private var fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface? = null
+    private var fileSelectedInterface: FileChooserRender.FileSelectedInterface? = null
     private val ACTION_FILE_PATH_CHOOSER = 65400
     private val ACTION_FILE_PATH_CHOOSER_INNER = 65300
 
@@ -215,7 +244,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun chooseFilePath(fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface): Boolean {
+    private fun chooseFilePath(fileSelectedInterface: FileChooserRender.FileSelectedInterface): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, getString(R.string.kr_write_external_storage), Toast.LENGTH_LONG).show()
             requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 2);

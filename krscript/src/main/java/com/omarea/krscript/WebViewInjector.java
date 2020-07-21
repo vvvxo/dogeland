@@ -22,7 +22,7 @@ import com.omarea.krscript.downloader.Downloader;
 import com.omarea.krscript.executor.ExtractAssets;
 import com.omarea.krscript.executor.ScriptEnvironmen;
 import com.omarea.krscript.model.ShellHandlerBase;
-import com.omarea.krscript.ui.ParamsFileChooserRender;
+import com.omarea.krscript.ui.FileChooserRender;
 
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
@@ -40,10 +40,10 @@ import java.util.UUID;
 public class WebViewInjector {
     private WebView webView;
     private Context context;
-    private ParamsFileChooserRender.FileChooserInterface fileChooser;
+    private FileChooserRender.FileChooserInterface fileChooser;
 
     @SuppressLint("SetJavaScriptEnabled")
-    public WebViewInjector(WebView webView, ParamsFileChooserRender.FileChooserInterface fileChooser) {
+    public WebViewInjector(WebView webView, FileChooserRender.FileChooserInterface fileChooser) {
         this.webView = webView;
         this.context = webView.getContext();
         this.fileChooser = fileChooser;
@@ -58,8 +58,6 @@ public class WebViewInjector {
             webSettings.setAllowFileAccess(true);
             webSettings.setAllowUniversalAccessFromFileURLs(true);
             webSettings.setAllowFileAccessFromFileURLs(true);
-            webSettings.setAllowContentAccess(true);
-            webSettings.setUseWideViewPort(true);
 
             webView.addJavascriptInterface(
                     new KrScriptEngine(context),
@@ -179,12 +177,7 @@ public class WebViewInjector {
         @JavascriptInterface
         public boolean fileChooser(final String callbackFunction) {
             if (fileChooser != null) {
-                return fileChooser.openFileChooser(new ParamsFileChooserRender.FileSelectedInterface() {
-                    @Override
-                    public int type() {
-                        return ParamsFileChooserRender.FileSelectedInterface.Companion.getTYPE_FILE(); // TODO
-                    }
-
+                return fileChooser.openFileChooser(new FileChooserRender.FileSelectedInterface() {
                     @Nullable
                     @Override
                     public String suffix() {
