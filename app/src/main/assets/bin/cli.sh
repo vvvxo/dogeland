@@ -1,10 +1,10 @@
 #
 # DogeLand CLI
-# v2.1.3
+# v2.1.4
 # 
 # license: GPL-v2.0
 #
-VERSION=2.1.3_BETA
+VERSION=2.1.4_DEBUG
 #
 # Common
 #
@@ -48,6 +48,7 @@ source $TOOLKIT/include/core/mount_part.sh
 else
 echo "!core/mount_part.sh未生效."
 fi
+
 if [ -f "$TOOLKIT/include/core/loop_support.sh" ];then
 source $TOOLKIT/include/core/loop_support.sh
 else
@@ -77,6 +78,11 @@ if [ -f "$TOOLKIT/include/core/del_rootfs.sh" ];then
 source $TOOLKIT/include/core/del_rootfs.sh
 else
 echo "!core/del_rootfs.sh 未生效."
+fi
+if [ -f "$TOOLKIT/include/core/backup_rootfs.sh" ];then
+source $TOOLKIT/include/core/backup_rootfs.sh
+else
+echo "!core/backup_rootfs.sh 未生效."
 fi
 if [ -f "$TOOLKIT/include/core/deploy_linux.sh" ];then
 source $TOOLKIT/include/core/deploy_linux.sh

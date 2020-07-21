@@ -49,6 +49,10 @@
         </action>
     </group>
        <group title="危险设置">
+        <action>
+            <title>备份已安装系统</title>
+            <set>$TOOLKIT/cli.sh backup_rootfs.sh</set>
+        </action>
                <action>
             <title>安装运行环境</title>
             <set>
