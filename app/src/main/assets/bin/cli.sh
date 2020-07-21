@@ -1,10 +1,10 @@
 #
 # DogeLand CLI
-# v2.1.4
+# v2.1.5
 # 
 # license: GPL-v2.0
 #
-VERSION=2.1.4_DEBUG
+VERSION=2.1.5_DEBUG
 #
 # Common
 #
@@ -47,6 +47,12 @@ if [ -f "$TOOLKIT/include/core/mount_part.sh" ];then
 source $TOOLKIT/include/core/mount_part.sh
 else
 echo "!core/mount_part.sh未生效."
+fi
+
+if [ -f "$TOOLKIT/include/core/umount_part.sh" ];then
+source $TOOLKIT/include/core/umount_part.sh
+else
+echo "!core/umount_part.sh未生效."
 fi
 
 if [ -f "$TOOLKIT/include/core/loop_support.sh" ];then

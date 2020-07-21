@@ -5,16 +5,19 @@
              <param name="Input" label="" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh set_rootfsdir</set>
              </action>
+             
         <action>
             <title>初始化命令行</title>
             <param name="Input" label="" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
+        
         <action>
             <title>设置自定义 PATH</title>
             <param name="Input" label="" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh set_path</set>
         </action>
+        
           <action>
             <title>删除Rootfs</title>
              <param name="type">
@@ -23,6 +26,15 @@
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>
         </action>
+          
+           <action>
+            <title>容器CLI启动设置</title>
+             <param name="type">
+                <option value="/bin/sh /cli.sh sshd_start">启动sshd</option>
+                <option value="/bin/sh /cli.sh dropbear_start">启动dropbear</option>
+            </param>
+            <set>echo "$type">$CONFIG_DIR/$confid/cmd.conf</set>
+             </action>
           </group>
           
              <group title="配置文件设置">
@@ -30,17 +42,19 @@
             <title>查看正在使用的配置</title>
             <set>echo "$confid"</set>
         </action>
+        
                <action>
             <title>新建</title>
              <param name="mkconf" label="配置名称" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh mk_conf</set>
         </action>
+        
             <action>
             <title>切换</title>
              <param name="swconf" label="配置名称" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh sw_conf</set>
-            
         </action>
+        
          <action>
             <title>删除</title>
              <param name="delconf" label="配置名称" title="" placeholder="请输入." type="text" />
@@ -48,10 +62,11 @@
             
         </action>
     </group>
+    
        <group title="危险设置">
         <action>
             <title>备份已安装系统</title>
-            <set>$TOOLKIT/cli.sh backup_rootfs.sh</set>
+            <set>$TOOLKIT/cli.sh backup_rootfs</set>
         </action>
                <action>
             <title>安装运行环境</title>

@@ -50,6 +50,8 @@ cp -R $TOOLKIT/include/* $rootfs2/include/
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "!初始化命令行已设置默认启动dropbear"
+export cmd2="echo "$username:$password" | chpasswd"
+exec_auto
 echo "- 正在解析包"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
