@@ -51,7 +51,7 @@ rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "!初始化命令行已设置默认启动dropbear"
 export rootfs=$rootfs2
-export cmd2="echo "$username:$password" | chpasswd"
+export cmd2="/bin/sh 'echo "$username:$password" | chpasswd' "
 exec_auto
 unset cmd2
 echo "- 正在解析包"
