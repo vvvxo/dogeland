@@ -42,6 +42,17 @@ if [ -d "$CONFIG_DIR/default/" ];then
   echo "">/dev/null
   else
   mkdir $DATA2_DIR > /dev/null
+  if [ -d "$DATA2_DIR/" ];then
+  echo "">/dev/null
+  else
+  echo "!数据初始化失败"
+  echo "检测到没有得到存储权限或者是Android10"
+  echo "因《Android绿色公约要求》,只能使用内部存储的私有目录(Android/data),因源码缺陷无法自动创建私有文件夹,导致无法使用proot与存储配置文件"
+  echo "----------"
+  echo "您需要手动在(内部存储/Android/data/)文件夹中新建一个名称为 (me.flytree.dogeland) 的文件夹之后再安装本应用问题才能得以解决."
+  sleep 1000
+  sleep 9999
+  fi
   mkdir $CONFIG_DIR > /dev/null
   mkdir $CONFIG_DIR/default >/dev/null
   echo "default" >$CONFIG_DIR/.id.conf
