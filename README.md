@@ -18,7 +18,7 @@ Linux solution for running Android out of the box
   Minimum support Android 5
   ARM, ARM64, X86, X86_64 are all supported
  ### Use
- [Download latest version] (https://github.com/WhiteSky-Team/DogeLand-App/releases/)
+[Download the latest version] (https://github.com/WhiteSky-Team/DogeLand-App/releases/)  
  This application is also compatible with the system installed by LinuxDeploy, and can be used only by setting the installation path and command line.
  ![UBQd8U.png](https://s1.ax1x.com/2020/07/16/UBQd8U.png)
  ![UBQ0v4.png](https://s1.ax1x.com/2020/07/16/UBQ0v4.png)
