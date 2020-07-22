@@ -6,9 +6,7 @@
 backup_rootfs(){
 echo "- 正在导出系统"
 cd $rootfs/
-tar zcf backup.tgz *
-mv backup.tgz $DATA2_DIR/
+tar czvf "$DATA2_DIR/backup.tgz" --exclude='./dev' --exclude='./sys' --exclude='./proc' --exclude='./mnt'  --exclude='./sdcard'  --exclude='./support' -C "$rootfs/" . >/dev/null
 echo "- 完成"
 echo "  已保存到$DATA2_DIR/中"
-echo "  配置文件就是之前安装那个就ok"
 }

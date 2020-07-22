@@ -150,6 +150,16 @@ source $TOOLKIT/include/linux/sshd.sh
 else
 echo "!linux/sshd.sh 未生效."
 fi
+if [ -f "$TOOLKIT/include/linux/shmem-patch.sh" ];then
+source $TOOLKIT/include/linux/shmem-patch.sh
+else
+echo "!linux/shmem-patch.sh 未生效."
+fi
+if [ -f "$TOOLKIT/include/linux/xstartup-patch.sh" ];then
+source $TOOLKIT/include/linux/xstartup-patch.sh
+else
+echo "!linux/xstartup-patch.sh 未生效."
+fi
 if [ ! -n "${1}" ]; then
   version
 fi

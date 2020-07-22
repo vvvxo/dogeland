@@ -8,6 +8,7 @@ if [ -d "$rootfs" ];then
   return 1
   else
   echo "- / ...fail "
-  return 0 && sleep 1000
+  return 0
+  sleep 1000
 fi
 }
