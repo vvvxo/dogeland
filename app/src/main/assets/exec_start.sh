@@ -6,7 +6,7 @@ script="$1"
 export TMPDIR=$START_DIR
 # AppFrameInit
 if [[ -f "$({TOOLKIT})/appframe_init.sh" ]]; then
-  sh $({TOOLKIT})/appframe_init.sh
+  source $({TOOLKIT})/appframe_init.sh
 else
   echo "!无法初始化运行环境"
   exit 255
