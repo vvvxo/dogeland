@@ -160,6 +160,12 @@ source $TOOLKIT/include/linux/xstartup-patch.sh
 else
 echo "!linux/xstartup-patch.sh 未生效."
 fi
+if [ -f "$TOOLKIT/include/linux/vncserver.sh" ];then
+source $TOOLKIT/include/linux/vncserver.sh
+else
+echo "!linux/vncserver.sh 未生效."
+fi
+# RunHelp
 if [ ! -n "${1}" ]; then
   version
 fi

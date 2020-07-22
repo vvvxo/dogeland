@@ -17,24 +17,6 @@
             <param name="Input" label="" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh set_path</set>
         </action>
-        
-          <action>
-            <title>删除Rootfs</title>
-             <param name="type">
-                <option value="">取消</option>
-                <option value="del_rootfs">确定删除</option>
-            </param>
-            <set>sh $TOOLKIT/cli.sh $type</set>
-        </action>
-          
-           <action>
-            <title>容器CLI启动设置</title>
-             <param name="type">
-                <option value="/bin/sh /cli.sh sshd_start">启动sshd</option>
-                <option value="/bin/sh /cli.sh dropbear_start">启动dropbear</option>
-            </param>
-            <set>echo "$type">$CONFIG_DIR/$confid/cmd.conf</set>
-             </action>
           </group>
           
              <group title="配置文件设置">
@@ -63,17 +45,41 @@
         </action>
     </group>
     
-       <group title="危险设置">
+       <group title="高级设置">
         <action>
             <title>备份已安装系统</title>
             <set>$TOOLKIT/cli.sh backup_rootfs</set>
         </action>
+        
+          <action>
+            <title>容器CLI启动设置</title>
+             <param name="type">
+                <option value="/bin/sh /cli.sh sshd_start">启动sshd</option>
+                <option value="/bin/sh /cli.sh dropbear_start">启动dropbear</option>
+                <option value="/bin/sh /cli.sh vncserver_start">启动vncserver</option>
+            </param>
+            <set>echo "$type">$CONFIG_DIR/$confid/cmd.conf</set>
+             </action>
+           </group>
+           
+           <group title="危险选项">
+           
+             <action>
+            <title>删除Rootfs</title>
+             <param name="type">
+                <option value="">取消</option>
+                <option value="del_rootfs">确定删除</option>
+            </param>
+            <set>sh $TOOLKIT/cli.sh $type</set>
+        </action>
+        
                <action>
             <title>安装运行环境</title>
             <set>
             echo "不支持的操作"
             </set>
         </action>
+        
             <action>
             <title>移除运行环境</title>
              <param name="test">

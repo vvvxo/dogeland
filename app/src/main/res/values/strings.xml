@@ -1,5 +1,5 @@
 <resources>
-    <string name="kr_script_config">app.conf</string>
+    <string name="kr_script_config">pio.conf</string>
     <bool name="force_root">false</bool>
 
     <string name="app_name">DogeLand</string>
@@ -8,7 +8,7 @@
     <string name="execute_success">执行完成！</string>
     <string name="yes">是</string>
     <string name="no">否</string>
-    <string name="reboot_confirm">确定重启并重置容器吗?</string>
+    <string name="reboot_confirm">重启设备并重置容器?</string>
     <string name="custom">设置</string>
     <string name="switchs">开关</string>
     <string name="btn_exit">返回</string>

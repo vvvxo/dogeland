@@ -22,7 +22,7 @@
                 <option value="startxfce4">xfce</option>
                 <option value="startlxde">lxde</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh xstartup_patch</set>
+            <set>sh $TOOLKIT/cli.sh xstartup_add</set>
 </action>
 </group>
 
