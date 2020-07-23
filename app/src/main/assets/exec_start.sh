@@ -29,7 +29,7 @@ export PREFIX=$START_DIR
 export PROOT_TMP_DIR="$DATA2_DIR/cache/"
 export PROOT_LOADER="$TOOLKIT/lib/$platform/lib_loader.so"
 # x64 ?
-if [[ "$platform" != "x86_64" ]]
+if [[ "$platform" != "x86_64" ]] && [[ "$platform" != "arm_64" ]]
 then
 echo "">/dev/null
 else
