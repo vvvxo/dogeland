@@ -12,7 +12,6 @@ pkill xfce4
 pkill dropbear
 pkill zsh
 pkill bash
-pkill sh
 pkill chroot
 pkill proot
 }

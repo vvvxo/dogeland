@@ -54,6 +54,7 @@ export rootfs=$rootfs2
 export cmd2="/bin/bash -e 'echo $username:$password' | chpasswd'"
 exec_auto
 unset cmd2
+chmod -R 0777 $rootfs2/etc/dropbear/
 echo "- 正在解析包"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
