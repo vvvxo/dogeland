@@ -60,11 +60,11 @@
     <string name="kr_auto_run_item_losted">指定项已丢失</string>
 
     <string name="pio_starting">DOGE·LAND</string>
-    <string name="pop_before_start">准备启动应用…</string>
-    <string name="pop_started">正在启动应用</string>
-    <string name="pio_permission_checking">检查并获取必需权限...</string>
-    <string name="error_root">未能获得ROOT授权，如果你的手机已经ROOT，清在授权管理器弹出对话框时选择允许!</string>
-    <string name="error_su_timeout">等待ROOT授权超时，请检查授权管理器是否在后台运行!</string>
+    <string name="pop_before_start"></string>
+    <string name="pop_started"></string>
+    <string name="pio_permission_checking"></string>
+    <string name="error_root">无法获取ROOT权限,请在管理器授权允许,没有ROOT点Skip!</string>
+    <string name="error_su_timeout">等待ROOT超时，请检查授权管理器是否在后台运行!</string>
     <string name="transparent_ui">背景透明 </string>
     <string name="title_activity_file_selector">请选择文件</string>
 </resources>
