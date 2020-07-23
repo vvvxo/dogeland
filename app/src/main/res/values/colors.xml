@@ -14,5 +14,5 @@
     <color name="colorAccent">#4ba5ff</color>
     <color name="colorPrimary">#25D5CD</color>
     <color name="colorPrimaryDark">#3D9AE6</color>
-    <color name="splash_bg_color">#8199B1</color>
+    <color name="splash_bg_color">#00000000</color>
 </resources>
