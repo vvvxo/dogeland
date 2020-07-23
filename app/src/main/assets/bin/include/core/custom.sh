@@ -3,6 +3,7 @@ if [[ $SDK -ge 24 ]]; then
     echo "------"
     echo "请去Github搜DogeLand下载适用于Android5+的版本"
     sleep 1000
+    sleep 9999
 else
     echo "">/dev/null
 fi

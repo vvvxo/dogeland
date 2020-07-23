@@ -54,3 +54,6 @@ if [[ -f "$script" ]]; then
 else
     echo "!运行命令时出现异常"
 fi
+if [[ -f "$START_DIR/cache/" ]]; then
+  mv $START_DIR/cache/* $DATA2_DIR/cache/
+fi
