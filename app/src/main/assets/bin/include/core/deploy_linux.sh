@@ -28,7 +28,7 @@ else
  proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
 echo "- 正在设置"
-cp $TOOLKIT/inuxdeploy-cli/default2.conf $TOOLKIT/inuxdeploy-cli/cli.conf
+cp $TOOLKIT/inuxdeploy-cli/default.conf $TOOLKIT/inuxdeploy-cli/cli.conf
 sed -i '7a$rootfs2"' $TOOLKIT/inuxdeploy-cli/cli.conf
 sed -i '8a$rootfs2"' $TOOLKIT/inuxdeploy-cli/cli.conf
 sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $TOOLKIT/inuxdeploy-cli/cli.conf deploy -c >/dev/null
