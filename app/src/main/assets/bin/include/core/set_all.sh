@@ -53,12 +53,13 @@ if [ -d "$CONFIG_DIR/" ];then
 fi
 echo "- 正在创建配置 $mkconf"
 mkdir $CONFIG_DIR/$mkconf/
-echo "/data/cache/linux">$CONFIG_DIR/$mkconf/rootfs.conf
-echo "/bin/sh">$CONFIG_DIR/$mkconf/cmd.conf
+echo "">$CONFIG_DIR/$mkconf/rootfs.conf
+echo "">$CONFIG_DIR/$mkconf/cmd.conf
+echo "">$CONFIG_DIR/$mkconf/path.conf
 echo "- 正在切换配置 $mkconf"
 rm $CONFIG_DIR/.id.conf
 echo "$mkconf">$CONFIG_DIR/.id.conf
-echo '- 完成,已创建 $mkconf'
+echo "- 完成,已创建 $mkconf"
 exit
 }
 
