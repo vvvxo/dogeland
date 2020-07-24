@@ -86,4 +86,8 @@ fi
 echo "- 初始化完成🍉"
 echo "" >$START_DIR/install_bin_done
 rm -rf $TOOLKIT/install_bin.sh && rm -rf $TOOLKIT/install_bin.sh
+echo ""
+echo ""
+echo ""
+echo ""
 fi

@@ -29,9 +29,6 @@ clear
   echo "#"
   echo "#  1. 启动 Rootfs"
   echo "#"
-  echo "#  2. 设置"
-  echo "#"
-  echo "#  3. 高级选项"
   echo "#"
   echo "#########################"
   echo
@@ -80,14 +77,6 @@ sh $TOOLKIT/service.sh start_proot
 start_chroot(){
 clear
 sh $TOOLKIT/service.sh start_chroot
-}
-setting(){
-echo "暂不支持"
-sleep 2
-}
-setting2(){
-echo "暂不支持"
-sleep 2
 }
 loader
 opts
