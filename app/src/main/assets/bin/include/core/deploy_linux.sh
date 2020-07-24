@@ -59,9 +59,11 @@ echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
 echo "- 正在解析包"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
+echo ""
 else
 echo "- 找不到文件,可能不是官方包或者包损坏也可能解压失败"
 fi
+echo ""
 source $TOOLKIT/linux-deploytool.sh configure
 echo "安装成功"
 }

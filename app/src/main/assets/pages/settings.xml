@@ -72,14 +72,7 @@
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>
         </action>
-        
-               <action>
-            <title>安装运行环境</title>
-            <set>
-            echo "不支持的操作"
-            </set>
-        </action>
-        
+
             <action>
             <title>移除运行环境</title>
              <param name="test">
