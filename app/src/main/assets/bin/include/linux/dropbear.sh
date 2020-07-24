@@ -5,7 +5,7 @@
 #
 dropbear_start(){
 echo "- dropbear::start..."
-rm -rf /etc/dropbear && mkdir /etc/dropbear
+rm -rf /etc/dropbear && mkdir /etc/dropbear && chmod 0777 /etc/dropbear
 dropbearkey -t dss -s 1024 -f /etc/dropbear/dropbear_dss_host_key
 dropbearkey -t rsa -s 2048 -f /etc/dropbear/dropbear_rsa_host_key
 dropbearkey -t ecdsa -s 521 -f /etc/dropbear/dropbear_ecdsa_host_key

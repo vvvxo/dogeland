@@ -19,13 +19,6 @@ if [ ! -n "$file" ]; then
     else
     echo "">/dev/null
 fi
-if [ ! -n "$cliconf" ]; then
-    echo "- 无效系统配置文件"
-    exit 255
-    sleep 1000
-    else
-    echo "">/dev/null
-fi
 echo "- 正在安装 $file"
 rm -rf $rootfs2
 mkdir $rootfs2/
@@ -35,7 +28,11 @@ else
  proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
 echo "- 正在设置"
-sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $cliconf deploy -c >/dev/null
+cp $TOOLKIT/inuxdeploy-cli/default2.conf $TOOLKIT/inuxdeploy-cli/cli.conf
+sed -i '7a$rootfs2"' $TOOLKIT/inuxdeploy-cli/cli.conf
+sed -i '8a$rootfs2"' $TOOLKIT/inuxdeploy-cli/cli.conf
+sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $TOOLKIT/inuxdeploy-cli/cli.conf deploy -c >/dev/null
+rm -rf $TOOLKIT/inuxdeploy-cli/cli.conf
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
 mkdir $rootfs2/proc
