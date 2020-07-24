@@ -8,6 +8,6 @@ else
     echo "">/dev/null
 fi
 debiangroup_add(){
-sed -i '$ a\"aid_other:20233"' $rootfs/etc/group
-sed -i '$ a\"aid_other:50233"' $rootfs/etc/group
+sed -i '$ a\aid_other:20233' $rootfs/etc/group
+sed -i '$ a\aid_other:50233' $rootfs/etc/group
 }

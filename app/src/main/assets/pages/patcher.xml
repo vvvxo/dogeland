@@ -24,11 +24,29 @@
             </param>
             <set>sh $TOOLKIT/cli.sh xstartup_add</set>
 </action>
+</group>
 
+<group>
 <action>
             <title>DebianGroupPatcher</title>
             <desc>只在登录终端提示缺少group组50233,20233时，才使用此补丁</desc>
-            <set>sh $TOOLKIT/cli.sh debiangroup_add</set>
+            <param name="type">
+                <option value="debiangroup_add">安装</option>
+                <option value="">取消</option>
+            </param>
+            <set>sh $TOOLKIT/cli.sh $type</set>
+</action>
+</group>
+
+<group>
+<action>
+            <title>UbuntuBashPatcher</title>
+            <desc>使Ubuntu的sh从垃圾的dash更换为bash</desc>
+            <param name="type">
+                <option value="rm -rf $rootfs/bin/sh && ln -s $rootfs/bin/bash $rootfs/bin/sh">安装</option>
+                <option value="">取消</option>
+            </param>
+            <set>$type</set>
 </action>
 
 </group>
