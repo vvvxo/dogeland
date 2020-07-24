@@ -19,6 +19,9 @@ if [ ! -n "$file" ]; then
     else
     echo "">/dev/null
 fi
+#
+# Install
+#
 echo "- 正在安装 $file"
 rm -rf $rootfs2
 mkdir $rootfs2/
@@ -27,36 +30,34 @@ if [ `id -u` -eq 0 ];then
 else
  proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
+#
+# Settings
+#
 echo "- 正在设置"
-cp $TOOLKIT/inuxdeploy-cli/default.conf $TOOLKIT/inuxdeploy-cli/cli.conf
-sed -i '7a$rootfs2"' $TOOLKIT/inuxdeploy-cli/cli.conf
-sed -i '8a$rootfs2"' $TOOLKIT/inuxdeploy-cli/cli.conf
-sh $TOOLKIT/linuxdeploy-cli/cli.sh -p $TOOLKIT/inuxdeploy-cli/cli.conf deploy -c >/dev/null
-rm -rf $TOOLKIT/inuxdeploy-cli/cli.conf
+source $TOOLKIT/linux-deploytool.sh configure
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
 mkdir $rootfs2/proc
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
-#
+# Install CLI
 cp $TOOLKIT/cli.sh $rootfs2/
 sed -i '1 i\unset TOOLKIT' $rootfs2/cli.sh
 mkdir $rootfs2/include/
 cp -R $TOOLKIT/include/* $rootfs2/include/
-#
+# Set Configure
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "!初始化命令行已设置默认启动dropbear"
 export rootfs=$rootfs2
-export cmd2="/bin/bash -e 'echo $username:$password' | chpasswd'"
-exec_auto
-unset cmd2
 chmod -R 0777 $rootfs2/etc/dropbear/
+# ReadRootfsInfo
 echo "- 正在解析包"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
 else
 echo "- 找不到文件,可能不是官方包或者包损坏也可能解压失败"
 fi
+# Done
 echo "- 安装成功"
 }
