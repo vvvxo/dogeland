@@ -17,7 +17,7 @@ configure()
         exec_auto
         unset cmd2
     fi
-    echo "- 正在配置 su ... "
+    echo "- 正在设置 su ... "
     local item pam_su
     for item in /etc/pam.d/su /etc/pam.d/su-l
     do
@@ -28,7 +28,7 @@ configure()
             fi
         fi
     done
-    echo "- 正在配置 timezone ... "
+    echo "- 正在设置 timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then
         timezone=$(getprop persist.sys.timezone)
@@ -41,8 +41,8 @@ configure()
         echo ${timezone} > "$rootfs2/etc/timezone"
     fi
 [ -n "${USER_NAME}" ] || USER_NAME="root"
-[ -n "${USER_PASSWORD}" ] || USER_PASSWORD="changeme"
-    echo "- 正在配置 profile ... "
+[ -n "${USER_PASSWORD}" ] || USER_PASSWORD="root"
+    echo "- 正在设置 profile ... "
     if [ -z "${USER_NAME%aid_*}" ]; then
         echo "Username \"${USER_NAME}\" is reserved."; return 1
     fi
@@ -60,7 +60,7 @@ configure()
     export cmd2=chown -R ${USER_NAME}:${USER_NAME} "$(user_home ${USER_NAME})"
     exec_auto
     unset cmd2
-    echo "- 正在配置 sudo ... "
+    echo "- 正在设置 sudo ... "
     local sudo_str="${USER_NAME} ALL=(ALL:ALL) NOPASSWD:ALL"
     if ! grep -q "${sudo_str}" "$rootfs2/etc/sudoers"; then
         chmod 640 "$rootfs2/etc/sudoers"
