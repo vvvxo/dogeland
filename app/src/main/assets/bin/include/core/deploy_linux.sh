@@ -34,6 +34,7 @@ fi
 # Settings
 #
 echo "- 正在设置"
+export rootfs=$rootfs2
 source $TOOLKIT/linux-deploytool.sh configure
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
@@ -54,7 +55,7 @@ cp -R $TOOLKIT/include/* $rootfs2/include/
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "!初始化命令行已设置默认启动dropbear"
-export rootfs=$rootfs2
+
 # ReadRootfsInfo
 echo "- 正在解析包"
 if [ -f "$rootfs2/info.log" ];then

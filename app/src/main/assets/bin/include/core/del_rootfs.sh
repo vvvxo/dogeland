@@ -4,7 +4,7 @@
 # license: GPL-v2.0
 #
 del_rootfs() {
-if [ -d "$rootfs/proc/" ];then
+if [ -d "$rootfs/usr/" ];then
   echo "- 正在关闭"
   stop_rootfs
   umount_part
