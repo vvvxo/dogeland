@@ -1,18 +1,12 @@
 export rootfs=$rootfs2
-set_hostname()
+configure()
 {
     echo "- 正在设置 hostname ... "
     echo 'localhost' > "$rootfs2/etc/hostname"
-}
-set_dns()
-{
     echo "- 正在设置 DNS ... "
     if ! $(grep -q "^127.0.0.1" "$rootfs2/etc/hosts"); then
         echo '127.0.0.1 localhost' >> "$rootfs2/etc/hosts"
     fi
-}
-set_locale()
-{
 [ -n "${LOCALE}" ] || LOCALE="${LANG}"
 [ -n "${LOCALE}" ] || LOCALE="C"
     echo "- 正在设置 locale ... "
@@ -23,9 +17,6 @@ set_locale()
         exec_auto
         unset cmd2
     fi
-}
-set_su()
-{
     echo "- 正在配置 su ... "
     local item pam_su
     for item in /etc/pam.d/su /etc/pam.d/su-l
@@ -37,9 +28,6 @@ set_su()
             fi
         fi
     done
-}
-set_timezone()
-{
     echo "- 正在配置 timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then
@@ -52,10 +40,6 @@ set_timezone()
         cp "$rootfs2/usr/share/zoneinfo/${timezone}" "$rootfs2/etc/localtime"
         echo ${timezone} > "$rootfs2/etc/timezone"
     fi
-}
-
-set_profile()
-{
 [ -n "${USER_NAME}" ] || USER_NAME="root"
 [ -n "${USER_PASSWORD}" ] || USER_PASSWORD="changeme"
     echo "- 正在配置 profile ... "
@@ -76,9 +60,6 @@ set_profile()
     export cmd2=chown -R ${USER_NAME}:${USER_NAME} "$(user_home ${USER_NAME})"
     exec_auto
     unset cmd2
-}
-set_sudo()
-{
     echo "- 正在配置 sudo ... "
     local sudo_str="${USER_NAME} ALL=(ALL:ALL) NOPASSWD:ALL"
     if ! grep -q "${sudo_str}" "$rootfs2/etc/sudoers"; then
@@ -90,10 +71,6 @@ set_sudo()
         echo '[ -n "$PS1" -a "$(whoami)" = "'${USER_NAME}'" ] || return 0' > "$rootfs2/etc/profile.d/sudo.sh"
         echo 'alias su="sudo su"' >> "$rootfs2/etc/profile.d/sudo.sh"
     fi
-}
-
-set_aid()
-{
     echo "- 正在设置 aid ... "
     # set min uid and gid
     local login_defs
@@ -132,4 +109,4 @@ set_aid()
             sed -i "s|^\(${gid}:.*:\)$|\1${uid}|" "$rootfs2/etc/group"
         done
 }
-$1 $2 $3 $4 $5 $6 $7 $8
+$@
