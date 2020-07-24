@@ -118,3 +118,35 @@ configure()
         done
 }
 $@
+#
+# Custom for dogeland
+#
+mkdir $rootfs2/sys
+mkdir $rootfs2/dev
+mkdir $rootfs2/proc
+if [ -d "$rootfs2/etc/dropbear" ];then
+  chmod -R 0777 $rootfs2/etc/dropbear/
+  else
+  echo "">/dev/null
+fi
+
+# Install CLI
+cp $TOOLKIT/cli.sh $rootfs2/
+sed -i '1 i\unset TOOLKIT' $rootfs2/cli.sh
+mkdir $rootfs2/include/
+cp -R $TOOLKIT/include/* $rootfs2/include/
+# Set Configure
+rm -rf $CONFIG_DIR/$confid/cmd.conf
+echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
+echo "!初始化命令行已设置默认启动dropbear"
+rm -rf $CONFIG_DIR/$confid/rootfs.conf
+echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
+# ReadRootfsInfo
+echo "- 正在解析包"
+if [ -f "$rootfs2/info.log" ];then
+cat $rootfs2/info.log
+else
+echo "- 找不到文件,可能不是官方包或者包损坏也可能解压失败"
+fi
+# Done
+echo "- 安装成功"

@@ -102,5 +102,3 @@ aid_overflowuid:65534
 aid_isolated_start:99000
 aid_isolated_end:99999
 aid_user_offset:100000
-aid_other:20233
-aid_other:50233

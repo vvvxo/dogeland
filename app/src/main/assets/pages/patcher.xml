@@ -24,5 +24,11 @@
             </param>
             <set>sh $TOOLKIT/cli.sh xstartup_add</set>
 </action>
-</group>
 
+<action>
+            <title>DebianGroupPatcher</title>
+            <desc>只在登录终端提示缺少group组50233,20233时，才使用此补丁</desc>
+            <set>sh $TOOLKIT/cli.sh debiangroup_add</set>
+</action>
+
+</group>

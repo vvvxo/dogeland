@@ -50,7 +50,7 @@
             echo "- 完成🐳"
             </set>
         </action>
-        <page config="pages/patchs.xml" title="系统补丁" />
+        <page config="pages/patcher.xml" title="补丁商店" />
         <page config="pages/cli.xml" title="容器支持组件" />
         <action>
             <title>运行环境测试</title>
