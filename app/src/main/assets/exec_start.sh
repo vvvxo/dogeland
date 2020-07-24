@@ -55,5 +55,7 @@ else
     echo "!运行命令时出现异常"
 fi
 if [[ -f "$START_DIR/kr-script/cache/" ]]; then
-  mv $START_DIR/cache/* $DATA2_DIR/cache/
+  echo "">/dev/null
+  else
+  mv $START_DIR/kr-script/cache/* $DATA2_DIR/cache/
 fi

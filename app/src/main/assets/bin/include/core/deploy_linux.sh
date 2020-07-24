@@ -38,6 +38,11 @@ source $TOOLKIT/linux-deploytool.sh configure
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
 mkdir $rootfs2/proc
+if [ -d "$rootfs2/etc/dropbear" ];then
+  chmod -R 0777 $rootfs2/etc/dropbear/
+  else
+  echo "">/dev/null
+fi
 rm -rf $CONFIG_DIR/$confid/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
 # Install CLI
@@ -50,7 +55,6 @@ rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/bash /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "!初始化命令行已设置默认启动dropbear"
 export rootfs=$rootfs2
-chmod -R 0777 $rootfs2/etc/dropbear/
 # ReadRootfsInfo
 echo "- 正在解析包"
 if [ -f "$rootfs2/info.log" ];then

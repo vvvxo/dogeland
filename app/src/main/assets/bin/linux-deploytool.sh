@@ -1,7 +1,10 @@
-export rootfs=$rootfs2
+#
+# LinuxAutoConfigureTools
+# by Flytree
+#
 configure()
 {
-    echo "- 正在设置 hostname ... "
+    echo "- 正在设置 Hostname ... "
     echo 'localhost' > "$rootfs2/etc/hostname"
     echo "- 正在设置 DNS ... "
     if ! $(grep -q "^127.0.0.1" "$rootfs2/etc/hosts"); then
@@ -9,7 +12,7 @@ configure()
     fi
 [ -n "${LOCALE}" ] || LOCALE="${LANG}"
 [ -n "${LOCALE}" ] || LOCALE="C"
-    echo "- 正在设置 locale ... "
+    echo "- 正在设置 Locale ... "
     if $(echo ${LOCALE} | grep -q '\.'); then
         local inputfile=$(echo ${LOCALE} | awk -F. '{print $1}')
         local charmapfile=$(echo ${LOCALE} | awk -F. '{print $2}')
@@ -17,7 +20,7 @@ configure()
         exec_auto
         unset cmd2
     fi
-    echo "- 正在设置 su ... "
+    echo "- 正在设置 SU ... "
     local item pam_su
     for item in /etc/pam.d/su /etc/pam.d/su-l
     do
@@ -28,7 +31,7 @@ configure()
             fi
         fi
     done
-    echo "- 正在设置 timezone ... "
+    echo "- 正在设置 Timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then
         timezone=$(getprop persist.sys.timezone)
@@ -40,9 +43,9 @@ configure()
         cp "$rootfs2/usr/share/zoneinfo/${timezone}" "$rootfs2/etc/localtime"
         echo ${timezone} > "$rootfs2/etc/timezone"
     fi
-[ -n "${USER_NAME}" ] || USER_NAME="root"
-[ -n "${USER_PASSWORD}" ] || USER_PASSWORD="root"
-    echo "- 正在设置 profile ... "
+   [ -n "${USER_NAME}" ] || USER_NAME="root"
+   [ -n "${USER_PASSWORD}" ] || USER_PASSWORD="root"
+    echo "- 正在设置 Profile ... "
     if [ -z "${USER_NAME%aid_*}" ]; then
         echo "Username \"${USER_NAME}\" is reserved."; return 1
     fi
@@ -52,15 +55,20 @@ configure()
     exec_auto
     unset cmd2
     fi
-    # set password for user
+    # 设置密码
     export cmd2=chpasswd
     echo ${USER_NAME}:${USER_PASSWORD} | exec_auto
     unset cmd2
-    # set permissions
-    export cmd2=chown -R ${USER_NAME}:${USER_NAME} "$(user_home ${USER_NAME})"
+    # 设置权限
+    if [[ "${USER_NAME}" != "root" ]]
+    then
+    export cmd2="chown -R ${USER_NAME}:${USER_NAME} $rootfs2/home/${USER_NAME}/"
+    else
+    export cmd2="chown -R ${USER_NAME}:${USER_NAME} $rootfs2/root/"
+    fi
     exec_auto
     unset cmd2
-    echo "- 正在设置 sudo ... "
+    echo "- 正在设置 Sudo ... "
     local sudo_str="${USER_NAME} ALL=(ALL:ALL) NOPASSWD:ALL"
     if ! grep -q "${sudo_str}" "$rootfs2/etc/sudoers"; then
         chmod 640 "$rootfs2/etc/sudoers"
@@ -71,7 +79,7 @@ configure()
         echo '[ -n "$PS1" -a "$(whoami)" = "'${USER_NAME}'" ] || return 0' > "$rootfs2/etc/profile.d/sudo.sh"
         echo 'alias su="sudo su"' >> "$rootfs2/etc/profile.d/sudo.sh"
     fi
-    echo "- 正在设置 aid ... "
+    echo "- 正在设置 Group ... "
     # set min uid and gid
     local login_defs
     login_defs="$rootfs2/etc/login.defs"
