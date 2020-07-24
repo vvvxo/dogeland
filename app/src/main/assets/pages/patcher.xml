@@ -41,12 +41,12 @@
 <group>
 <action>
             <title>UbuntuBashPatcher</title>
-            <desc>使Ubuntu的sh从垃圾的dash更换为bash</desc>
+            <desc>使sh从垃圾的dash更换为bash</desc>
             <param name="type">
-                <option value="rm -rf $rootfs/bin/sh && ln -s $rootfs/bin/bash $rootfs/bin/sh">安装</option>
+                <option value="bash_patcher">安装</option>
                 <option value="">取消</option>
             </param>
-            <set>$type</set>
+            <set>sh $TOOLKIT/cli.sh $type</set>
 </action>
 
 </group>

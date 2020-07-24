@@ -11,3 +11,6 @@ debiangroup_add(){
 sed -i '$ a\aid_other:20233' $rootfs/etc/group
 sed -i '$ a\aid_other:50233' $rootfs/etc/group
 }
+bash_pather(){
+rm -rf $rootfs/bin/sh && ln -s $rootfs/bin/bash $rootfs/bin/sh
+}
