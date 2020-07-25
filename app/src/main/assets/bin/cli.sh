@@ -16,11 +16,12 @@ if [ -d "/usr/" ];then
   echo "">/dev/null
 fi
 # Check LinuxHost or Android Env
-if [ -d "/data/data/me.flytree.dogeland/files/bin/" ];then
-  echo "">/dev/null
-  else
+if [ ! -n "$START_DIR" ]; then
   TOOLKIT=./
+else
+  echo "">/dev/null
 fi
+
 
 load_mod(){
 if [ -f "$mod" ];then
