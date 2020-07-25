@@ -83,9 +83,7 @@ if [[ ! -f $START_DIR/LICENSE ]]; then
 mv $TOOLKIT/LICENSE $START_DIR/
 fi
 # Enable PRootFakeKernel
-if [[ ! -f /proc/version ]]; then
 cp /proc/version $TOOLKIT/fake_kernel
-fi
 # Kill
 echo "- 初始化完成🍉"
 echo "" >$START_DIR/install_bin_done
