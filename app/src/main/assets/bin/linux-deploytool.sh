@@ -4,6 +4,7 @@
 #
 configure()
 {
+export rootfs="$rootfs2"
     echo "- 正在设置 Hostname ... "
     echo 'localhost' > "$rootfs2/etc/hostname"
     echo "- 正在设置 DNS ... "
