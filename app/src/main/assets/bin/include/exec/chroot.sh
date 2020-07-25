@@ -7,14 +7,10 @@ exec_chroot(){
 check_rootfs 
 mount_part
 set_env
-echo "- Pushing"
+echo ""
 echo "$cmd2">$rootfs/runcmd.sh
 chmod 0777 $rootfs/runcmd.sh
-echo
-echo
-echo "- Running"
-echo
-echo
+echo ""
 if [ -f "$rootfs/bin/su" ];then
 $TOOLKIT/chroot "$rootfs" /bin/su -c $userid /runcmd.sh
 else
@@ -36,7 +32,7 @@ fi
 echo
 fi
 
-echo "- Cleaning"
+echo ""
 rm -rf $rootfs/runcmd.sh
-echo "- Done"
+echo ""
 }

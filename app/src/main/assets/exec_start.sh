@@ -1,7 +1,7 @@
 #
 # DogeLand-AppShell-Init
 #
-script="$1"
+run="$1"
 #
 # BasicEnv
 #
@@ -48,9 +48,9 @@ export PATH2=$(cat $CONFIG_DIR/$confid/path.conf)
 if [[ -f "$TOOLKIT/install_bin.sh" ]]; then
   sh $TOOLKIT/install_bin.sh
 fi
-if [[ -f "$script" ]]; then
-    chmod 755 "$script"
-    sh "$script"
+if [[ -f "$run" ]]; then
+    chmod 755 "$run"
+    sh "$run"
 else
     echo "!运行命令时出现异常"
 fi

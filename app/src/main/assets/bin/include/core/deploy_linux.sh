@@ -34,7 +34,6 @@ fi
 # Settings
 #
 echo "- 正在设置"
-export rootfs=$rootfs2
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
 mkdir $rootfs2/proc
@@ -46,7 +45,6 @@ fi
 
 # Install CLI
 cp $TOOLKIT/cli.sh $rootfs2/
-sed -i '1 i\unset TOOLKIT' $rootfs2/cli.sh
 mkdir $rootfs2/include/
 cp -R $TOOLKIT/include/* $rootfs2/include/
 # Set Configure
@@ -64,6 +62,17 @@ else
 echo "- 找不到文件,可能不是官方包或者包损坏也可能解压失败"
 fi
 echo ""
+if [ -d "$rootfs2/etc/dropbear/" ];then
+  echo "">/dev/null
+  else
+  mkdir $rootfs2/etc/dropbear/
+fi
+if [ -d "$rootfs2/root/" ];then
+  echo "">/dev/null
+  else
+  mkdir $rootfs2/root/
+fi
+
+sleep 1
 source $TOOLKIT/linux-deploytool.sh configure
-echo "安装成功"
 }
