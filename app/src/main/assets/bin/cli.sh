@@ -17,9 +17,9 @@ if [ -d "/usr/" ];then
 fi
 # Check LinuxHost or Android Env
 if [ -d "/data/data/me.flytree.dogeland/files/bin/" ];then
-  TOOLKIT=./
-  else
   echo "">/dev/null
+  else
+  TOOLKIT=./
 fi
 
 load_mod(){

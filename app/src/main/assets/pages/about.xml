@@ -21,3 +21,6 @@
         </desc>
     </text>
 </group>
+<group>
+<page config="pages/faststep.xml" title="快速开始↗" />
+</group>
