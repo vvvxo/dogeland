@@ -41,7 +41,6 @@
 
 <items>
     <group>
-        <page config="pages/shellinabox.xml" title="ShellInabox" />
          <action>
             <title>系统仓库</title>
             <set>
