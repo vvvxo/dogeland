@@ -7,7 +7,7 @@ export SDCARD_PATH=/storage/emulated/0
 export TOOLKIT=/data/user/0/me.flytree.dogeland/files/bin
 export TOOLS=/data/user/0/me.flytree.dogeland/files/bin/toolkit/
 export DATA2_DIR=/$SDCARD_PATH/Android/data/$PACKAGE_NAME/
-export platform=$(sh $TOOLKIT/service.sh platform)
+export platform=$(sh $TOOLKIT/cli.sh platform)
 # PRoot
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/
 export PROOT_TMP_DIR=$TOOLKIT
@@ -68,15 +68,15 @@ clear
 }
 start_auto(){
 clear
-sh $TOOLKIT/service.sh start_auto
+sh $TOOLKIT/cli.sh start_auto
 }
 start_proot(){
 clear
-sh $TOOLKIT/service.sh start_proot
+sh $TOOLKIT/cli.sh start_proot
 }
 start_chroot(){
 clear
-sh $TOOLKIT/service.sh start_chroot
+sh $TOOLKIT/cli.sh start_chroot
 }
 loader
 opts
