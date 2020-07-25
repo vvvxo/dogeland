@@ -1,5 +1,5 @@
 # DogeLand-App
-开箱即用的Android运行Linux解决方案  
+轻量级开源免费的Android Linux容器App.  
 已支持免ROOT运行🐳🐳🐳  
 ## 快速上手
 本应用程序安装选定的 GNU/Linux 发行版，并在 chroot / proot 容器中运行。
@@ -14,7 +14,7 @@
   [FAQ](faq.md)
 ### 设备要求
  最低支持Android 5  
- ARM,ARM64,X86,X86_64均已支持  
+ARM,ARM64,X86,X86_64均已支持  
 ### 使用
 [下载最新版本](https://github.com/WhiteSky-Team/DogeLand-App/releases/)  
 本应用同时兼容LinuxDeploy安装的系统，只设置安装路径与命令行即可使用。  
