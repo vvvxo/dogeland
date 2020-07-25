@@ -51,13 +51,13 @@ configure()
     fi
     # user profile
     if [ "${USER_NAME}" != "root" ]; then
-    export cmd2=groupadd ${USER_NAME} && useradd -m -g ${USER_NAME} -s /bin/sh ${USER_NAME} && usermod -g ${USER_NAME} ${USER_NAME}
+    export cmd2="groupadd ${USER_NAME} && useradd -m -g ${USER_NAME} -s /bin/sh ${USER_NAME} && usermod -g ${USER_NAME} ${USER_NAME}"
     exec_auto
     unset cmd2
     fi
     # 设置密码
-    export cmd2=chpasswd
-    echo ${USER_NAME}:${USER_PASSWORD} | exec_auto
+    export cmd2="echo ${USER_NAME}:${USER_PASSWORD} | chpasswd"
+    exec_auto
     unset cmd2
     # 设置权限
     if [[ "${USER_NAME}" != "root" ]]

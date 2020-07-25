@@ -25,7 +25,7 @@ fi
 
 load_mod(){
 if [ -f "$mod" ];then
-source $mod
+. $mod
 else
 echo "!$mod 未生效."
 fi
