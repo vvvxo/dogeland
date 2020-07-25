@@ -19,7 +19,7 @@
         </action>
           </group>
           
-             <group title="配置文件设置">
+             <group title="配置设置">
               <action>
             <title>查看正在使用的配置</title>
             <set>echo "$confid"</set>
@@ -50,7 +50,10 @@
             <title>备份已安装系统</title>
             <set>$TOOLKIT/cli.sh backup_rootfs</set>
         </action>
-        
+        <action>
+            <title>检查运行环境</title>
+            <set>sh $TOOLKIT/cli.sh env_info</set>
+        </action>
           <action>
             <title>容器CLI启动设置</title>
              <param name="type">
@@ -80,6 +83,17 @@
                 <option value="rm -rf $TOOLKIT/*">继续</option>
             </param>
             <set>$test</set>
+        </action>
+    </group>
+    
+    <group title="PRoot设置">
+    <action>
+            <title>设置容器内核版本</title>
+             <param name="kernel" label="" title="" placeholder="Linux version 3.10.108-lineageos-g6e870147270 (fake@dogeland) (gcc version 4.9.x 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Tue Mar 31 07:28:05 CST 2020" type="text" />
+            <set>
+            sh $TOOLKIT/cli.sh proot_fake_kernel
+            </set>
+            
         </action>
     </group>
     </page>

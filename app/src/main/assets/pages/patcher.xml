@@ -40,10 +40,10 @@
 
 <group>
 <action>
-            <title>UbuntuBashPatcher</title>
+            <title>ShPatcher</title>
             <desc>使sh从垃圾的dash更换为bash</desc>
             <param name="type">
-                <option value="bash_patcher">安装</option>
+                <option value="sh_patcher">安装</option>
                 <option value="">取消</option>
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>

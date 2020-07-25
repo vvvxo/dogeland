@@ -12,7 +12,8 @@ if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   exit 255
 fi
 set_env
-/data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
+export fake=$(cat $TOOLKIT/fake_kernel)
+/data/data/com.termux/files/usr/bin/proot $addcmd -k $fake --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
 echo "- Done"
 sleep 1
 }

@@ -49,7 +49,7 @@ if [ -d "$CONFIG_DIR/default/" ];then
   echo "检测到没有得到存储权限或者是Android10"
   echo "因《Android绿色公约》要求,只能使用内部存储的私有目录(Android/data),因源码缺陷无法自动创建私有文件夹,导致无法使用proot与存储配置文件"
   echo "----------"
-  echo "说白了就是您需要手动在(内部存储/Android/data/)文件夹中新建一个名称为 (me.flytree.dogeland) 的文件夹之后再打开本应用问题才能解决."
+  echo "说白了就是您需要手动在(内部存储/Android/data/)文件夹中新建一个名称为 me.flytree.dogeland 的文件夹之后再打开本应用问题才能解决."
   sleep 1000
   sleep 9999
   fi
@@ -81,6 +81,10 @@ mv $TOOLKIT/issue $START_DIR/
 fi
 if [[ ! -f $START_DIR/LICENSE ]]; then
 mv $TOOLKIT/LICENSE $START_DIR/
+fi
+# Enable PRootFakeKernel
+if [[ ! -f /proc/version ]]; then
+cp /proc/version $TOOLKIT/fake_kernel
 fi
 # Kill
 echo "- 初始化完成🍉"

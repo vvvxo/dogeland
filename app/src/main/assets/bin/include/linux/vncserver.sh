@@ -1,8 +1,3 @@
-#
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
 vncserver_start(){
 echo "- vncserver::start..."
 echo "- Port: 111111"

@@ -43,10 +43,10 @@ env_info() {
     supported_fs=$(cat /proc/filesystems)
     echo "$supported_fs"
     
-    echo '当前busybox版本:'
+    echo 'busybox版本:'
     $TOOLKIT/busybox | grep BusyBox
 
-    echo "当前运行路径:"
+    echo "运行路径:"
     pwd
     
     echo ""
@@ -58,7 +58,4 @@ env_info() {
 
     echo "chroot状态:"
     $TOOLKIT/busybox chroot
-    echo "文件相关:"
-    file $TOOLKIT/busybox
-    file $TOOLKIT/proot
 }

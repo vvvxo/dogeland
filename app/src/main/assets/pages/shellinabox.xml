@@ -7,14 +7,7 @@
              <param name="shell" label="" title="命令行" placeholder="/system/bin/sh" type="text" />
               <param name="group" label="" title="运行用户" placeholder="0" type="text" />
              <set>
-             if [[ "$platform" != "x86" ]]
-             then
-             echo "">/dev/null
-             else
-             echo "!不支持你的设备"
-             exit 1
-             fi
-             if [[ "$platform" != "x86_64" ]]
+             if [[ "$platform" != "x86" ]] && [[ "$platform" != "x86_64" ]]
              then
              echo "">/dev/null
              else

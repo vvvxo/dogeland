@@ -52,9 +52,6 @@
         </action>
         <page config="pages/patcher.xml" title="补丁商店" />
         <page config="pages/cli.xml" title="容器支持组件" />
-        <action>
-            <title>运行环境测试</title>
-            <set>sh $TOOLKIT/cli.sh env_info</set>
-        </action>
-    </group>
+        <page config="pages/faststep.xml" title="快速开始↗" />
+ </group>
 </items>

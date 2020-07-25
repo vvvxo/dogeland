@@ -8,28 +8,16 @@
            本应用程序安装选定的 GNU/Linux 发行版，并在 chroot / proot 容器中运行。
 
            使用步骤：
-           1. 给本应用 超级用户（Root） 权限。
-           2. 正常连接至互联网。
-           3. 配置安装选项。
+           1. 正常连接至互联网。
+           2. 挑选合适的系统包。
+           3. 下载系统包。
            4. 安装系统包。
-           5. 等待安装完成。
-           6. 点击"启动"按钮来启动容器。
-           7. 通过 CLI、SSH、VNC 等方式连接到容器。
+           5. 配置安装选项。
+           6. 等待安装完成。
+           7. 点击"启动"按钮来启动容器。
+           8. 通过 SSH、VNC 等方式连接到容器。
 
-
+           LICENSE: GPLv2
         </desc>
     </text>
 </group>
-<group>
-        <text>
-            <title>License:</title>
-            <desc>
-               GNU General Public License v2.0
-            </desc>
-        </text>
-</group>
-<items>
-<group>
-<page config="pages/faststep.xml" title="快速开始↗" />
- </group>
- </items>
