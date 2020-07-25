@@ -16,6 +16,12 @@ set_env
 echo
 echo "- Running"
 echo ""
-/data/data/com.termux/files/usr/bin/proot --link2symlink -k $fake -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
+if [ -f "$TOOLKIT/fake_kernel" ];then
+export fake=$(cat $TOOLKIT/fake_kernel)
+export addcmd="$addcmd -k $fake"
+else
+echo "">/dev/null
+fi
+/data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
 echo
 }

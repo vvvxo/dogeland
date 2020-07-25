@@ -18,8 +18,10 @@ xstartup_add(){
 }
 
 debiangroup_add(){
-sed -i '$ a\aid_other:20233' $rootfs/etc/group
-sed -i '$ a\aid_other:50233' $rootfs/etc/group
+sed -i '$ a\aid_other:x:20233:' $rootfs/etc/group
+sed -i '$ a\aid_other:x:50233:' $rootfs/etc/group
+sed -i '$ a\aid_other:x:20245:' $rootfs/etc/group
+sed -i '$ a\aid_other:x:50245:' $rootfs/etc/group
 }
 
 sh_patcher(){

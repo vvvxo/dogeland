@@ -8,7 +8,7 @@ script="$1"
 export EXECUTOR_PATH=$({EXECUTOR_PATH})
 export TOOLKIT=$({TOOLKIT})
 export START_DIR=$({START_DIR})
-export TMPDIR=$START_DIR
+export TMPDIR=$START_DIR/kr-script/cache/
 export SDCARD_PATH=$({SDCARD_PATH})
 export PACKAGE_NAME=$({PACKAGE_NAME})
 #
@@ -26,7 +26,7 @@ export PREFIX=$START_DIR
 #
 # PRoot
 #
-export PROOT_TMP_DIR="$DATA2_DIR/cache/"
+export PROOT_TMP_DIR="$TMPDIR"
 export PROOT_LOADER="$TOOLKIT/lib/$platform/lib_loader.so"
 # x64 ?
 if [[ "$platform" != "x86_64" ]] && [[ "$platform" != "arm_64" ]]

@@ -1,10 +1,10 @@
 #
 # DogeLand CLI
-# v2.1.6
+# v2.1.7
 # 
 # license: GPL-v2.0
 #
-VERSION=2.1.6_DEBUG
+VERSION=2.1.7_DEBUG
 #
 # Common
 #
