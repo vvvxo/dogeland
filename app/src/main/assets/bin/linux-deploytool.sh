@@ -30,7 +30,7 @@ configure()
                 sed -i '1,/^auth/s/^\(auth.*\)$/auth\tsufficient\tpam_succeed_if.so uid = 0 use_uid quiet\n\1/' "${pam_su}"
             fi
         fi
-    
+    done
     echo "- 正在设置 Timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then
@@ -51,13 +51,13 @@ configure()
     fi
     # user profile
     if [ "${USER_NAME}" != "root" ]; then
-    export cmd2="groupadd ${USER_NAME} && useradd -m -g ${USER_NAME} -s /bin/sh ${USER_NAME} && usermod -g ${USER_NAME} ${USER_NAME}"
+    export cmd2=groupadd ${USER_NAME} && useradd -m -g ${USER_NAME} -s /bin/sh ${USER_NAME} && usermod -g ${USER_NAME} ${USER_NAME}
     exec_auto
     unset cmd2
     fi
     # 设置密码
-    export cmd2="echo ${USER_NAME}:${USER_PASSWORD} | chpasswd"
-    exec_auto
+    export cmd2=chpasswd
+    echo ${USER_NAME}:${USER_PASSWORD} | exec_auto
     unset cmd2
     # 设置权限
     if [[ "${USER_NAME}" != "root" ]]
@@ -107,6 +107,7 @@ configure()
             if ! $(grep -q "^${xname}:" "$rootfs2/etc/passwd"); then
                 echo "${xname}:x:${xid}:${xid}::/:/bin/false" >> "$rootfs2/etc/passwd"
             fi
+        done
         local usr
         for usr in ${PRIVILEGED_USERS}
         do
@@ -114,6 +115,6 @@ configure()
             local gid=${usr##*:}
             sed -i "s|^\(${gid}:.*:[^:]+\)$|\1,${uid}|" "$rootfs2/etc/group"
             sed -i "s|^\(${gid}:.*:\)$|\1${uid}|" "$rootfs2/etc/group"
-
+        done
 }
 $@
