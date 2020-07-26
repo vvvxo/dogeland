@@ -29,12 +29,9 @@
 <group>
 <action>
             <title>DebianGroupAdd</title>
-            <desc>只在登录终端提示缺少group组50233,20233时，才使用此补丁</desc>
-            <param name="type">
-                <option value="debiangroup_add">安装</option>
-                <option value="">取消</option>
-            </param>
-            <set>sh $TOOLKIT/cli.sh $type</set>
+            <desc>只在登录终端提示缺少group组时，才使用此补丁</desc>
+            <param name="bug" label="" title="↓请输入报错的group组id(可多次补丁)" placeholder="" type="text" />
+            <set>sh $TOOLKIT/cli.sh debiangroup_add</set>
 </action>
 </group>
 
@@ -44,6 +41,15 @@
             <desc>使sh从垃圾的dash更换为bash</desc>
             <param name="type">
                 <option value="sh_patcher">安装</option>
+                <option value="">取消</option>
+            </param>
+            <set>sh $TOOLKIT/cli.sh $type</set>
+</action>
+<action>
+            <title>PRootSECCOMP</title>
+            <desc>开启PRootSECCOMP内核补丁</desc>
+            <param name="type">
+                <option value="enable_proot_seccomp">安装</option>
                 <option value="">取消</option>
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>

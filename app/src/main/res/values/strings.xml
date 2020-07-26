@@ -1,11 +1,11 @@
 <resources>
-    <string name="kr_script_config">pio.conf</string>
+    <string name="kr_script_config">doge.land</string>
     <bool name="force_root">false</bool>
 
     <string name="app_name">DogeLand</string>
     <string name="shell_executor">脚本执行</string>
     <string name="cannot_get_root_access">没有获取到ROOT权限!</string>
-    <string name="execute_success">执行完成！</string>
+    <string name="execute_success">运行完成!</string>
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="reboot_confirm">重启设备并重置容器?</string>
@@ -15,7 +15,7 @@
     <string name="btn_hide">隐藏</string>
     <string name="float_monitor_tips">双击悬浮窗即可关闭，或按住拖动调整位置</string>
     <string name="permission_float">请授权显示悬浮窗权限!</string>
-    <string name="please_wait">正在启动应用</string>
+    <string name="please_wait"></string>
     <string name="load_ratio">负载:</string>
     <string name="mhz">Mhz</string>
     <string name="core">核心</string>
@@ -50,13 +50,13 @@
     <string name="btn_retry">重试</string>
 
     <string name="kr_write_external_storage">需要存储权限</string>
-    <string name="kr_page_before_load">正在加载</string>
-    <string name="kr_page_loading">正在加载</string>
-    <string name="kr_page_after_load">正在加载</string>
+    <string name="kr_page_before_load"></string>
+    <string name="kr_page_loading"></string>
+    <string name="kr_page_after_load"></string>
     <string name="kr_page_sh_invalid">无效的页面配置输出</string>
     <string name="kr_page_sh_file_permission">指定的配置文件不存在或无读取权限</string>
     <string name="kr_page_load_fail">致命错误!</string>
-    <string name="kr_page_load_success">页面加载成功</string>
+    <string name="kr_page_load_success"></string>
     <string name="kr_auto_run_item_losted">指定项已丢失</string>
 
     <string name="pio_starting">DOGE·LAND</string>

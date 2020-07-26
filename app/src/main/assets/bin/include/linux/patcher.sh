@@ -18,14 +18,15 @@ xstartup_add(){
 }
 
 debiangroup_add(){
-sed -i '$ a\aid_other:x:20233:' $rootfs/etc/group
-sed -i '$ a\aid_other:x:50233:' $rootfs/etc/group
-sed -i '$ a\aid_other:x:20245:' $rootfs/etc/group
-sed -i '$ a\aid_other:x:50245:' $rootfs/etc/group
+echo "将修复 $bug group组缺失问题"
+sed -i '$ a\aid_other:x:$bug:' $rootfs/etc/group
 }
 
 sh_patcher(){
 rm -rf $rootfs/bin/sh
 ln -s $rootfs/bin/bash $rootfs/bin/sh
 echo "补丁安装成功"
+}
+enable_proot_seccomp(){
+sed -i '29i\PROOT_NO_SECCOMP=1' $START_DIR/exec_start.sh
 }
