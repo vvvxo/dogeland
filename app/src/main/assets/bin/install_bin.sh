@@ -19,7 +19,7 @@ fi
 function busybox_install() {
     for applet in `./busybox --list`; do
         case "$applet" in
-        "swapon"|"swapoff"|"mkswap")
+        "swapon"|"swapoff"|"mkswap"|"wget")
             echo 'Skip' > /dev/null
         ;;
         *)
