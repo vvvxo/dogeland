@@ -382,7 +382,8 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    private long firstTime = 0;
+}
+private long firstTime = 0;
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
@@ -398,4 +399,3 @@ class MainActivity : AppCompatActivity() {
 
         return super.onKeyUp(keyCode, event);
    }
-}
