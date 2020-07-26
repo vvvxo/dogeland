@@ -46,6 +46,17 @@
     </group>
     
        <group title="高级设置">
+       
+         <action bg-task="true">
+            <title>开启后台保活</title>
+            <desc>通过通知栏保持应用前台运行,防止容器卡顿或被杀死</desc>
+            <set>
+            echo "保持后台运行中"
+            sleep 9999
+            sleep 9999
+            </set>
+        </action>
+        
         <action>
             <title>备份已安装系统</title>
             <set>$TOOLKIT/cli.sh backup_rootfs</set>

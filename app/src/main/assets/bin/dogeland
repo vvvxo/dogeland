@@ -68,15 +68,21 @@ clear
 }
 start_auto(){
 clear
-sh $TOOLKIT/cli.sh start_auto
+cmd2="/bin/bash --login"
+sh $TOOLKIT/cli.sh exec_auto
+unset cmd2
 }
 start_proot(){
 clear
-sh $TOOLKIT/cli.sh start_proot
+cmd2="/bin/bash --login"
+sh $TOOLKIT/cli.sh exec_proot
+unset cmd2
 }
 start_chroot(){
 clear
-sh $TOOLKIT/cli.sh start_chroot
+cmd2="/bin/bash --login"
+sh $TOOLKIT/cli.sh exec_chroot
+unset cmd2
 }
 loader
 opts

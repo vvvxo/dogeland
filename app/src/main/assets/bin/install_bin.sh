@@ -70,10 +70,13 @@ fi
 if [[ ! -f $TOOLKIT/proot ]]; then
 ln -s $TOOLKIT/lib/$platform/lib_proot.so $TOOLKIT/proot
 fi
-# ShellInabox
-if [[ ! -f $TOOLKIT/shellinaboxd ]]; then
-ln -s $TOOLKIT/shellinaboxd_arm $TOOLKIT/shellinaboxd_arm_64
-ln -s $TOOLKIT/shellinaboxd_$platform  $TOOLKIT/shellinaboxd
+# Dropbear
+if [[ ! -f $TOOLKIT/dropbearmulti ]]; then
+ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dropbear
+ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dropbearkey
+ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dropbearconvert
+ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dbclient
+ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/ssh
 fi
 # Other
 if [[ ! -f $START_DIR/issue ]]; then
