@@ -5,7 +5,6 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
-import me.flytree.dogeland.utils.TipExit;
 import com.omarea.krscript.model.ShellHandlerBase;
 
 import java.io.DataOutputStream;
