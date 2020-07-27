@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="me.flytree.dogeland">
+    package="com.projectkr.shell">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -23,6 +23,7 @@
         <activity
             android:name=".ActionPage"
             android:label="@string/title_activity_action_page"
+            android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +33,7 @@
         <activity
             android:name=".ActionPageOnline"
             android:label="@string/title_activity_action_page"
+            android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,6 +42,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,6 +51,7 @@
         </activity>
         <activity
             android:name=".SplashActivity"
+            android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,6 +62,7 @@
             android:name=".ActivityFileSelector"
             android:excludeFromRecents="true"
             android:label="@string/title_activity_file_selector"
+            android:configChanges="keyboardHidden|orientation|uiMode|layoutDirection|screenLayout|colorMode|fontScale|smallestScreenSize|density|keyboard|screenSize|touchscreen"
             android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
