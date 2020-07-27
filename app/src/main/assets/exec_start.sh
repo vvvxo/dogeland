@@ -20,8 +20,8 @@ export platform=$(sh $TOOLKIT/cli.sh platform)
 #
 # RunEnv
 #
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$TOOLKIT/lib/$platform/"
-export PATH="$PATH:$TOOLKIT"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$START_DIR/lib/"
+export PATH="$PATH:$TOOLKIT:$START_DIR/lib"
 export PREFIX=$START_DIR
 #
 # PRoot
@@ -39,10 +39,9 @@ fi
 #
 # LoadConfig
 #
-export confid="$(cat $CONFIG_DIR/.id.conf)"
-export cmd=$(cat $CONFIG_DIR/$confid/cmd.conf)
-export rootfs=$(cat $CONFIG_DIR/$confid/rootfs.conf)
-export PATH2=$(cat $CONFIG_DIR/$confid/path.conf)
+export cmd=$(cat $CONFIG_DIR/cmd.conf)
+export rootfs=$(cat $CONFIG_DIR/rootfs.conf)
+export PATH2=$(cat $CONFIG_DIR/path.conf)
 #
 # Other or RunCmd
 #

@@ -9,6 +9,9 @@ if [ -f "$START_DIR/install_bin_done" ];then
 quit
 else
 echo "- 正在初始化(报错属于正常🐳现象)"
+mkdir $START_DIR/lib
+mkdir $START_DIR/etc
+ln -s $TOOLKIT/lib/$platform/* $START_DIR/lib/
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
   mkdir $DATA2_DIR/
@@ -54,11 +57,9 @@ if [ -d "$CONFIG_DIR/default/" ];then
   sleep 9999
   fi
   mkdir $CONFIG_DIR > /dev/null
-  mkdir $CONFIG_DIR/default >/dev/null
-  echo "default" >$CONFIG_DIR/.id.conf
-  echo "" > $CONFIG_DIR/default/rootfs.conf
-  echo "" > $CONFIG_DIR/default/cmd.conf
-  echo "" > $CONFIG_DIR/default/path.conf
+  echo "" > $CONFIG_DIR/rootfs.conf
+  echo "" > $CONFIG_DIR/cmd.conf
+  echo "" > $CONFIG_DIR/path.conf
 fi
 # Cache
 if [ -d "$DATA2_DIR/cache/" ];then

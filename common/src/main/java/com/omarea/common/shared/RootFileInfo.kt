@@ -7,16 +7,29 @@ class RootFileInfo {
     constructor(path: String) {
         val file = RootFile.fileInfo(path)
         if (file != null) {
+            this.permissions = file.permissions
             this.parentDir = file.parentDir
             this.filePath = file.filePath
             this.isDirectory = file.isDirectory
+            this.inodeCount = file.inodeCount
+            this.fileSize = file.fileSize
+            this.owner = file.owner
+            this.ownerGroup = file.ownerGroup
+            this.lastModifyDateTime = file.lastModifyDateTime
         }
     }
 
+    var permissions: String = ""
     var parentDir: String = ""
     var filePath: String = ""
     var isDirectory: Boolean = false
-    var fileSize: Long = 0;
+    var inodeCount = 0
+    var fileSize: Long = 0
+    var owner: String = ""
+    var ownerGroup: String = ""
+    var lastModifyDateTime: String = ""
+    var executable: Boolean = false
+    var softLink = ""
 
     val fileName: String
         get() {
@@ -48,7 +61,11 @@ class RootFileInfo {
 
     public fun listFiles(): ArrayList<RootFileInfo> {
         if (this.isDirectory) {
-            return RootFile.list(this.absolutePath)
+            if (this.softLink != "") {
+                return RootFile.list(this.softLink)
+            } else {
+                return RootFile.list(this.absolutePath)
+            }
         }
         return ArrayList()
     }

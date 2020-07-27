@@ -1,5 +1,5 @@
  <page>
- <group title="设置">
+ <group title="基础设置">
      <action>
          <title>Rootfs路径</title>
              <param name="Input" label="" title="" placeholder="请输入." type="text" />
@@ -13,49 +13,26 @@
         </action>
         
         <action>
-            <title>设置自定义 PATH</title>
+            <title>设置自定义 PATH 变量</title>
             <param name="Input" label="" title="" placeholder="请输入." type="text" />
             <set>$TOOLKIT/cli.sh set_path</set>
         </action>
           </group>
-          
-             <group title="配置设置">
-              <action>
-            <title>查看正在使用的配置</title>
-            <set>echo "$confid"</set>
-        </action>
-        
-               <action>
-            <title>新建</title>
-             <param name="mkconf" label="配置名称" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/cli.sh mk_conf</set>
-        </action>
-        
-            <action>
-            <title>切换</title>
-             <param name="swconf" label="配置名称" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/cli.sh sw_conf</set>
-        </action>
-        
-         <action>
-            <title>删除</title>
-             <param name="delconf" label="配置名称" title="" placeholder="请输入." type="text" />
-            <set>$TOOLKIT/cli.sh del_conf</set>
-            
-        </action>
-    </group>
-    
-       <group title="高级设置">
+
+       <group title="进阶设置">
        
          <action bg-task="true">
             <title>开启后台保活</title>
-            <desc>通过通知栏保持应用前台运行,防止容器卡顿或被杀死</desc>
+            <desc>通过通知栏保持应用前台运行和CPU唤醒,防止容器卡顿或被杀死</desc>
             <set>
             echo "保持后台运行中"
             sleep 9999
             sleep 9999
+            sleep 9999
+            sleep 9999
             </set>
         </action>
+
         
         <action>
             <title>备份已安装系统</title>
@@ -76,7 +53,7 @@
              </action>
            </group>
            
-           <group title="危险选项">
+           <group title="高级选项">
            
              <action>
             <title>删除Rootfs</title>

@@ -1,0 +1,40 @@
+<group>
+<action>
+            <title>→安装插件</title>
+            <param name="file" label="插件包" type="file"
+                suffix="zip"
+                value="" />
+            <set>
+            echo "正在安装"
+            unzip $file -d $TOOLKIT/
+            echo "安装成功"
+            </set>
+        </action>
+<action>
+</group>
+<group>
+         <action>
+            <title>QEMU-User-Emulator</title>
+            <desc>开启PRoot/Chroot跨平台运行工具</desc>
+            <set>
+            echo "- 正在尝试打开浏览器🐳"
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            echo "- 完成🐳"
+            </set>
+        </action>
+        </group>
+
+ <group>
+<group>
+         <action>
+            <title>PulseAudio</title>
+            <desc>为 GNU / Linux 提供音频支持</desc>
+            <set>
+            echo "- 正在尝试打开浏览器🐳"
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            echo "- 完成🐳"
+            </set>
+        </action>
+        </group>
+
+ <group>

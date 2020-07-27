@@ -59,9 +59,6 @@ ARGS="$ARGS --cwd=/home"
 ARGS="$ARGS -r $PREFIX/.."
 
 PROGRAM=/bin/bash
-if [ -x $rootfs/home/.termux/shell ]; then
-	PROGRAM=`readlink -f $HOME/.termux/shell`
-fi
 
 export HOME=/home
 

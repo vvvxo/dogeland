@@ -35,6 +35,7 @@ fi
 #
 echo "- 正在设置"
 # Set Configure
+echo "Stop">$rootfs/status
 rm -rf $CONFIG_DIR/$confid/cmd.conf
 echo "/bin/sh /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
 echo "!初始化命令行已设置默认启动dropbear"
