@@ -21,6 +21,7 @@
             <param name="archs">
                 <option value="startxfce4">xfce</option>
                 <option value="startlxde">lxde</option>
+                <option value="export PULSE_SERVER=tcp:0.0.0.0:4713">PulseAudio</option>
             </param>
             <set>sh $TOOLKIT/cli.sh xstartup_add</set>
 </action>
