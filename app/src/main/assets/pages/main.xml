@@ -12,6 +12,8 @@
             </param>
             <param name="addcmd" label="附加参数" title="" placeholder="" type="text" />
             <set>sh $TOOLKIT/cli.sh $start</set>
+            </action>
+            
               <action>
             <title>运行终端命令</title>
             <desc>快速运行 Linux Shell命令</desc>
