@@ -5,12 +5,13 @@
                 suffix="zip"
                 value="" />
             <set>
-            echo "正在安装"
-            unzip $file -d $TOOLKIT/
-            echo "安装成功"
+            echo "- 正在安装"
+            unzip $file -d $START_DIR/
+            source $START_DIR/install.sh
+            rm -rf $START_DIR/install.sh
+            echo "- 安装成功"
             </set>
         </action>
-<action>
 </group>
 
 <group>

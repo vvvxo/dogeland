@@ -57,5 +57,10 @@ fi
 if [[ -f "$START_DIR/kr-script/cache/" ]]; then
   echo "">/dev/null
   else
+  if [[ -f "$DATA2_DIR/cache/" ]]; then
+  echo "">/dev/null
+  else
+  mkdir $DATA2_DIR/cache/
+  fi
   mv $START_DIR/kr-script/cache/* $DATA2_DIR/cache/
 fi
