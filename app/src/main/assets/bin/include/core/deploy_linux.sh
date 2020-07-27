@@ -36,11 +36,11 @@ fi
 echo "- 正在设置"
 # Set Configure
 echo "Stop">$rootfs2/status
-rm -rf $CONFIG_DIR/$confid/cmd.conf
-echo "/bin/sh /cli.sh dropbear_start">$CONFIG_DIR/$confid/cmd.conf
+rm -rf $CONFIG_DIR/cmd.conf
+echo "/bin/sh /cli.sh dropbear_start">$CONFIG_DIR/cmd.conf
 echo "!初始化命令行已设置默认启动dropbear"
-rm -rf $CONFIG_DIR/$confid/rootfs.conf
-echo "$rootfs2" >$CONFIG_DIR/$confid/rootfs.conf
+rm -rf $CONFIG_DIR/rootfs.conf
+echo "$rootfs2" >$CONFIG_DIR/rootfs.conf
 #
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
