@@ -19,6 +19,7 @@ import me.flytree.dogeland.utils.CpuFrequencyUtils
 import me.flytree.dogeland.utils.GpuUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.math.BigDecimal
+import me.flytree.dogeland.R
 import java.math.RoundingMode
 import java.util.*
 import kotlin.collections.HashMap

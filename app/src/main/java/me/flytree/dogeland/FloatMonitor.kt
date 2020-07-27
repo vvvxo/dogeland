@@ -20,7 +20,6 @@ import me.flytree.dogeland.ui.FloatMonitorChartView
 import me.flytree.dogeland.utils.CpuFrequencyUtils
 import me.flytree.dogeland.utils.CpuLoadUtils
 import me.flytree.dogeland.utils.GpuUtils
-import me.flytree.dogeland.R
 import java.util.*
 
 class FloatMonitor(context: Context) {
