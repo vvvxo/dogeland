@@ -45,6 +45,9 @@
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>
 </action>
+</group>
+
+<group>
 <action>
             <title>PRootSECCOMP</title>
             <desc>开启PRootSECCOMP内核补丁</desc>
@@ -54,5 +57,4 @@
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>
 </action>
-
 </group>

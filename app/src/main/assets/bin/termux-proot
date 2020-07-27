@@ -1,0 +1,69 @@
+#
+# Termux in Dogeland
+#
+$PREFIX=$rootfs/usr
+SCRIPTNAME=termux-chroot
+show_usage () {
+	echo "用法: $SCRIPTNAME [命令]"
+	echo "termux-chroot：设置chroot以模仿普通的Linux文件系统"
+	echo ""
+	echo "在具有传统文件系统层次结构的chroot中执行命令"
+	echo "(例如Termux中的文件夹/ bin，/ etc和/ usr)."
+	echo "If run without argument, the default shell will be executed"
+	exit 0
+}
+
+while getopts :h option
+do
+	case "$option" in
+		h) show_usage;;
+		?) echo "$SCRIPTNAME: illegal option -$OPTARG"; exit 1;
+	esac
+done
+shift $(($OPTIND-1))
+
+# Bind 
+ARGS="-b /system:/system -b /vendor:/vendor -b /data:/data"
+
+if [ -d /sbin ] && [ -d /root ]; then
+	ARGS="$ARGS -b /sbin:/sbin -b /root:/root"
+fi
+if [ -d /apex ]; then
+	ARGS="$ARGS -b /apex:/apex"
+fi
+
+if [ -f /property_contexts ]; then
+	ARGS="$ARGS -b /property_contexts:/property_contexts"
+fi
+
+
+if [ -d /storage ]; then
+	ARGS="$ARGS -b /storage:/storage"
+fi
+
+
+ARGS="$ARGS -b $PREFIX:/usr"
+
+for f in bin etc lib share tmp var; do
+	ARGS="$ARGS -b $PREFIX/$f:/$f"
+done
+
+
+for f in dev proc; do
+	ARGS="$ARGS -b /$f:/$f"
+done
+
+ARGS="$ARGS --cwd=/home"
+
+
+ARGS="$ARGS -r $PREFIX/.."
+
+PROGRAM=/bin/bash
+if [ -x $rootfs/home/.termux/shell ]; then
+	PROGRAM=`readlink -f $HOME/.termux/shell`
+fi
+
+export HOME=/home
+
+ARGS="$ARGS $PROGRAM -l"
+exec proot $ARGS $cmd
