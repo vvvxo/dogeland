@@ -12,6 +12,7 @@
         </action>
 <action>
 </group>
+
 <group>
          <action>
             <title>QEMU-User-Emulator</title>
@@ -24,7 +25,6 @@
         </action>
         </group>
 
- <group>
 <group>
          <action>
             <title>PulseAudio</title>
@@ -36,5 +36,3 @@
             </set>
         </action>
         </group>
-
- <group>

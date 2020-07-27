@@ -71,14 +71,6 @@ fi
 if [[ ! -f $TOOLKIT/proot ]]; then
 ln -s $TOOLKIT/lib/$platform/lib_proot.so $TOOLKIT/proot
 fi
-# Dropbear
-if [[ ! -f $TOOLKIT/dropbearmulti ]]; then
-ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dropbear
-ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dropbearkey
-ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dropbearconvert
-ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/dbclient
-ln -s $TOOLKIT/dropbearmulti_$platform $TOOLKIT/ssh
-fi
 # Other
 if [[ ! -f $START_DIR/issue ]]; then
 mv $TOOLKIT/issue $START_DIR/
