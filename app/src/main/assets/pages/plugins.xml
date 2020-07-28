@@ -1,15 +1,16 @@
 <group>
 <action>
-            <title>→安装插件</title>
+            <title>安装插件包</title>
             <param name="file" label="插件包" type="file"
                 suffix="zip"
                 value="" />
             <set>
-            echo "- 正在安装"
-            unzip $file -d $START_DIR/
-            source $START_DIR/install.sh
-            rm -rf $START_DIR/install.sh
-            echo "- 安装成功"
+            echo "- 正在安装 $file "
+            unzip $file -d $START_DIR/usr/
+            echo "- 正在设置 $file"
+            source $START_DIR/usr/install.sh
+            rm -rf $START_DIR/usr/install.sh
+            echo "- $file 安装成功"
             </set>
         </action>
 </group>
@@ -17,7 +18,7 @@
 <group>
          <action>
             <title>QEMU-User-Emulator</title>
-            <desc>开启PRoot/Chroot跨平台运行工具</desc>
+            <desc>为PRoot/Chroot跨平台提供运行支持</desc>
             <set>
             echo "- 正在尝试打开浏览器🐳"
             am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
@@ -26,10 +27,22 @@
         </action>
         </group>
 
-<group>
+        <group>
          <action>
             <title>PulseAudio</title>
             <desc>为 GNU / Linux 提供音频支持</desc>
+            <set>
+            echo "- 正在尝试打开浏览器🐳"
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            echo "- 完成🐳"
+            </set>
+        </action>
+        </group>
+        
+        <group>
+         <action>
+            <title>dropbear</title>
+            <desc>在Android中开启SSH Server和Shell</desc>
             <set>
             echo "- 正在尝试打开浏览器🐳"
             am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
