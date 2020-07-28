@@ -13,6 +13,7 @@ mkdir $PREFIX/lib
 mkdir $PREFIX/etc
 mkdir $PREFIX/tmp
 mkdir $PREFIX/libexec
+mkdir $START_DIR/home
 mkdir $PREFIX/var
 ln -s $TOOLKIT/lib/$platform/* $PREFIX/lib/
 # DATA2_DIR
