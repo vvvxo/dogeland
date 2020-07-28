@@ -40,15 +40,8 @@
 
 <items>
     <group>
-         <action>
-            <title>系统仓库</title>
-            <set>
-            echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://whitesky-team.github.io/repo.html > /dev/null
-            echo "- 完成🐳"
-            </set>
-        </action>
         <page config="pages/patcher.xml" title="补丁商店" />
+        <page config="pages/osstore.xml" title="补丁商店" />
         <page config="pages/plugins.xml" title="插件商店" />
         <page config="pages/tools.xml" title="LinuxTools" />
  </group>
