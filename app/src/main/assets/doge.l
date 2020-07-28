@@ -1,4 +1,4 @@
-executor_core="file:///android_asset/usr/dogeland-exec"
+executor_core="file:///android_asset/exec_start.sh"
 page_list_config="file:///android_asset/pages/about.xml"
 favorite_config="file:///android_asset/pages/main.xml"
 allow_home_page="0"
