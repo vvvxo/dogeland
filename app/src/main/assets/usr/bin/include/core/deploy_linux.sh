@@ -68,11 +68,6 @@ if [ -d "$rootfs2/etc/dropbear/" ];then
   else
   mkdir $rootfs2/etc/dropbear/
 fi
-if [ -d "$rootfs2/root/" ];then
-  echo "">/dev/null
-  else
-  mkdir $rootfs2/root/
-fi
 
 sleep 1
 source $TOOLKIT/linux-deploytool.sh configure

@@ -60,15 +60,6 @@ export rootfs="$rootfs2"
     export cmd2=chpasswd
     echo ${USER_NAME}:${USER_PASSWORD} | exec_auto
     unset cmd2
-    # 设置权限
-    if [[ "${USER_NAME}" != "root" ]]
-    then
-    export cmd2="chown -R ${USER_NAME}:${USER_NAME} $rootfs2/home/${USER_NAME}/"
-    else
-    export cmd2="chown -R ${USER_NAME}:${USER_NAME} $rootfs2/root/"
-    fi
-    exec_auto
-    unset cmd2
     echo "- 正在设置 Sudo ... "
     local sudo_str="${USER_NAME} ALL=(ALL:ALL) NOPASSWD:ALL"
     if ! grep -q "${sudo_str}" "$rootfs2/etc/sudoers"; then

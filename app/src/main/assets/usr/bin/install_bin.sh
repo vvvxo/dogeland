@@ -9,9 +9,12 @@ if [ -f "$START_DIR/install_bin_done" ];then
 quit
 else
 echo "- 正在初始化(报错属于正常🐳现象)"
-mkdir $START_DIR/lib
-mkdir $START_DIR/etc
-ln -s $TOOLKIT/lib/$platform/* $START_DIR/lib/
+mkdir $PREFIX/lib
+mkdir $PREFIX/etc
+mkdir $PREFIX/tmp
+mkdir $PREFIX/libexec
+mkdir $PREFIX/var
+ln -s $TOOLKIT/lib/$platform/* $PREFIX/lib/
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
   mkdir $DATA2_DIR/
