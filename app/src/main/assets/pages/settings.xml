@@ -2,19 +2,19 @@
  <group title="基础设置">
      <action>
          <title>Rootfs路径</title>
-             <param name="Input" label="" title="" placeholder="请输入." type="text" />
+             <param name="Input" label="" title="" placeholder="?" type="text" />
             <set>$TOOLKIT/cli.sh set_rootfsdir</set>
              </action>
              
         <action>
             <title>初始化命令行</title>
-            <param name="Input" label="" title="" placeholder="请输入." type="text" />
+            <param name="Input" label="" title="" placeholder="?" type="text" />
             <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
         
         <action>
             <title>设置自定义 PATH 变量</title>
-            <param name="Input" label="" title="" placeholder="请输入." type="text" />
+            <param name="Input" label="" title="" placeholder="?" type="text" />
             <set>$TOOLKIT/cli.sh set_path</set>
         </action>
           </group>
@@ -72,6 +72,18 @@
             </param>
             <set>$test</set>
         </action>
+        
+         <action>
+            <title>强制更改 GNU / Linux 系统密码</title>
+            <param name="username" label="" title="用户名" placeholder="root" type="text" />
+            <param name="password" label="" title="密码" placeholder="1" type="text" />
+            <set>
+            export cmd2=echo "$username:$password"丨chpasswd
+            $TOOLKIT/cli.sh exec_auto
+            unset cmd2
+            </set>
+        </action>
+        
     </group>
     
     <group title="PRoot设置">
