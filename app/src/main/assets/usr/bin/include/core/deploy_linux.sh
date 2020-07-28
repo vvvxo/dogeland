@@ -25,7 +25,7 @@ echo "">/dev/null
 else
 echo "将安装到 /data/data/$PACKAGE_NAME/files/$rootfs2/"
 sleep 3
-export $rootfs2="/data/data/$PACKAGE_NAME/files/$rootfs2/"
+export rootfs2="/data/data/$PACKAGE_NAME/files/$rootfs2/"
 fi
 #
 # Install
