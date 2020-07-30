@@ -14,7 +14,7 @@ export rootfs="$rootfs2"
 [ -n "${LOCALE}" ] || LOCALE="${LANG}"
 [ -n "${LOCALE}" ] || LOCALE="C"
     echo "- 正在设置 Locale ... "
-    if $(echo ${LOCALE} | grep -q '\.'); then
+    if $(echo ${LOCALE} | grep -q '$rootfs2\.'); then
         local inputfile=$(echo ${LOCALE} | awk -F. '{print $1}')
         local charmapfile=$(echo ${LOCALE} | awk -F. '{print $2}')
         export cmd2="localedef -i ${inputfile} -c -f ${charmapfile} ${LOCALE}"
@@ -23,7 +23,7 @@ export rootfs="$rootfs2"
     fi
     echo "- 正在设置 SU ... "
     local item pam_su
-    for item in /etc/pam.d/su /etc/pam.d/su-l
+    for item in $rootfs2/etc/pam.d/su $rootfs2/etc/pam.d/su-l
     do
         pam_su="$rootfs2/${item}"
         if [ -e "${pam_su}" ]; then
