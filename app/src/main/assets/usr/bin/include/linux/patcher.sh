@@ -13,13 +13,13 @@ echo "安装完成"
 
 xstartup_add(){
  echo '正在安装补丁'
- sed '$a\$desktop &' $rootfs/root/.vnc/xstartup
+ sed "$a\$desktop &" $rootfs/root/.vnc/xstartup
  echo "安装完成"
 }
 
 debiangroup_add(){
 echo "将修复 $bug group组缺失问题"
-sed -i '$ a\aid_other:x:$bug:' $rootfs/etc/group
+sed -i "$ a\aid_other:x:$bug:" $rootfs/etc/group
 }
 
 sh_patcher(){
