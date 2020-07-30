@@ -44,3 +44,12 @@ else
  echo "- 完成,已修改 $Input"
 fi
 }
+
+set_runarch(){
+echo "- 正在设置 $type ..."
+sed "20c export platform=$type" $START_DIR/exec_start.sh
+echo "- 正在应用更改.."
+source $TOOLKIT/reinstall_bin.sh
+rm -rf $TOOLKIT/reinstall_bin.sh
+echo "- 完成"
+}

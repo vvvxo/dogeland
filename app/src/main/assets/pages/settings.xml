@@ -1,5 +1,5 @@
  <page>
- <group title="基础设置">
+ <group title="基础">
      <action>
          <title>Rootfs路径</title>
              <param name="Input" label="" title="" placeholder="?" type="text" />
@@ -11,15 +11,20 @@
             <param name="Input" label="" title="" placeholder="?" type="text" />
             <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
-        
-        <action>
-            <title>设置自定义 PATH 变量</title>
-            <param name="Input" label="" title="" placeholder="?" type="text" />
-            <set>$TOOLKIT/cli.sh set_path</set>
-        </action>
+     
+          <action>
+            <title>容器CLI快速启动设置</title>
+             <param name="type">
+                <option value="/bin/sh /cli.sh sshd_start">启动sshd</option>
+                <option value="/bin/sh /cli.sh dropbear_start">启动dropbear</option>
+                <option value="/bin/sh /cli.sh vncserver_start">启动vncserver</option>
+            </param>
+            <set>echo "$type">$CONFIG_DIR/cmd.conf</set>
+             </action>
+
           </group>
 
-       <group title="进阶设置">
+       <group title="进阶">
        
          <action bg-task="true">
             <title>开启后台保活</title>
@@ -42,18 +47,24 @@
             <title>检查运行环境</title>
             <set>sh $TOOLKIT/cli.sh env_info</set>
         </action>
-          <action>
-            <title>容器CLI启动设置</title>
+        
+         
+              <action>
+            <title>设置运行平台</title>
+            <desc>如系统缺少uname或无法正确检测,请使用此选项</desc>
              <param name="type">
-                <option value="/bin/sh /cli.sh sshd_start">启动sshd</option>
-                <option value="/bin/sh /cli.sh dropbear_start">启动dropbear</option>
-                <option value="/bin/sh /cli.sh vncserver_start">启动vncserver</option>
+                <option value="arm">arm</option>
+                <option value="arm64">arm64</option>
+                <option value="x86">x86</option>
+                 <option value="x86_64">x86_64</option>
             </param>
-            <set>echo "$type">$CONFIG_DIR/$confid/cmd.conf</set>
+            <set>$TOOLKIT/cli.sh set_runarch</set>
              </action>
+        
            </group>
            
-           <group title="高级选项">
+           
+           <group title="高级">
            
              <action>
             <title>删除Rootfs</title>
@@ -82,6 +93,13 @@
             $TOOLKIT/cli.sh exec_auto
             unset cmd2
             </set>
+        </action>
+        
+           
+        <action>
+            <title>设置自定义 PATH 变量</title>
+            <param name="Input" label="" title="" placeholder="?" type="text" />
+            <set>$TOOLKIT/cli.sh set_path</set>
         </action>
         
     </group>

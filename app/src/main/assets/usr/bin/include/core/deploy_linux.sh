@@ -38,6 +38,15 @@ if [ `id -u` -eq 0 ];then
 else
  proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
+# Check 
+if [ -d "$rootfs2/usr/" ];then
+  echo "">/dev/null
+  else
+  echo "!解压包时出现异常,请向开发者反馈"
+  exit 255
+  sleep 9999
+fi
+
 #
 # Settings
 #
@@ -68,7 +77,7 @@ if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
 echo ""
 else
-echo "- 找不到文件,可能不是官方包或者包损坏也可能解压失败"
+echo "!解析系统包时出现异常,但这可能不会影响"
 fi
 echo ""
 if [ -d "$rootfs2/etc/dropbear/" ];then
@@ -79,4 +88,5 @@ fi
 
 sleep 1
 source $TOOLKIT/linux-deploytool.sh configure
+echo "- 安装成功"
 }

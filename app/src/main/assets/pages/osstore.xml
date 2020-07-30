@@ -45,7 +45,7 @@
         </group>
 <group>
          <action>
-            <title>Manjaro</title>
+            <title>Manjaro latest</title>
             <desc>pacman系,160mb,好用</desc>
             <set>
             echo "- 正在尝试打开浏览器🐳"
