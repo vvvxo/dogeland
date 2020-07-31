@@ -13,7 +13,9 @@
             <param name="addcmd" label="附加参数" title="" placeholder="" type="text" />
             <set>sh $TOOLKIT/cli.sh $start</set>
             </action>
+            </group>
             
+            <group>
               <action>
             <title>运行终端命令</title>
             <desc>快速运行 Linux Shell命令</desc>
@@ -33,14 +35,14 @@
 
 
 <items>
-    <group>
+ <group>
 <page config="pages/settings.xml" title="设置" />
  </group>
-</items>
 
-<items>
-    <group>
-        <page config="pages/store.xml" title="商店" />
-        <page config="pages/tools.xml" title="LinuxTools" />
+  <group>
+   <page config="pages/store.xml" title="商店" />
+  </group>
+   <group>
+   <page config="pages/tools.xml" title="LinuxTools" />
  </group>
 </items>

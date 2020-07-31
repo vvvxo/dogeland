@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_opacity_card">#FFFFFF</color>
-    <color name="window_bg_light">#F2F2F2</color>
+    <color name="window_bg_light">#EFDC05</color>
     <color name="window_bg_dark">#000000</color>
     <color name="status_bg_dark">#222222</color>
 
