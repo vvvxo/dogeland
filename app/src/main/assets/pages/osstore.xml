@@ -58,10 +58,18 @@
          <action>
             <title>Alpine</title>
             <desc>apk系,8+mb,极简</desc>
+            <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
+            <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
             <set>
-            echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://WhiteSky-Team.github.io/repo.html > /dev/null
-            echo "- 完成🐳"
+            echo "- 正在下载所需文件并自动安装..."
+            curl -O $repo/rootfs/alpine/download.sh
+            source download.sh
+            rm -rf download.sh
+            echo "- 正在安装所需文件"
+            export datas=1
+            export rootfs2="alpine-fs/"
+            sh $TOOLKIT/cli.sh deploy_linux
+            echo "- 安装完成"
             </set>
         </action>
         </group>
