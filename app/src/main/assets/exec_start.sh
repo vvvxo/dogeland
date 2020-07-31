@@ -43,7 +43,6 @@ fi
 export cmd=$(cat $CONFIG_DIR/cmd.conf)
 export rootfs=$(cat $CONFIG_DIR/rootfs.conf)
 export PATH2=$(cat $CONFIG_DIR/path.conf)
-export repo=https://github.com/WhiteSky-Team/dogeland-assets/raw/master/
 #
 # Other or RunCmd
 #

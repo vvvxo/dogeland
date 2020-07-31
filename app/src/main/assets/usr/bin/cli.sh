@@ -15,7 +15,7 @@ if [ -d "/usr/" ];then
   else
   echo "">/dev/null
 fi
-# Check LinuxHost or Android Env
+# Check Linux or Android
 if [ ! -n "$START_DIR" ]; then
   TOOLKIT=./
 else

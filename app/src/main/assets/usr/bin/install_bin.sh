@@ -5,7 +5,7 @@ quit(){
 echo "">/dev/null
 exit
 }
-if [ -f "$START_DIR/install_bin_done" ];then
+if [ -f "$TOOLKIT/install_bin_done" ];then
 quit
 else
 echo "- 正在初始化(报错属于正常🐳现象)"
@@ -84,9 +84,8 @@ mv $TOOLKIT/LICENSE $START_DIR/
 fi
 # Kill
 echo "- 初始化完成🍉"
-echo "" >$START_DIR/install_bin_done
+echo "" >$TOOLKIT/install_bin_done
 rm -rf $TOOLKIT/install_bin.sh && rm -rf $TOOLKIT/install_bin.sh
-sleep 2
 echo ""
 echo ""
 echo ""

@@ -7,9 +7,7 @@ version()
 {
 cat <<ABOUT
 
-DogeLand CLI $VERSION
-
-本应用程序安装指定的 GNU / Linux 发行版 , 并在chroot或proot容器中运行.
+DogeLand CLI $VERSION for app
 
 license: GPL-v2
 
