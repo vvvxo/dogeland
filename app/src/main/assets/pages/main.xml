@@ -40,9 +40,7 @@
 
 <items>
     <group>
-        <page config="pages/patcher.xml" title="补丁商店" />
-        <page config="pages/osstore.xml" title="Rootfs商店" />
-        <page config="pages/plugins.xml" title="插件商店" />
+        <page config="pages/store.xml" title="商店" />
         <page config="pages/tools.xml" title="LinuxTools" />
  </group>
 </items>

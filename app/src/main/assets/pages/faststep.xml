@@ -1,4 +1,4 @@
-<action>
+        <action>
             <title>→快速安装系统包</title>
             <param name="file" label="包文件" type="file"
                 suffix="tgz"
@@ -11,7 +11,8 @@
             sh $TOOLKIT/cli.sh deploy_linux
             </set>
         </action>
-<action>
+        
+        <action>
             <title>→安装系统包</title>
             <param name="file" label="包文件" title="注意:↓此页面仅在无法得到存储权限时使用,否则请使用快速安装" placeholder="" type="text" />
             <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />

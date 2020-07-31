@@ -1,0 +1,136 @@
+ <group title="Rootfs ">
+<group>
+         <action>
+            <title>Alpine</title>
+            <desc>apk系,8+mb,极简</desc>
+            <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
+            <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
+            <set>
+            echo "- 正在下载所需文件并自动安装..."
+            curl -O https://raw.githubusercontent.com/WhiteSky-Team/dogeland-assets/master/rootfs/alpine/$platform.tgz
+            export downdir=$(pwd)
+            export file="$downdir/$platform.tgz"
+            echo "- 正在安装所需文件"
+            export datas=1
+            export rootfs2="alpine-fs/"
+            sh $TOOLKIT/cli.sh deploy_linux
+            rm -rf $platform.tgz
+            echo "- 安装完成"
+            </set>
+        </action>
+        </group>
+        
+        
+    
+<group title="补丁 ">
+<action>
+            <title>Ashmem</title>
+            <desc>只在运行某些图形界面程序出现问题时，才使用此补丁</desc>
+            <param name="archs">
+                <option value="arm_64">arm64</option>
+                <option value="arm">arm</option>
+                <option value="x86">x86</option>
+                <option value="x86_64">x86_64</option>
+            </param>
+            <set>sh $TOOLKIT/cli.sh shmem_patch</set>
+</action>
+</group>
+
+
+<group>
+<action>
+            <title>XstartupAdd</title>
+            <desc>只在启动图形界面只有X时，才使用此补丁</desc>
+            <param name="archs">
+                <option value="startxfce4">xfce</option>
+                <option value="startlxde">lxde</option>
+                <option value="export PULSE_SERVER=tcp:0.0.0.0:4713">PulseAudio</option>
+            </param>
+            <set>sh $TOOLKIT/cli.sh xstartup_add</set>
+</action>
+</group>
+
+<group>
+<action>
+            <title>DebianGroupAdd</title>
+            <desc>只在登录终端提示缺少group组时，才使用此补丁</desc>
+            <param name="bug" label="" title="↓请输入报错的group组id(可多次补丁)" placeholder="" type="text" />
+            <set>sh $TOOLKIT/cli.sh debiangroup_add</set>
+</action>
+</group>
+
+<group>
+<action>
+            <title>FuckQ-dash</title>
+            <desc>使sh从垃圾的dash更换为bash</desc>
+            <param name="type">
+                <option value="sh_patcher">安装</option>
+                <option value="">取消</option>
+            </param>
+            <set>sh $TOOLKIT/cli.sh $type</set>
+</action>
+</group>
+
+<group>
+<action>
+            <title>PRootSECCOMP</title>
+            <desc>开启PRootSECCOMP内核补丁</desc>
+            <param name="type">
+                <option value="enable_proot_seccomp">安装</option>
+                <option value="">取消</option>
+            </param>
+            <set>sh $TOOLKIT/cli.sh $type</set>
+</action>
+</group>
+
+<group title="插件 ">
+<action>
+            <title>安装插件</title>
+            <param name="file" label="插件包" type="file"
+                suffix="zip"
+                value="" />
+            <set>
+            echo "- 正在安装"
+            unzip $file -d $START_DIR/usr/
+            source $START_DIR/usr/install.sh
+            rm -rf $START_DIR/usr/install.sh
+            echo "- 安装成功"
+            </set>
+        </action>
+</group>
+
+<group>
+         <action>
+            <title>QEMU-User-Emulator</title>
+            <desc>开启PRoot/Chroot跨平台运行工具</desc>
+            <set>
+            echo "- 正在尝试打开浏览器🐳"
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            echo "- 完成🐳"
+            </set>
+        </action>
+        </group>
+ 
+          <group>
+         <action>
+            <title>PulseAudio</title>
+            <desc>为 GNU / Linux 提供音频支持</desc>
+            <set>
+            echo "- 正在尝试打开浏览器🐳"
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            echo "- 完成🐳"
+            </set>
+        </action>
+        </group>
+        
+        <group>
+         <action>
+            <title>curl</title>
+            <desc>为 dogeland 提供网络下载支持</desc>
+            <set>
+            echo "- 正在尝试打开浏览器🐳"
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            echo "- 完成🐳"
+            </set>
+        </action>
+        </group>

@@ -21,8 +21,7 @@
         <text>
             <title>为什么要安装?</title>
             <desc>
-            DogeLand LinuxTools 扩展组件 即是Rootfs与此APP连接的桥梁
-            能增加启动容器的成功性.
+            DogeLand LinuxTools 扩展组件 为Linux提供扩展API支持
             </desc>
         </text>
     </group>
