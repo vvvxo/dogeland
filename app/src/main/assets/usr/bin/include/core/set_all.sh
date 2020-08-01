@@ -9,7 +9,7 @@ rm -rf $CONFIG_DIR/path.conf
 echo "$Input">$CONFIG_DIR/path.conf
 echo "- 完成"
 }
-set_tempdir() {
+set_tempdir(){
     if [ ! -n "$Input" ]; then
     echo "- 检测到没有输入内容,取消更改."
     else
@@ -23,7 +23,7 @@ set_tempdir() {
 fi
 }
 
-set_rootfsdir() {
+set_rootfsdir(){
 if [ ! -n "$Input" ]; then
 echo "- 检测到没有输入内容,取消更改."
     else
@@ -34,7 +34,7 @@ echo "- 检测到没有输入内容,取消更改."
     fi
 }
 
-set_initcmd() {
+set_initcmd(){
 if [ ! -n "$Input" ]; then
  echo "- 检测到没有输入内容,取消更改."
 else
@@ -68,7 +68,7 @@ if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
 fi
 # Busybox
-function busybox_install() {
+function busybox_install(){
     for applet in `./busybox --list`; do
         case "$applet" in
         "swapon"|"swapoff"|"mkswap"|"wget")

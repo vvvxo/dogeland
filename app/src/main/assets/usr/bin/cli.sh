@@ -1,3 +1,4 @@
+#!/data/data/me.flytree.dogeland/files/usr/bin/bash
 #
 # DogeLand CLI
 # v2.1.7
@@ -162,7 +163,6 @@ unset mod
 # RunHelp
 if [ ! -n "${1}" ]; then
   version
-  help
 fi
 # Set Permission
 umask 000

@@ -4,6 +4,7 @@
 # license: GPL-v2.0
 #
 start_proot(){
+check_rootfs
 # Check RunStatus
 if [[ "$(cat $rootfs/status)" != "Stop" ]]
 then
@@ -16,8 +17,7 @@ export fake=$(cat $TOOLKIT/fake_kernel)
 export addcmd="$addcmd -k $fake"
 else
 echo "">/dev/null
-fi
-check_rootfs 
+fi 
 set_env
 # Change Status and Start
 echo "Run">$rootfs/status
