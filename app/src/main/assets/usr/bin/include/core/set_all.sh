@@ -68,18 +68,6 @@ if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
 fi
 # Busybox
-function busybox_install(){
-    for applet in `./busybox --list`; do
-        case "$applet" in
-        "swapon"|"swapoff"|"mkswap"|"wget")
-            echo 'Skip' > /dev/null
-        ;;
-        *)
-            ./busybox ln -sf busybox "$applet";
-        ;;
-        esac
-    done
-}
 if [[ ! "$TOOLKIT" = "" ]]; then
     cd "$TOOLKIT"
     if [[ ! -f arch ]]; then
@@ -130,4 +118,16 @@ fi
 # Kill
 echo "- 初始化完成🍉"
 echo "- 完成"
+}
+busybox_install(){
+    for applet in `./busybox --list`; do
+        case "$applet" in
+        "swapon"|"swapoff"|"mkswap"|"wget")
+            echo 'Skip' > /dev/null
+        ;;
+        *)
+            ./busybox ln -sf busybox "$applet";
+        ;;
+        esac
+    done
 }

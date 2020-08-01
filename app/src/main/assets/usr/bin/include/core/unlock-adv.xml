@@ -26,7 +26,7 @@
             <set>
            echo "- 正在验证 $key"
            nowpath=$(pwd)
-           curl -O https://whitesky-team.github.io/unlockkeys/$key/dogeland.license
+           $TOOLKIT/curl -O https://whitesky-team.github.io/unlockkeys/$key/dogeland.license
            if [[ "$(cat $nowpath/dogeland.license)" != "yes" ]]
            then
            echo "解锁失败,请检查网络或者curl是否存在"
@@ -35,7 +35,7 @@
            else
            echo "恭喜你,解锁高级版成功,正在开启..."
            mv $nowpath/dogeland.license $START_DIR/
-           curl -O https://whitesky-team.github.io/unlockkeys/unlock-adv.xml
+           TOOLKIT/curl -O https://whitesky-team.github.io/unlockkeys/unlock-adv.xml
            rm -rf $TOOLKIT/include/core/unlock-adv.xml
            mv $nowpath/unlock-adv.xml $TOOLKIT/include/core/unlock-adv.xml
            echo "- 开启成功,重开页面即可查看"
