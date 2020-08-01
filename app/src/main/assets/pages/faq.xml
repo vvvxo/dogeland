@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <group>
+        <text>
+            <title> Q: 使用过程中突然断网?</title>
+            <desc> A: 某些国产OS或UI会限制后台网络,请到设置允许即可.
+            </desc>
+        </text>
+    </group>
+    
+    <group>
+        <text>
+            <title> Q: 使用过程中突然断开连接?</title>
+            <desc> A: 某些国产OS或UI会限制后台运行(如OPPO的后台冻结 ,请到设置允许即可.
+            </desc>
+        </text>
+    </group>
+    
+    <group>
+        <text>
+            <title> Q: 容器启动失败?</title>
+            <desc> A: 将报错截图反馈给开发者
+            </desc>
+        </text>
+    </group>

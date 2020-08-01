@@ -1,4 +1,5 @@
-        <action>
+<?xml version="1.0" encoding="UTF-8" ?>
+      <action>
             <title>→快速安装系统包</title>
             <param name="file" label="包文件" type="file"
                 suffix="tgz"
