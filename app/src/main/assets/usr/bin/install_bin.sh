@@ -22,17 +22,11 @@ if [ -d "$DATA2_DIR" ];then
   else
   echo "">/dev/null
 fi
-# Bash
-ln -s $TOOLKIT/bash_arm $TOOLKIT/bash_arm_64
-ln -s $TOOLKIT/bash_x86 $TOOLKIT/bash_x86_64
-ln -s $TOOLKIT/bash_$platform $TOOLKIT/bash
-rm -rf $TOOLKIT/sh
-ln -s $TOOLKIT/bash_$platform $TOOLKIT/sh
 # Busybox
 function busybox_install() {
     for applet in `./busybox --list`; do
         case "$applet" in
-        "swapon"|"swapoff"|"mkswap"|"wget"|"sh")
+        "swapon"|"swapoff"|"mkswap"|"wget")
             echo 'Skip' > /dev/null
         ;;
         *)

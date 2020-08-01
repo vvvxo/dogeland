@@ -1,4 +1,3 @@
-#!/data/data/me.flytree.dogeland/files/usr/bin/bash
 #
 # DogeLand CLI
 # v2.1.7
