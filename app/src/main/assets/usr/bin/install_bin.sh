@@ -45,7 +45,7 @@ if [[ ! "$TOOLKIT" = "" ]]; then
     fi
 fi
 # Default Config Install
-if [ -d "$CONFIG_DIR/default/" ];then
+if [ -d "$CONFIG_DIR/" ];then
   echo "">/dev/null
   else
   mkdir $DATA2_DIR > /dev/null
@@ -53,10 +53,9 @@ if [ -d "$CONFIG_DIR/default/" ];then
   echo "">/dev/null
   else
   echo "!数据初始化失败"
-  echo "检测到没有得到存储权限或者是Android10"
-  echo "因《Android绿色应用公约》要求,只能使用内部存储的私有目录(Android/data),因源码缺陷无法自动创建私有文件夹,导致无法使用proot与存储配置文件"
+  echo "检测到没有得到 存储权限 或者是 Android10+"
   echo "----------"
-  echo "说白了就是您需要手动在(内部存储/Android/data/)文件夹中新建一个名称为 me.flytree.dogeland 的文件夹之后再打开本应用问题才能解决."
+  echo "说白了就是需要手动在(内部存储/Android/data/)文件夹中新建一个名称为 me.flytree.dogeland 的文件夹之后再打开本应用问题才能解决."
   sleep 1000
   sleep 9999
   fi
@@ -86,7 +85,6 @@ fi
 echo "- 初始化完成🍉"
 echo "" >$TOOLKIT/install_bin_done
 rm -rf $TOOLKIT/install_bin.sh && rm -rf $TOOLKIT/install_bin.sh
-echo ""
 echo ""
 echo ""
 echo ""
