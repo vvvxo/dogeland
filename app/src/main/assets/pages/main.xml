@@ -47,8 +47,4 @@
    <page config="pages/faq.xml" title="FAQ" />
  </group>
  
-   <group>
-   <page config="usr/bin/include/core/unlock-adv.xml" title="解锁高级版" />
- </group>
- 
 </items>
