@@ -22,11 +22,15 @@ dropbearkey -t ecdsa -s 521 -f /etc/dropbear/dropbear_ecdsa_host_key
 fi
 echo "- SSH Port: 22222"
 dropbear -E -p 22222 &
+echo -n ""
 }
 dropbear_stop()
 {
 echo "- dropbear::stop..."
 pkill sh
+pkill ash
+pkill fish
+pkill zsh
 pkill bash
 pkill dropbear
 }

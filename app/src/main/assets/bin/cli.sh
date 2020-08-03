@@ -15,14 +15,18 @@ if [ -d "/usr/" ];then
   else
   echo "">/dev/null
 fi
-# Check Linux or Android
+# Check Linux or Android Env
 if [ ! -n "$START_DIR" ]; then
   TOOLKIT=./
+export START_DIR=./
+export PREFIX=$PREFIX:./
+export TOOLKIT=./
+export DATA2_DIR="./data/"
+export CONFIG_DIR="$DATA2_DIR/config/"
 else
   echo "">/dev/null
 fi
-
-
+# Utils
 load_mod(){
 if [ -f "$mod" ];then
 . $mod

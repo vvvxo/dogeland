@@ -12,9 +12,18 @@ then
 stop_rootfs
 else
 # Start
-if [ -f "$TOOLKIT/fake_kernel" ];then
-export fake=$(cat $TOOLKIT/fake_kernel)
+
+# Enable FakeKernel
+if [ -f "$CONFIG_DIR/fake_kernel" ];then
+export fake=$(cat $CONFIG_DIR/fake_kernel)
 export addcmd="$addcmd -k $fake"
+else
+echo "">/dev/null
+fi 
+# Enable QEMU Emulator
+if [ -f "$CONFIG_DIR/emulator_qemu" ];then
+export qemu="qemu-$(cat $CONFIG_DIR/emulator_qemu)"
+export addcmd="$addcmd -q $qemu"
 else
 echo "">/dev/null
 fi 

@@ -6,13 +6,11 @@
              <param name="Input" label="" title="" placeholder="?" type="text" />
             <set>$TOOLKIT/cli.sh set_rootfsdir</set>
              </action>
-             
         <action>
             <title>初始化命令行</title>
             <param name="Input" label="" title="" placeholder="?" type="text" />
             <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
-     
           <action>
             <title>容器CLI快速启动设置</title>
              <param name="type">
@@ -20,16 +18,16 @@
                 <option value="/bin/sh /cli.sh dropbear_start">启动dropbear</option>
                 <option value="/bin/sh /cli.sh vncserver_start">启动vncserver</option>
             </param>
-            <set>echo "$type">$CONFIG_DIR/cmd.conf</set>
+            <set>
+            rm -rf $CONFIG_DIR/cmd.conf
+            echo "$type">$CONFIG_DIR/cmd.conf
+            </set>
              </action>
-
           </group>
-
        <group title="进阶">
-       
          <action bg-task="true">
             <title>开启后台保活</title>
-            <desc>通过通知栏保持应用前台运行和CPU唤醒,防止容器卡顿或被杀死</desc>
+            <desc>保持应用前台运行和CPU唤醒,防止容器卡顿或被杀死</desc>
             <set>
             echo "保持后台运行中"
             sleep 9999
@@ -38,8 +36,6 @@
             sleep 9999
             </set>
         </action>
-
-        
         <action>
             <title>备份已安装系统</title>
             <set>$TOOLKIT/cli.sh backup_rootfs</set>
@@ -48,8 +44,6 @@
             <title>检查运行环境</title>
             <set>sh $TOOLKIT/cli.sh env_info</set>
         </action>
-        
-         
               <action>
             <title>设置运行平台</title>
             <desc>如系统缺少uname或无法正确检测,请使用此选项</desc>
@@ -61,12 +55,8 @@
             </param>
             <set>$TOOLKIT/cli.sh set_runarch</set>
              </action>
-        
            </group>
-           
-           
            <group title="高级">
-           
              <action>
             <title>删除Rootfs</title>
              <param name="type">
@@ -75,7 +65,6 @@
             </param>
             <set>sh $TOOLKIT/cli.sh $type</set>
         </action>
-
             <action>
             <title>移除运行环境</title>
              <param name="test">
@@ -84,7 +73,6 @@
             </param>
             <set>$test</set>
         </action>
-        
          <action>
             <title>强制更改 GNU / Linux 系统密码</title>
             <param name="username" label="" title="用户名" placeholder="root" type="text" />
@@ -95,24 +83,38 @@
             unset cmd2
             </set>
         </action>
-        
-           
         <action>
             <title>设置自定义 PATH 变量</title>
-            <param name="Input" label="" title="" placeholder="?" type="text" />
+            <param name="Input" label="" title="" placeholder="/bin:/usr/sbin" type="text" />
             <set>$TOOLKIT/cli.sh set_path</set>
         </action>
-        
+         <action>
+            <title>开启QEMU-USER支持</title>
+              <param name="qemu">
+                <option value="0">关闭</option>
+                <option value="x86_64">qemu-x86_64</option>
+                <option value="x86">qemu-i386</option>
+                <option value="arm_64">qemu-aarch64</option>
+                <option value="arm">qemu-arm</option>
+                <option value="armeb">qemu-armeb</option>
+                <option value="mips">qemu-mips</option>
+                <option value="mipsel">qemu-mipsel</option>
+                <option value="mips64">qemu-mips64</option>
+                <option value="riscv32">qemu-riscv32</option>
+                <option value="riscv64">qemu-riscv64</option>
+            </param>
+            <set>
+            sh $TOOLKIT/cli.sh set_emulator_qemu
+            </set>
+        </action>
     </group>
-    
     <group title="PRoot设置">
     <action>
             <title>设置容器内核版本</title>
-             <param name="kernel" label="" title="" placeholder="5.5" type="text" />
+             <param name="kernel" label="" title="" placeholder="4.19" type="text" />
             <set>
             sh $TOOLKIT/cli.sh proot_fake_kernel
             </set>
-            
         </action>
     </group>
     </page>

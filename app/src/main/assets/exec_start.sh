@@ -7,8 +7,8 @@ run="$1"
 #
 export EXECUTOR_PATH=$({EXECUTOR_PATH})
 export START_DIR=$({START_DIR})
-export PREFIX=$START_DIR/usr
-export TOOLKIT=$START_DIR/usr/bin
+export PREFIX=$START_DIR/
+export TOOLKIT=$START_DIR/bin
 export TMPDIR=$START_DIR/kr-script/cache/
 export SDCARD_PATH=$({SDCARD_PATH})
 export PACKAGE_NAME=$({PACKAGE_NAME})
@@ -30,7 +30,6 @@ export PATH="$PATH:$TOOLKIT:$PREFIX/lib"
 
 export PROOT_TMP_DIR="$TMPDIR"
 export PROOT_LOADER="$PREFIX/lib/lib_loader.so"
-# x64 ?
 if [[ "$platform" != "x86_64" ]] && [[ "$platform" != "arm_64" ]]
 then
 echo "">/dev/null

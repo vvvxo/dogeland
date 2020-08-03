@@ -14,9 +14,9 @@ rm -rf /var/run/sshd
 mkdir /run/sshd /var/run/sshd
 ssh-keygen -A
 chmod 555 /run/sshd
-echo "- Tip: 如果卡在这里或无报错,说明已经启动成功"
 echo "- SSH Port: 22222"
-/usr/sbin/sshd -p 22222
+/usr/sbin/sshd -p 22222 &
+echo -n ""
 }
 sshd_stop()
 {

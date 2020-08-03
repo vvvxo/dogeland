@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
       <action>
-            <title>→快速安装系统包</title>
+            <title>安装tgz包</title>
             <param name="file" label="包文件" type="file"
                 suffix="tgz"
                 value="" />
@@ -14,13 +14,41 @@
         </action>
         
         <action>
-            <title>→安装系统包</title>
+            <title>安装tgz包(无存储权限)</title>
             <param name="file" label="包文件" title="注意:↓此页面仅在无法得到存储权限时使用,否则请使用快速安装" placeholder="" type="text" />
             <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
                 <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
                 <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
                 <param name="datas" label="安装到私有数据目录" type="bool" />
             <set>
+            sh $TOOLKIT/cli.sh deploy_linux
+            </set>
+        </action>
+        
+         <action>
+            <title>安装tar.xz包</title>
+            <param name="file" label="包文件" type="file"
+                suffix="tar.xz"
+                value="" />
+            <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
+                <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
+                <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
+                <param name="datas" label="安装到私有数据目录" type="bool" />
+            <set>
+            export tarxz="1"
+            sh $TOOLKIT/cli.sh deploy_linux
+            </set>
+        </action>
+        
+          <action>
+            <title>安装tar.xz包(无存储权限)</title>
+            <param name="file" label="包文件" title="注意:↓此页面仅在无法得到存储权限时使用,否则请使用快速安装" placeholder="" type="text" />
+            <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
+                <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
+                <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
+                <param name="datas" label="安装到私有数据目录" type="bool" />
+            <set>
+            export tarxz="1"
             sh $TOOLKIT/cli.sh deploy_linux
             </set>
         </action>

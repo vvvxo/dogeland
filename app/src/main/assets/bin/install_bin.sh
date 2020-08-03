@@ -10,11 +10,11 @@ quit
 else
 echo "- 正在初始化(报错属于正常🐳现象)"
 mkdir $PREFIX/lib
-mkdir $PREFIX/etc
+#mkdir $PREFIX/etc
 mkdir $PREFIX/tmp
-mkdir $PREFIX/libexec
-mkdir $START_DIR/home
-mkdir $PREFIX/var
+#mkdir $PREFIX/libexec
+#mkdir $START_DIR/home
+#mkdir $PREFIX/var
 ln -s $TOOLKIT/lib/$platform/* $PREFIX/lib/
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then

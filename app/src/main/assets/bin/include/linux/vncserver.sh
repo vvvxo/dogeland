@@ -1,7 +1,8 @@
 vncserver_start(){
 echo "- vncserver::start..."
 echo "- Port: 111111"
-vncserver :11111
+vncserver :11111 &
+echo -n ""
 }
 vncserver_stop()
 {

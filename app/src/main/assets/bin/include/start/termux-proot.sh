@@ -21,15 +21,23 @@ if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   sleep 1000
 fi
 set_env
-if [ -f "$TOOLKIT/fake_kernel" ];then
-export fake=$(cat $TOOLKIT/fake_kernel)
+# Enable FakeKernel
+if [ -f "$CONFIG_DIR/fake_kernel" ];then
+export fake=$(cat $CONFIG_DIR/fake_kernel)
 export addcmd="$addcmd -k $fake"
 else
 echo "">/dev/null
-fi
+fi 
+# Enable QEMU Emulator
+if [ -f "$CONFIG_DIR/emulator_qemu" ];then
+export qemu="qemu-$(cat $CONFIG_DIR/emulator_qemu)"
+export addcmd="$addcmd -q $qemu"
+else
+echo "">/dev/null
+fi 
 # Change Status and Start.
 echo "Run">$rootfs/status
-/data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
+/data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b /proc/self/fd:/dev/fd -b $rootfs/root:/dev/shm  -w /root $cmd 
 echo "- Done"
 sleep 1
 
