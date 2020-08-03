@@ -92,9 +92,9 @@
                 value="" />
             <set>
             echo "- 正在安装"
-            unzip $file -d $START_DIR/usr/
-            source $START_DIR/usr/install.sh
-            rm -rf $START_DIR/usr/install.sh
+            unzip $file -d $START_DIR/
+            source $START_DIR/install.sh
+            rm -rf $START_DIR/install.sh
             echo "- 安装成功"
             </set>
         </action>

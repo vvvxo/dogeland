@@ -19,6 +19,12 @@ if [ ! -n "$file" ]; then
     else
     echo "">/dev/null
 fi
+if [[ "$tarxz" != "1" ]]
+then
+echo "">/dev/null
+else
+####
+fi
 if [[ "$datas" != "1" ]]
 then
 echo "">/dev/null
