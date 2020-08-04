@@ -28,7 +28,7 @@ echo "$cmd2">$rootfs/runcmd.sh
 chmod 755 $rootfs/runcmd.sh
 echo "">/dev/null
 if [ -f "$rootfs/bin/su" ];then
-$chroot "$rootfs" /bin/su -c $userid /runcmd.sh
+$chroot "$rootfs" /bin/su -c /runcmd.sh
 pkill su
 else
 if [ -f "$rootfs/bin/sh" ];then

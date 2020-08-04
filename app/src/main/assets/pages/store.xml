@@ -9,8 +9,7 @@
             <set>
             echo "- 正在下载所需文件并自动安装..."
             curl -O https://raw.githubusercontent.com/WhiteSky-Team/dogeland-assets/master/rootfs/alpine/$platform.tgz
-            export downdir=$(pwd)
-            export file="$downdir/$platform.tgz"
+            export file="${pwd}/$platform.tgz"
             echo "- 正在安装所需文件"
             export datas=1
             export rootfs2="alpine-fs/"
@@ -110,7 +109,7 @@
             <desc>开启PRoot/Chroot跨平台运行工具</desc>
             <set>
             echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets > /dev/null
             echo "- 完成🐳"
             </set>
         </action>
@@ -122,7 +121,7 @@
             <desc>为 GNU / Linux 提供音频支持</desc>
             <set>
             echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets > /dev/null
             echo "- 完成🐳"
             </set>
         </action>
@@ -131,10 +130,10 @@
         <group>
          <action>
             <title>curl</title>
-            <desc>为 dogeland 提供网络下载支持</desc>
+            <desc>为 dogeland 提供内置网络下载支持</desc>
             <set>
             echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/DogeLand-Plugins > /dev/null
+            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets > /dev/null
             echo "- 完成🐳"
             </set>
         </action>

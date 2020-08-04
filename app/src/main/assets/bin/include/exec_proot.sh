@@ -23,6 +23,7 @@ export addcmd="$addcmd -q $qemu"
 else
 echo "">/dev/null
 fi 
+# Exec Command
 $TOOLKIT/proot $addcmd --kill-on-exit --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
 echo
 }

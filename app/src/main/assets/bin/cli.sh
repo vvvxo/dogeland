@@ -9,16 +9,16 @@ VERSION=2.1.7_DEBUG
 # Common
 #
 
-# Check LinuxEnv
+# Check Linux Env
 if [ -d "/usr/" ];then
   unset TOOLKIT
   else
   echo "">/dev/null
 fi
 # Check Linux or Android Env
-if [ ! -n "$START_DIR" ]; then
+if [ ! -n "$_DIR" ]; then
   TOOLKIT=./
-export START_DIR=./
+export _DIR=./
 export PREFIX=$PREFIX:./
 export TOOLKIT=./
 export DATA2_DIR="./data/"
@@ -35,131 +35,138 @@ echo "!$mod 未生效."
 fi
 }
 #
-# Core
+# LoadList
 #
-mod=$TOOLKIT/include/core/custom.sh
+mod=$TOOLKIT/include/custom.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/version.sh
+mod=$TOOLKIT/include//version.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/help.sh
+mod=$TOOLKIT/include//help.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/stop_rootfs.sh
+mod=$TOOLKIT/include//stop_rootfs.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/del_rootfs.sh
+mod=$TOOLKIT/include//del_rootfs.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/env_info.sh
+mod=$TOOLKIT/include//env_info.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/platform.sh
+mod=$TOOLKIT/include//platform.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/mount_part.sh
+mod=$TOOLKIT/include//mount_part.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/umount_part.sh
+mod=$TOOLKIT/include//umount_part.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/loop_support.sh
+mod=$TOOLKIT/include//loop_support.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/selinux_inactive.sh
+mod=$TOOLKIT/include//selinux_inactive.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/set_all.sh
+mod=$TOOLKIT/include//set_all.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/set_env.sh
+mod=$TOOLKIT/include//set_env.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/check_rootfs.sh
+mod=$TOOLKIT/include//check_rootfs.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/del_rootfs.sh
+mod=$TOOLKIT/include//del_rootfs.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/backup_rootfs.sh
+mod=$TOOLKIT/include//backup_rootfs.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/core/deploy_linux.sh
+mod=$TOOLKIT/include//deploy_linux.sh
+load_mod
+unset mod
+#
+# Starter
+#
+mod=$TOOLKIT/include//starter_chroot.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/start/chroot.sh
+mod=$TOOLKIT/include//starter_proot.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/start/proot.sh
+mod=$TOOLKIT/include//starter_termux-proot.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/start/termux-proot.sh
+mod=$TOOLKIT/include//starter_auto.sh
+load_mod
+unset mod
+#
+# Exec
+#
+mod=$TOOLKIT/include//exec_chroot.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/start/auto.sh
+mod=$TOOLKIT/include//exec_proot.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/exec/chroot.sh
+mod=$TOOLKIT/include//exec_termux-proot.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/exec/proot.sh
+mod=$TOOLKIT/include//exec_auto.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/exec/termux-proot.sh
+mod=$TOOLKIT/include//exec_local-shell.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/exec/auto.sh
-load_mod
-unset mod
 
-mod=$TOOLKIT/include/exec/local-shell.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include/core/plugin.sh
-load_mod
-unset mod
 #
 # extensions
 #
-mod=$TOOLKIT/include/linux/dropbear.sh
+
+mod=$TOOLKIT/include//add_plugin.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/linux/sshd.sh
+mod=$TOOLKIT/include//extra_dropbear.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/linux/vncserver.sh
+mod=$TOOLKIT/include//extra_sshd.sh
 load_mod
 unset mod
 
-mod=$TOOLKIT/include/linux/patcher.sh
+mod=$TOOLKIT/include//extra_vncserver.sh
+load_mod
+unset mod
+
+mod=$TOOLKIT/include//extra_patcher.sh
 load_mod
 unset mod
 

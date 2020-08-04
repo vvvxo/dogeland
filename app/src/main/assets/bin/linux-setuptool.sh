@@ -1,5 +1,5 @@
 #
-# LinuxAutoConfigureTools
+# GNU / Linux Rootfs AutoSetupTools
 # by Flytree
 #
 configure()

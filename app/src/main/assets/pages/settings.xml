@@ -78,9 +78,7 @@
             <param name="username" label="" title="用户名" placeholder="root" type="text" />
             <param name="password" label="" title="密码" placeholder="1" type="text" />
             <set>
-            export cmd2=echo "$username:$password"丨chpasswd
-            $TOOLKIT/cli.sh exec_auto
-            unset cmd2
+            $TOOLKIT/cli.sh edit_passwd
             </set>
         </action>
         <action>

@@ -19,12 +19,6 @@ if [ ! -n "$file" ]; then
     else
     echo "">/dev/null
 fi
-if [[ "$tarxz" != "1" ]]
-then
-echo "">/dev/null
-else
-####
-fi
 if [[ "$datas" != "1" ]]
 then
 echo "">/dev/null
@@ -45,7 +39,7 @@ else
  proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
 # Check 
-if [ -d "$rootfs2/usr/" ];then
+if [ -d "$rootfs2/bin/" ];then
   echo "">/dev/null
   else
   echo "!解压包时出现异常,请向开发者反馈"

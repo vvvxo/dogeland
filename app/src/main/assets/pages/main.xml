@@ -27,7 +27,6 @@
                 <option value="exec_proot_termux">[termux-proot]</option>
                 <option value="exec_localshell">[本地Shell]</option>
             </param>
-            <param name="userid" label="运行用户" title="" placeholder="root" type="text" />
             <set>sh $TOOLKIT/cli.sh $exec</set>
         </action>
     </group>
@@ -44,7 +43,7 @@
   </group>
  
   <group>
-   <page config="pages/faq.xml" title="FAQ" />
+   <page config="pages/faq.xml" title="FAQ & Issue" />
  </group>
  
 </items>

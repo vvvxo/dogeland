@@ -134,10 +134,9 @@ busybox_install(){
 set_emulator_qemu(){
 if [[ "$qemu" != "0" ]]
 then
-echo "">/dev/null
+rm -rf $CONFIG_DIR/emulator_qemu
+echo "$qemu">$CONFIG_DIR/emulator_qemu
 else
 rm -rf $CONFIG_DIR/emulator_qemu
 fi
-rm -rf $CONFIG_DIR/emulator_qemu
-echo "$qemu">$CONFIG_DIR/emulator_qemu
 }
