@@ -5,15 +5,15 @@
 configure()
 {
 export rootfs="$rootfs2"
-    echo "- 正在设置 Hostname ... "
+    echo "- 正在设置 hostname ... "
     echo 'localhost' > "$rootfs2/etc/hostname"
-    echo "- 正在设置 DNS ... "
+    echo "- 正在设置 dns ... "
     if ! $(grep -q "^127.0.0.1" "$rootfs2/etc/hosts"); then
         echo '127.0.0.1 localhost' >> "$rootfs2/etc/hosts"
     fi
 [ -n "${LOCALE}" ] || LOCALE="${LANG}"
 [ -n "${LOCALE}" ] || LOCALE="C"
-    echo "- 正在设置 Locale ... "
+    echo "- 正在设置 locale ... "
     if $(echo ${LOCALE} | grep -q '$rootfs2\.'); then
         local inputfile=$(echo ${LOCALE} | awk -F. '{print $1}')
         local charmapfile=$(echo ${LOCALE} | awk -F. '{print $2}')
@@ -21,7 +21,7 @@ export rootfs="$rootfs2"
         exec_auto
         unset cmd2
     fi
-    echo "- 正在设置 SU ... "
+    echo "- 正在设置 su ... "
     local item pam_su
     for item in $rootfs2/etc/pam.d/su $rootfs2/etc/pam.d/su-l
     do
@@ -32,7 +32,7 @@ export rootfs="$rootfs2"
             fi
         fi
     done
-    echo "- 正在设置 Timezone ... "
+    echo "- 正在设置 timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then
         timezone=$(getprop persist.sys.timezone)
@@ -46,7 +46,7 @@ export rootfs="$rootfs2"
     fi
    [ -n "${USER_NAME}" ] || USER_NAME="root"
    [ -n "${USER_PASSWORD}" ] || USER_PASSWORD="root"
-    echo "- 正在设置 Profile ... "
+    echo "- 正在设置 profile ... "
     if [ -z "${USER_NAME%aid_*}" ]; then
         echo "Username \"${USER_NAME}\" is reserved."; return 1
     fi
@@ -60,7 +60,7 @@ export rootfs="$rootfs2"
     export cmd2=chpasswd
     echo ${USER_NAME}:${USER_PASSWORD} | exec_auto
     unset cmd2
-    echo "- 正在设置 Sudo ... "
+    echo "- 正在设置 sudo ... "
     local sudo_str="${USER_NAME} ALL=(ALL:ALL) NOPASSWD:ALL"
     if ! grep -q "${sudo_str}" "$rootfs2/etc/sudoers"; then
         chmod 640 "$rootfs2/etc/sudoers"
@@ -71,7 +71,7 @@ export rootfs="$rootfs2"
         echo '[ -n "$PS1" -a "$(whoami)" = "'${USER_NAME}'" ] || return 0' > "$rootfs2/etc/profile.d/sudo.sh"
         echo 'alias su="sudo su"' >> "$rootfs2/etc/profile.d/sudo.sh"
     fi
-    echo "- 正在设置 Group ... "
+    echo "- 正在设置 group ... "
     # set min uid and gid
     local login_defs
     login_defs="$rootfs2/etc/login.defs"

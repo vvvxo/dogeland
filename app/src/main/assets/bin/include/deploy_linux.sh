@@ -51,42 +51,29 @@ fi
 # Settings
 #
 echo "- 正在设置"
-# Set Configure
+# Set CONFIG
 echo "Stop">$rootfs2/status
 rm -rf $CONFIG_DIR/cmd.conf
-echo "/bin/sh /cli.sh dropbear_start">$CONFIG_DIR/cmd.conf
-echo "!初始化命令行已设置默认启动dropbear"
+echo "$type">$CONFIG_DIR/cmd.conf
 rm -rf $CONFIG_DIR/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/rootfs.conf
-#
+# mkdir
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
 mkdir $rootfs2/proc
-if [ -d "$rootfs2/etc/dropbear" ];then
-  chmod -R 0777 $rootfs2/etc/dropbear/
-  else
-  echo "">/dev/null
-fi
 # Install CLI
 cp $TOOLKIT/cli.sh $rootfs2/
 mkdir $rootfs2/include/
 cp -R $TOOLKIT/include/* $rootfs2/include/
 # ReadRootfsInfo
-echo "- 正在解析包"
+echo "- 正在解析"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
 echo ""
 else
-echo "!解析系统包时出现异常,但这可能不会影响"
+echo "!解析系统包时出现异常,但这可能不会影响使用"
 fi
-echo ""
-if [ -d "$rootfs2/etc/dropbear/" ];then
-  echo "">/dev/null
-  else
-  mkdir $rootfs2/etc/dropbear/
-fi
-
-sleep 1
+echo "- 正在设置"
 source $TOOLKIT/linux-deploytool.sh configure
 echo "- 安装成功"
 }
