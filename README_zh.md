@@ -24,5 +24,5 @@
 ![UB1Gt0.png](https://s1.ax1x.com/2020/07/16/UB1Gt0.png)
 ### 已知bug
 1.chroot模式下的ssh无法切换到su用户和sudo不可用(但可直接使用ROOT帐号登录,问题暂时解决)    
-
+2.ROOT模式下安装会软重启
 如果您知道这些问题如何解决，请立刻提交issue,感谢支持.
