@@ -1,4 +1,4 @@
-# DogeLand-App
+# dogeland
 开箱即用的Android运行Linux解决方案  
 已支持免ROOT运行🐳🐳🐳  
 ## 快速上手
