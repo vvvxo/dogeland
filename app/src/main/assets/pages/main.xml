@@ -43,7 +43,7 @@
   </group>
  
   <group>
-   <page config="pages/faq.xml" title="FAQ & Issue" />
+   <page config="pages/faq.xml" title="FAQ" />
  </group>
  
 </items>

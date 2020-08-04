@@ -1,4 +1,4 @@
-# dogeland
+# DogeLand-App
 ![AutoBuild](https://github.com/WhiteSky-Team/DogeLand-App/workflows/Java%20CI%20with%20Gradle/badge.svg)  
 Run Linux on Android.  
 [简体中文](https://github.com/WhiteSky-Team/DogeLand-App/blob/master/README_zh.md)  
