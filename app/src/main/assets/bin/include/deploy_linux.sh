@@ -73,13 +73,6 @@ if [ -d "$rootfs2/bin/" ];then
   exit 255
   sleep 9999
 fi
-rm -rf $rootfs2/etc/dropbear
-if [ -d "$rootfs2/etc/dropbear/" ];then
-  mkdir $rootfs2/etc/dropbear/
-  chmod -R 0777 $rootfs2/etc/dropbear/
-  else
-  echo "">/dev/null
-fi
 #
 # Settings
 #
@@ -94,6 +87,10 @@ echo "$rootfs2" >$CONFIG_DIR/rootfs.conf
 mkdir $rootfs2/sys
 mkdir $rootfs2/dev
 mkdir $rootfs2/proc
+# Clean old dropbear key
+rm -rf $rootfs2/etc/dropbear
+mkdir $rootfs2/etc/dropbear
+chmod -R 0777 $rootfs2/etc/dropbear/
 # Install CLI
 cp $TOOLKIT/cli.sh $rootfs2/
 mkdir $rootfs2/include/
