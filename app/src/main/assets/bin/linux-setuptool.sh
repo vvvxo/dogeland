@@ -58,7 +58,7 @@ export rootfs="$rootfs2"
     fi
     # 设置密码
     export cmd2=chpasswd
-    echo ${USER_NAME}:${USER_PASSWORD} | exec_auto
+    echo ${USER_NAME}:${USER_PASSWORD}|exec_auto
     unset cmd2
     echo "- 正在设置 sudo ... "
     local sudo_str="${USER_NAME} ALL=(ALL:ALL) NOPASSWD:ALL"

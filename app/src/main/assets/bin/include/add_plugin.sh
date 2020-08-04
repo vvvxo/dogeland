@@ -9,6 +9,6 @@ fi
 }
 edit_passwd(){
 export cmd2=chpasswd
-echo "$username:$password"丨. $TOOLKIT/cli.sh exec_auto
+echo "$username:$password"|exec_auto
 unset cmd2
 }

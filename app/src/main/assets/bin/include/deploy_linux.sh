@@ -73,7 +73,13 @@ if [ -d "$rootfs2/bin/" ];then
   exit 255
   sleep 9999
 fi
-
+rm -rf $rootfs2/etc/dropbear
+if [ -d "$rootfs2/etc/dropbear/" ];then
+  mkdir $rootfs2/etc/dropbear/
+  chmod -R 0777 $rootfs2/etc/dropbear/
+  else
+  echo "">/dev/null
+fi
 #
 # Settings
 #
@@ -101,6 +107,6 @@ else
 echo "!解析系统包时出现异常,但这可能不会影响使用"
 fi
 echo "- 正在设置"
-source $TOOLKIT/linux-deploytool.sh configure
+source $TOOLKIT/linux-setuptool.sh configure
 echo "- 安装成功"
 }
