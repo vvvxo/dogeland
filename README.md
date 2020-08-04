@@ -26,5 +26,5 @@ Linux solution for running Android out of the box
  ![UB1Gt0.png](https://s1.ax1x.com/2020/07/16/UB1Gt0.png)
  ### Known bugs
  1. ssh in chroot mode cannot be switched to su user and sudo is not available (but you can log in directly with ROOT account, the problem is temporarily )
- 2.Installation in ROOT mode will soft restart
+ 2.Installation in ROOT mode will soft restart  
  If you know how to solve these problems, please submit an issue immediately, thank you for your support.
