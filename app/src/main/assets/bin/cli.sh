@@ -16,9 +16,9 @@ if [ -d "/usr/" ];then
   echo "">/dev/null
 fi
 # Check Linux or Android Env
-if [ ! -n "$_DIR" ]; then
+if [ ! -n "$START_DIR" ]; then
   TOOLKIT=./
-export _DIR=./
+export START_DIR=./
 export PREFIX=$PREFIX:./
 export TOOLKIT=./
 export DATA2_DIR="./data/"

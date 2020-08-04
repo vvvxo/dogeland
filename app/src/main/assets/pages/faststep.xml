@@ -12,7 +12,6 @@
                 <option value="/bin/sh /cli.sh dropbear_start">dropbear</option>
                 <option value="/bin/sh /cli.sh sshd_start">sshd</option>
                 <option value="/bin/sh /cli.sh vncserver_start">vncserver</option>
-              </param>
             </param>
             <set>
             sh $TOOLKIT/cli.sh deploy_linux
@@ -20,7 +19,7 @@
         </action>
         
         <action>
-            <title>安装tgz包</title>
+            <title>安装tgz包1</title>
             <param name="file" label="包文件" title="注意:↓此页面仅在无法得到存储权限时使用,否则请使用快速安装" placeholder="" type="text" />
             <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
                 <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
