@@ -82,6 +82,14 @@
             </set>
         </action>
         <action>
+            <title>杀死容器</title>
+            <set>
+            export cmd2="pkill $PACKAGE_NAME"
+            exec_auto
+            unset cmd2
+            </set>
+        </action>
+        <action>
             <title>设置自定义 PATH 变量</title>
             <param name="Input" label="" title="" placeholder="/bin:/usr/sbin" type="text" />
             <set>$TOOLKIT/cli.sh set_path</set>
