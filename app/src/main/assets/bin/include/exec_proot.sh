@@ -6,9 +6,6 @@
 exec_proot(){
 check_rootfs 
 set_env
-echo
-echo "- Running"
-echo ""
 # Enable FakeKernel
 if [ -f "$CONFIG_DIR/fake_kernel" ];then
 export fake=$(cat $CONFIG_DIR/fake_kernel)
@@ -24,6 +21,10 @@ else
 echo "">/dev/null
 fi 
 # Exec Command
-$TOOLKIT/proot $addcmd --kill-on-exit --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd2
-echo
+startcmd+=$addcmd --kill-on-exit 
+startcmd+=--link2symlink -0 -r $rootfs -b /dev 
+startcmd+=-b /proc -b /sys -b /sdcard 
+startcmd+=-b $rootfs/root:/dev/shm  -w /root $cmd2
+$TOOLKIT/proot $startcmd
+unset startcmd
 }

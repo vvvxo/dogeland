@@ -14,9 +14,9 @@
           <action>
             <title>容器CLI快速启动设置</title>
              <param name="type">
-                <option value="/bin/sh /cli.sh sshd_start">启动sshd</option>
-                <option value="/bin/sh /cli.sh dropbear_start">启动dropbear</option>
-                <option value="/bin/sh /cli.sh vncserver_start">启动vncserver</option>
+                <option value="/bin/sh /dogeland/cli.sh sshd_start">启动sshd</option>
+                <option value="/bin/sh /dogeland/cli.sh dropbear_start">启动dropbear</option>
+                <option value="/bin/sh /dogeland/cli.sh vncserver_start">启动vncserver</option>
             </param>
             <set>
             rm -rf $CONFIG_DIR/cmd.conf
@@ -81,14 +81,7 @@
             $TOOLKIT/cli.sh edit_passwd
             </set>
         </action>
-        <action>
-            <title>杀死容器</title>
-            <set>
-            export cmd2="pkill $PACKAGE_NAME"
-            exec_auto
-            unset cmd2
-            </set>
-        </action>
+        
         <action>
             <title>设置自定义 PATH 变量</title>
             <param name="Input" label="" title="" placeholder="/bin:/usr/sbin" type="text" />
@@ -120,6 +113,14 @@
              <param name="kernel" label="" title="" placeholder="4.19" type="text" />
             <set>
             sh $TOOLKIT/cli.sh proot_fake_kernel
+            </set>
+        </action>
+        <action>
+            <title>杀死容器</title>
+            <set>
+            export cmd2="pkill $PACKAGE_NAME"
+            $TOOLKIT/cli.sh exec_proot
+            unset cmd2
             </set>
         </action>
     </group>

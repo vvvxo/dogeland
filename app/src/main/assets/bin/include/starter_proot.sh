@@ -6,7 +6,7 @@
 start_proot(){
 check_rootfs
 # Check RunStatus
-if [[ "$(cat $rootfs/status)" != "Stop" ]]
+if [[ "$(cat $rootfs/dogeland/status)" != "Stop" ]]
 then
 # if Run,Then Stop
 stop_rootfs
@@ -29,8 +29,13 @@ echo "">/dev/null
 fi 
 set_env
 # Change Status and Start
-echo "Run">$rootfs/status
-$TOOLKIT/proot $addcmd -0 --link2symlink -r $rootfs -b /dev -b /sys -b /proc/ -b /proc/self/fd:/dev/fd -b /sdcard -b $rootfs/root:/dev/shm  -w /root $cmd 
+echo "Run">$rootfs/dogeland/status
+startcmd+=$addcmd -0 --link2symlink 
+startcmd+=-r $rootfs -b /dev -b /sys -b /proc/ 
+startcmd+=-b /proc/self/fd:/dev/fd -b /sdcard 
+startcmd+=-b $rootfs/root:/dev/shm  -w /root $cmd
+$TOOLKIT/proot $startcmd
+unset startcmd
 echo "- Done"
 sleep 1
 

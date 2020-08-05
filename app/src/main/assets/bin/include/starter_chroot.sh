@@ -5,7 +5,7 @@
 #
 start_chroot(){
 # Check RunStatus
-if [[ "$(cat $rootfs/status)" != "Stop" ]]
+if [[ "$(cat $rootfs/dogeland/status)" != "Stop" ]]
 then
 # if Run,Then Stop
 stop_rootfs
@@ -30,7 +30,7 @@ check_rootfs
 mount_part
 set_env
 # Change Status and Start
-echo "Run">$rootfs/status
+echo "Run">$rootfs/dogeland/status
 $chroot $addcmd $rootfs $cmd
 echo "- All Done"
 sleep 1

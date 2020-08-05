@@ -78,7 +78,12 @@ fi
 #
 echo "- 正在设置"
 # Set CONFIG
-echo "Stop">$rootfs2/status
+if [ -d "$rootfs2/dogeland/" ];then
+  echo "">/dev/null
+  else
+  mkdir $rootfs2/dogeland/
+fi
+echo "Stop">$rootfs2/dogeland/status
 rm -rf $CONFIG_DIR/cmd.conf
 echo "$type">$CONFIG_DIR/cmd.conf
 rm -rf $CONFIG_DIR/rootfs.conf
@@ -92,13 +97,14 @@ rm -rf $rootfs2/etc/dropbear
 mkdir $rootfs2/etc/dropbear
 chmod -R 0777 $rootfs2/etc/dropbear/
 # Install CLI
-cp $TOOLKIT/cli.sh $rootfs2/
-mkdir $rootfs2/include/
-cp -R $TOOLKIT/include/* $rootfs2/include/
+cp $TOOLKIT/cli.sh $rootfs2/dogeland/
+mkdir $rootfs2/dogeland/include/
+cp -R $TOOLKIT/include/* $rootfs2/dogeland/include/
 # ReadRootfsInfo
 echo "- 正在解析"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
+rm -rf $rootfs2/info.log
 echo ""
 else
 echo "!解析系统包时出现异常,但这可能不会影响使用"

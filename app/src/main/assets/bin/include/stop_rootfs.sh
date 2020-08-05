@@ -4,9 +4,6 @@
 # license: GPL-v2.0
 #
 stop_rootfs(){
-# Change Status
-rm -rf $rootfs/status
-echo "Stop">$rootfs/status
 # Stop Service
 pkill sshd
 pkill busybox
@@ -21,4 +18,7 @@ pkill ash
 # Killed
 pkill chroot
 pkill proot
+# Change Status
+rm -rf $rootfs/dogeland/status
+echo "Stop">$rootfs/dogeland/status
 }

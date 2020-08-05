@@ -5,7 +5,7 @@
 #
 start_proot_termux(){
 # Check RunStatus
-if [[ "$(cat $rootfs/status)" != "Stop" ]]
+if [[ "$(cat $rootfs/dogeland/status)" != "Stop" ]]
 then
 # if Run,Then Stop
 stop_rootfs
@@ -36,7 +36,7 @@ else
 echo "">/dev/null
 fi 
 # Change Status and Start.
-echo "Run">$rootfs/status
+echo "Run">$rootfs/dogeland/status
 /data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b /proc/self/fd:/dev/fd -b $rootfs/root:/dev/shm  -w /root $cmd 
 echo "- Done"
 sleep 1

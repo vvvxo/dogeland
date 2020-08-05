@@ -8,15 +8,15 @@ if [ -d "$rootfs/proc/1/" ];then
  echo "">/dev/null
   else
  echo "- /proc ..."
-   mount -t -o bind proc prov $rootfs/proc
+   mount -t proc proc $rootfs/proc
 fi
 if [ -d "$rootfs/sys/kernel/" ];then
  echo "">/dev/null
   else
  echo "- /sys ..."
-  mount -t -o bind sysfs sysfs $rootfs/sys
+  mount -t sysfs sysfs $rootfs/sys
 fi
-if [ -d "$rootfs/sdcard/" ];then
+if [ -d "$rootfs/mnt/" ];then
   echo "">/dev/null
   else
   echo "- /sdcard ..."
@@ -31,7 +31,7 @@ fi
 echo "- /dev/shm ..."
 ln -s $rootfs/root/ $rootfs/dev/shm
 echo "- /dev/pts ..."
-mount -t -o bind devpts devpts $rootfs/dev/pts
+mount -t devpts devpts $rootfs/dev/pts
 
 if [ ! -e "/dev/tty0" ]; then
   echo "">/dev/null
