@@ -67,7 +67,7 @@ if [ -d "$DATA2_DIR/cache/" ];then
 fi
 # Proot
 if [[ ! -f $TOOLKIT/proot ]]; then
-ln -s $TOOLKIT/lib/$platform/lib_proot.so $TOOLKIT/proot
+ln -s $TOOLKIT/libs/$platform/lib_proot.so $TOOLKIT/proot
 fi
 # Other
 if [[ ! -f $START_DIR/issue ]]; then

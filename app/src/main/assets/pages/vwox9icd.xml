@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- MainPage -->
 <items>
     <group>
         <action>
@@ -35,15 +36,15 @@
 
 <items>
  <group>
-<page config="pages/settings.xml" title="设置" />
+<page config="pages/wyr1nmlc.xml" title="设置" />
  </group>
 
   <group>
-   <page config="pages/store.xml" title="商店" />
+   <page config="pages/5YoxqlDU.xml" title="商店" />
   </group>
  
   <group>
-   <page config="pages/faq.xml" title="FAQ" />
+   <page config="pages/7w9qyrtx.xml" title="FAQ" />
  </group>
  
 </items>

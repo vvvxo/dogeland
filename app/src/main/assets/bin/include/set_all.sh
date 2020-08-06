@@ -55,12 +55,7 @@ echo "# DogeLand Core Files ReInstaller"
 echo "#"
 echo "- 正在初始化(报错属于正常🐳现象)"
 mkdir $PREFIX/lib
-mkdir $PREFIX/etc
-mkdir $PREFIX/tmp
-mkdir $PREFIX/libexec
-mkdir $START_DIR/home
-mkdir $PREFIX/var
-ln -s $TOOLKIT/lib/$platform/* $PREFIX/lib/
+ln -s $TOOLKIT/libs/$platform/* $PREFIX/h/
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
   mkdir $DATA2_DIR/
@@ -106,7 +101,7 @@ if [ -d "$DATA2_DIR/cache/" ];then
 fi
 # Proot
 if [[ ! -f $TOOLKIT/proot ]]; then
-ln -s $TOOLKIT/lib/$platform/lib_proot.so $TOOLKIT/proot
+ln -s $TOOLKIT/libs/$platform/lib_proot.so $TOOLKIT/proot
 fi
 # Other
 if [[ ! -f $START_DIR/issue ]]; then

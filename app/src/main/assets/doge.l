@@ -1,5 +1,5 @@
 executor_core="file:///android_asset/exec_start.sh"
-page_list_config="file:///android_asset/pages/about.xml"
-favorite_config="file:///android_asset/pages/main.xml"
+page_list_config="file:///android_asset/pages/gvsEewI7.xml"
+favorite_config="file:///android_asset/pages/vwox9icd.xml"
 allow_home_page="0"
 toolkit_dir="file:///android_asset/bin"

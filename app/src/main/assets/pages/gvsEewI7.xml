@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- Main2Page -->
 <group>
     <text>
         <title>快速上手</title>
@@ -22,5 +23,5 @@
     </text>
 </group>
 <group>
-<page config="pages/faststep.xml" title="快速开始↗" />
+<page config="pages/EMT9DJAH.xml" title="快速开始↗" />
 </group>

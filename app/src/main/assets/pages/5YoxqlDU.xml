@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- StorePage -->
  <group title="Rootfs ">
          <action>
             <title>Alpine</title>
@@ -104,7 +105,7 @@
 </group>
 
  <group>
-   <page config="pages/linuxtools.xml" title="GNU/Linux 扩展组件" />
+   <page config="pages/hp4zq7bl.xml" title="GNU/Linux 扩展组件" />
  </group>
  
 <group>
