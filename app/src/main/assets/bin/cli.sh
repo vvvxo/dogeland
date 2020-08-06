@@ -11,7 +11,7 @@ VERSION=2.2.0_DEBUG
 
 # Check Linux Env
 if [ -d "/usr/" ];then
-  unset TOOLKIT
+  TOOLKIT=/dogeland/
   else
   echo "">/dev/null
 fi

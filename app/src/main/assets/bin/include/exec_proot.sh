@@ -21,10 +21,10 @@ else
 echo "">/dev/null
 fi 
 # Exec Command
-startcmd+=$addcmd --kill-on-exit 
-startcmd+=--link2symlink -0 -r $rootfs -b /dev 
-startcmd+=-b /proc -b /sys -b /sdcard 
-startcmd+=-b $rootfs/root:/dev/shm  -w /root $cmd2
+startcmd="$addcmd --kill-on-exit "
+startcmd+="--link2symlink -0 -r $rootfs -b /dev "
+startcmd+="-b /proc -b /sys -b /sdcard:/mnt/sdcard -b /proc/self/fd:/dev/fd -b /dev/null:/dev/tty0"
+startcmd+="-b $rootfs/root:/dev/shm  -w /root $cmd2"
 $TOOLKIT/proot $startcmd
 unset startcmd
 }
