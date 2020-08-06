@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
  <group title="Rootfs ">
-<group>
          <action>
             <title>Alpine</title>
             <desc>apk系,8+mb,极简</desc>
@@ -18,6 +17,11 @@
             echo "- 安装完成"
             </set>
         </action>
+         <text>
+        <slices>
+            <slice run="am start -n android/com.android.internal.app.PlatLogoActivity" size="15" color="#00000000" u="1">  </slice>
+        </slices>
+    </text>
         </group>
         
         
