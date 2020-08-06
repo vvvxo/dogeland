@@ -33,7 +33,7 @@ echo "Run">$rootfs/dogeland/status
 startcmd="$addcmd -0 --link2symlink "
 startcmd+="-r $rootfs -b /dev -b /sys -b /proc "
 startcmd+="-b /proc/self/fd:/dev/fd -b /sdcard:/mnt/sdcard -b /dev/null:/dev/tty0"
-startcmd+="-b $rootfs/root:/dev/shm  -w /root $cmd"
+startcmd+=" -w /root $cmd"
 $TOOLKIT/proot $startcmd
 unset startcmd
 echo "- Done"
