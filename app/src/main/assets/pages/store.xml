@@ -100,7 +100,7 @@
 </group>
 
  <group>
-   <page config="pages/tools.xml" title="GNU/Linux 扩展组件" />
+   <page config="pages/linuxtools.xml" title="GNU/Linux 扩展组件" />
  </group>
  
 <group>
