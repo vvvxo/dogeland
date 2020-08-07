@@ -11,7 +11,7 @@ umount $rootfs/sys
 umount $rootfs/dev/pts
 umount $rootfs/dev/shm
 umount $rootfs/dev
-umount $rootfs/mnt
+umount $rootfs/mnt/sdcard/
 else
  echo "">/dev/null
 fi
