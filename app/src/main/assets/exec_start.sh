@@ -7,22 +7,24 @@ run="$1"
 #
 export EXECUTOR_PATH=$({EXECUTOR_PATH})
 export START_DIR=$({START_DIR})
-export PREFIX=$START_DIR/
 export TOOLKIT=$START_DIR/bin
 export TMPDIR=$START_DIR/kr-script/cache/
 export SDCARD_PATH=$({SDCARD_PATH})
 export PACKAGE_NAME=$({PACKAGE_NAME})
+
+#
+# RunEnv
+#
+export PREFIX=$START_DIR/
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PREFIX/lib/"
+export PATH="$PATH:$TOOLKIT:$PREFIX/lib"
+
 #
 # DATA
 #
 export DATA2_DIR="$SDCARD_PATH/Android/data/$PACKAGE_NAME/"
 export CONFIG_DIR="$DATA2_DIR/config/"
 export platform=$(sh $TOOLKIT/cli.sh platform)
-#
-# RunEnv
-#
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PREFIX/lib/"
-export PATH="$PATH:$TOOLKIT:$PREFIX/lib"
 
 #
 # PRoot

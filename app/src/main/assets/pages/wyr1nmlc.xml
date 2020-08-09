@@ -13,7 +13,7 @@
             <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
           <action>
-            <title>容器CLI快速启动设置</title>
+            <title>快速启动设置</title>
              <param name="type">
                 <option value="/bin/sh /dogeland/cli.sh sshd_start">启动sshd</option>
                 <option value="/bin/sh /dogeland/cli.sh dropbear_start">启动dropbear</option>
@@ -31,9 +31,6 @@
             <desc>保持应用前台运行和CPU唤醒,防止容器卡顿或被杀死</desc>
             <set>
             echo "保持后台运行中"
-            sleep 9999
-            sleep 9999
-            sleep 9999
             sleep 9999
             </set>
         </action>
@@ -75,9 +72,9 @@
             <set>$test</set>
         </action>
          <action>
-            <title>强制更改 GNU / Linux 系统密码</title>
-            <param name="username" label="" title="用户名" placeholder="root" type="text" />
-            <param name="password" label="" title="密码" placeholder="1" type="text" />
+            <title>更改 GNU / Linux 系统密码</title>
+            <param name="username" label="" title="用户名" placeholder="" type="text" />
+            <param name="password" label="" title="密码" placeholder="" type="text" />
             <set>
             $TOOLKIT/cli.sh edit_passwd
             </set>

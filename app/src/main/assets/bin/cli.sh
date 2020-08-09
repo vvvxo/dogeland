@@ -1,23 +1,24 @@
 #
 # DogeLand CLI
-# v2.2.0
+# v2.2.1
 # 
 # license: GPL-v2.0
 #
-VERSION=2.2.0_DEBUG
+VERSION=2.2.1_DEBUG
 #
 # Common
 #
 
-# Check Linux Env
-if [ -d "/usr/" ];then
+# Check Container Env
+if [ -d "/dogeland/" ];then
   TOOLKIT=/dogeland/
   else
   echo "">/dev/null
 fi
-# Check Linux or Android Env
+# Check Android Linux Env
 if [ ! -n "$START_DIR" ]; then
-  TOOLKIT=./
+# for Android / Linux Terminal Env
+TOOLKIT=./
 export START_DIR=./
 export PREFIX=$PREFIX:./
 export TOOLKIT=./

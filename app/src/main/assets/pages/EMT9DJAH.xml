@@ -1,12 +1,13 @@
-<!-- <?xml version="1.0" encoding="UTF-8" ?> -->
+<?xml version="1.0" encoding="UTF-8" ?> 
 <!-- InstallPage -->
 <group>
       <action>
-            <title>安装→tgz(tar.gz)</title>
+            <title>安装→tgz</title>
             <param name="file" label="包文件" type="file"
                 suffix="tgz"
                 value="" />
             <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
+             <param name="file" label="包文件" title="注意:↓无法得到存储权限时使用" placeholder="" type="text" />
                 <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
                 <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
                 <param name="datas" label="安装到私有数据目录" type="bool" />
@@ -19,31 +20,16 @@
             sh $TOOLKIT/cli.sh deploy_linux
             </set>
         </action>
-        
-        <action>
-            <title>安装tgz(tar.gz)1</title>
-            <param name="file" label="包文件" title="注意:↓此页面仅在无法得到存储权限时使用,否则请使用快速安装" placeholder="" type="text" />
-            <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
-                <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
-                <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
-                <param name="datas" label="安装到私有数据目录" type="bool" />
-                 <param name="type">
-                <option value="/bin/sh /dogeland/cli.sh dropbear_start">dropbear</option>
-                <option value="/bin/sh /dogeland/cli.sh sshd_start">sshd</option>
-                <option value="/bin/sh /dogeland/cli.sh vncserver_start">vncserver</option>
-                </param>
-            <set>
-            sh $TOOLKIT/cli.sh deploy_linux
-            </set>
-        </action>
+       
         </group>
         
-        <group>
+        <group title="导入非官方仓库的Rootfs可能会引发一些问题,谨慎使用">
         <action>
             <title>安装→tar.xz</title>
             <param name="file" label="包文件" type="file"
                 suffix="tar.xz"
                 value="" />
+            <param name="file" label="包文件" title="注意:↓无法得到存储权限时使用" placeholder="" type="text" />
             <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
                 <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
                 <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
@@ -54,43 +40,11 @@
                 <option value="/bin/sh /dogeland/cli.sh vncserver_start">vncserver</option>
             </param>
             <set>
-            sh $TOOLKIT/cli.sh deploy_linux2
+            sh $TOOLKIT/cli.sh deploy_linux1
             </set>
         </action>
         
-        <action>
-            <title>安装tar.xz1</title>
-            <param name="file" label="包文件" title="注意:↓此页面仅在无法得到存储权限时使用,否则请使用快速安装" placeholder="" type="text" />
-            <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
-                <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
-                <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
-                <param name="datas" label="安装到私有数据目录" type="bool" />
-                 <param name="type">
-                <option value="/bin/sh /dogeland/cli.sh dropbear_start">dropbear</option>
-                <option value="/bin/sh /dogeland/cli.sh sshd_start">sshd</option>
-                <option value="/bin/sh /dogeland/cli.sh vncserver_start">vncserver</option>
-                </param>
-            <set>
-            sh $TOOLKIT/cli.sh deploy_linux2
-            </set>
-        </action>
+      
         </group>
         
-        <group>
-        <action>
-            <title>ArchLinux</title>
-            <param name="rootfs2" label="安装路径" title="" placeholder="" type="text" />
-                <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
-                <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
-                 <param name="repo" label="软件源" title="" placeholder="" type="text" />
-                <param name="datas" label="安装到私有数据目录" type="bool" />
-                <param name="archs">
-                <option value="aarch64">arm64</option>
-                <option value="arm">arm</option>
-                <option value="x86_64">x86_64</option>
-                </param>
-            <set>
-            sh $TOOLKIT/cli.sh bootstrap_linux2
-            </set>
-        </action>
-        </group>
+     
