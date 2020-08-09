@@ -26,150 +26,52 @@ export CONFIG_DIR="$DATA2_DIR/config/"
 else
   echo "">/dev/null
 fi
-# Utils
-load_mod(){
-if [ -f "$mod" ];then
-. $mod
-else
-echo "!$mod 未生效."
-fi
-}
+
 #
 # LoadList
 #
 
-mod=$TOOLKIT/include/custom.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//version.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//help.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//stop_rootfs.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//del_rootfs.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//env_info.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//platform.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//mount_part.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//umount_part.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//loop_support.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//selinux_inactive.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//set_all.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//set_env.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//check_rootfs.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//del_rootfs.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//backup_rootfs.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//deploy_linux.sh
-load_mod
-unset mod
+. $TOOLKIT/include/custom.sh
+. $TOOLKIT/include//version.sh
+. $TOOLKIT/include//help.sh
+. $TOOLKIT/include//stop_rootfs.sh
+. $TOOLKIT/include//del_rootfs.sh
+. $TOOLKIT/include//env_info.sh
+. $TOOLKIT/include//platform.sh
+. $TOOLKIT/include//mount_part.sh
+. $TOOLKIT/include//umount_part.sh
+. $TOOLKIT/include//loop_support.sh
+. $TOOLKIT/include//selinux_inactive.sh
+. $TOOLKIT/include//set_all.sh
+. $TOOLKIT/include//set_env.sh
+. $TOOLKIT/include//check_rootfs.sh
+. $TOOLKIT/include//del_rootfs.sh
+. $TOOLKIT/include//backup_rootfs.sh
+. $TOOLKIT/include//deploy_linux.sh
 #
 # Starter
 #
-mod=$TOOLKIT/include//starter_chroot.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//starter_proot.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//starter_termux-proot.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//starter_auto.sh
-load_mod
-unset mod
+. $TOOLKIT/include//starter_chroot.sh
+. $TOOLKIT/include//starter_proot.sh
+. $TOOLKIT/include//starter_termux-proot.sh
+. $TOOLKIT/include//starter_auto.sh
 #
 # Exec
 #
-mod=$TOOLKIT/include//exec_chroot.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//exec_proot.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//exec_termux-proot.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//exec_auto.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//exec_local-shell.sh
-load_mod
-unset mod
-
-
+. $TOOLKIT/include//exec_chroot.sh
+. $TOOLKIT/include//exec_proot.sh
+. $TOOLKIT/include//exec_termux-proot.sh
+. $TOOLKIT/include//exec_auto.sh
+. $TOOLKIT/include//exec_local-shell.sh
 #
 # extensions
 #
-
-mod=$TOOLKIT/include//add_plugin.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//extra_dropbear.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//extra_sshd.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//extra_vncserver.sh
-load_mod
-unset mod
-
-mod=$TOOLKIT/include//extra_patcher.sh
-load_mod
-unset mod
+. $TOOLKIT/include//add_plugin.sh
+. $TOOLKIT/include//extra_dropbear.sh
+. $TOOLKIT/include//extra_sshd.sh
+. $TOOLKIT/include//extra_vncserver.sh
+. $TOOLKIT/include//extra_patcher.sh
+. $TOOLKIT/include/bootstrap_linux.sh
 
 # RunHelp
 if [ ! -n "${1}" ]; then
