@@ -5,9 +5,9 @@
 #
 check_rootfs(){
 if [ -d "$rootfs" ];then
-  return 1
+  echo "">/dev/null
   else
   echo "- / ...fail "
-  sleep 9999
+  exit 255
 fi
 }
