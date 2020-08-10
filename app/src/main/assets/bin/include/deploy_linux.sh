@@ -71,9 +71,13 @@ if [ ! -n "$rootfs2" ]; then
     echo "">/dev/null
 fi
 if [ ! -n "$file" ]; then
+    if [ ! -n "$file2" ]; then
     echo "- 无效系统包文件"
     exit 255
     sleep 1000
+    else
+    echo "">/dev/null
+    fi
     else
     echo "">/dev/null
 fi
