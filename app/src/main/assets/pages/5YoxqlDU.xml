@@ -122,6 +122,7 @@
             <param name="file" label="插件包" type="file"
                 suffix="zip"
                 value="" />
+           <param name="file" label="插件包" title="注意:↓无法得到存储权限时使用" placeholder="" type="text" />
             <set>
             echo "- 正在安装"
             unzip $file -d $START_DIR/
