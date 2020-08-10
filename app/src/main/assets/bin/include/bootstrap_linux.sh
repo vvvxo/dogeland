@@ -8,6 +8,7 @@ export rootfs2="archlinux-fs/"
 sh $TOOLKIT/cli.sh deploy_linux
 rm -rf ArchLinuxARM-$archs-latest.tar.gz
 echo "- 正在执行附加操作"
+rootfs=$rootfs2
 cmd2="pacman -Sy dropbear"
 exec_auto
 unset cmd2
@@ -23,6 +24,7 @@ export rootfs2="manjaro-fs/"
 sh $TOOLKIT/cli.sh deploy_linux
 rm -rf Manjaro-ARM-$archs-latest.tar.gz
 echo "- 正在执行附加操作"
+rootfs=$rootfs2
 cmd2="pacman -Sy dropbear"
 exec_auto
 unset cmd2

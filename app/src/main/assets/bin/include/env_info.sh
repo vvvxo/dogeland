@@ -36,7 +36,7 @@ env_info() {
     echo -n "SELinux: "
     selinux_inactive && echo "关闭" || echo "开启"
 
-    echo -n "支持 Loop:"
+    echo -n "支持 loop:"
     loop_support && echo "是" || echo "否"
 
     echo "文件系统支持:"

@@ -130,8 +130,8 @@
             else
             unzip $file2 -d $START_DIR/
             fi
-            source $START_DIR/install.sh
-            rm -rf $START_DIR/install.sh
+            . $START_DIR/install.sh
+            rm $START_DIR/install.sh
             echo "- 安装成功"
             </set>
         </action>
