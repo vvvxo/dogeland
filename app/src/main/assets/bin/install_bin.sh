@@ -70,9 +70,6 @@ if [[ ! -f $TOOLKIT/proot ]]; then
 ln -s $TOOLKIT/libs/$platform/lib_proot.so $TOOLKIT/proot
 fi
 # Other
-if [[ ! -f $START_DIR/issue ]]; then
-mv $TOOLKIT/issue $START_DIR/
-fi
 if [[ ! -f $START_DIR/LICENSE ]]; then
 mv $TOOLKIT/LICENSE $START_DIR/
 fi
