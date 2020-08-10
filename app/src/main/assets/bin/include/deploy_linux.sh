@@ -11,7 +11,7 @@ deploy_linux_step1
 #
 echo "- 正在安装 $file"
 rm -rf $rootfs2
-mkdir $rootfs2/
+mkdir -p $rootfs2/
 # for tgz
 if [ `id -u` -eq 0 ];then
  tar -xzvf $file -C $rootfs2 >/dev/null
@@ -28,7 +28,7 @@ deploy_linux_step1
 #
 echo "- 正在安装 $file"
 rm -rf $rootfs2
-mkdir $rootfs2/
+mkdir -p $rootfs2/
 # for tar.xz
 if [ `id -u` -eq 0 ];then
  tar -XfJ $file -C $rootfs2 >/dev/null
