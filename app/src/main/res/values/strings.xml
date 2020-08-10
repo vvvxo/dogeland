@@ -1,5 +1,5 @@
 <resources>
-    <string name="kr_script_config">kr-script.conf</string>
+    <string name="kr_script_config">master.conf</string>
     <bool name="force_root">false</bool>
 
     <string name="app_name">dogeland</string>
