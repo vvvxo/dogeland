@@ -14,9 +14,21 @@ rm -rf $rootfs2
 mkdir -p $rootfs2/
 # for tgz
 if [ `id -u` -eq 0 ];then
- tar -xzvf $file -C $rootfs2 >/dev/null
+# CheckTgz2
+if [ ! $file2 ];then
+    tar -xzvf $file -C $rootfs2 >/dev/null
 else
- proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
+    tar -xzvf $file2 -C $rootfs2 >/dev/null
+fi
+
+else
+
+if [ ! $file2 ];then
+    proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
+else
+    proot --link2symlink $TOOLKIT/busybox tar -xzvf $file2 -C $rootfs2 >/dev/null
+fi
+
 fi
 deploy_linux_step2
 }
@@ -31,9 +43,18 @@ rm -rf $rootfs2
 mkdir -p $rootfs2/
 # for tar.xz
 if [ `id -u` -eq 0 ];then
- tar -XfJ $file -C $rootfs2 >/dev/null
+if [ ! $file2 ];then
+    tar -XfJ $file -C $rootfs2 >/dev/null
 else
- proot --link2symlink $TOOLKIT/busybox tar -XfJ $file -C $rootfs2 >/dev/null
+    tar -XfJ $file2 -C $rootfs2 >/dev/null
+fi
+else
+
+ if [ ! $file2 ];then
+    proot --link2symlink $TOOLKIT/busybox tar -XfJ $file -C $rootfs2 >/dev/null
+else
+    proot --link2symlink $TOOLKIT/busybox tar -XfJ $file2 -C $rootfs2 >/dev/null
+fi
 fi
 deploy_linux_step2
 }
