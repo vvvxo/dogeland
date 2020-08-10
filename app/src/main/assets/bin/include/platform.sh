@@ -11,7 +11,7 @@ platform()
     fi
     case "${arch}" in
     arm64|aarch64)
-        echo "arm_64"
+        echo "arm64"
     ;;
     arm*)
         echo "arm"

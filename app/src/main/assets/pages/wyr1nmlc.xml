@@ -27,7 +27,7 @@
           </group>
        <group title="进阶">
          <action bg-task="true">
-            <title>开启后台保活</title>
+            <title>开启后台锁定</title>
             <desc>保持应用前台运行和CPU唤醒,防止容器卡顿或被杀死</desc>
             <set>
             echo "保持后台运行中"
@@ -72,7 +72,7 @@
             <set>$test</set>
         </action>
          <action>
-            <title>更改 GNU / Linux 系统密码</title>
+            <title>修改 GNU / Linux 系统密码</title>
             <param name="username" label="" title="用户名" placeholder="" type="text" />
             <param name="password" label="" title="密码" placeholder="" type="text" />
             <set>

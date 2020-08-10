@@ -33,45 +33,45 @@ fi
 #
 
 . $TOOLKIT/include/custom.sh
-. $TOOLKIT/include//version.sh
-. $TOOLKIT/include//help.sh
-. $TOOLKIT/include//stop_rootfs.sh
-. $TOOLKIT/include//del_rootfs.sh
-. $TOOLKIT/include//env_info.sh
-. $TOOLKIT/include//platform.sh
-. $TOOLKIT/include//mount_part.sh
-. $TOOLKIT/include//umount_part.sh
-. $TOOLKIT/include//loop_support.sh
-. $TOOLKIT/include//selinux_inactive.sh
-. $TOOLKIT/include//set_all.sh
-. $TOOLKIT/include//set_env.sh
-. $TOOLKIT/include//check_rootfs.sh
-. $TOOLKIT/include//del_rootfs.sh
-. $TOOLKIT/include//backup_rootfs.sh
-. $TOOLKIT/include//deploy_linux.sh
+. $TOOLKIT/include/version.sh
+. $TOOLKIT/include/help.sh
+. $TOOLKIT/include/stop_rootfs.sh
+. $TOOLKIT/include/del_rootfs.sh
+. $TOOLKIT/include/env_info.sh
+. $TOOLKIT/include/platform.sh
+. $TOOLKIT/include/mount_part.sh
+. $TOOLKIT/include/umount_part.sh
+. $TOOLKIT/include/loop_support.sh
+. $TOOLKIT/include/selinux_inactive.sh
+. $TOOLKIT/include/set_all.sh
+. $TOOLKIT/include/set_env.sh
+. $TOOLKIT/include/check_rootfs.sh
+. $TOOLKIT/include/del_rootfs.sh
+. $TOOLKIT/include/backup_rootfs.sh
+. $TOOLKIT/include/deploy_linux.sh
 #
 # Starter
 #
-. $TOOLKIT/include//starter_chroot.sh
-. $TOOLKIT/include//starter_proot.sh
-. $TOOLKIT/include//starter_termux-proot.sh
-. $TOOLKIT/include//starter_auto.sh
+. $TOOLKIT/include/starter_chroot.sh
+. $TOOLKIT/include/starter_proot.sh
+. $TOOLKIT/include/starter_termux-proot.sh
+. $TOOLKIT/include/starter_auto.sh
 #
 # Exec
 #
-. $TOOLKIT/include//exec_chroot.sh
-. $TOOLKIT/include//exec_proot.sh
-. $TOOLKIT/include//exec_termux-proot.sh
-. $TOOLKIT/include//exec_auto.sh
-. $TOOLKIT/include//exec_local-shell.sh
+. $TOOLKIT/include/exec_chroot.sh
+. $TOOLKIT/include/exec_proot.sh
+. $TOOLKIT/include/exec_termux-proot.sh
+. $TOOLKIT/include/exec_auto.sh
+. $TOOLKIT/include/exec_local-shell.sh
 #
 # extensions
 #
-. $TOOLKIT/include//add_plugin.sh
-. $TOOLKIT/include//extra_dropbear.sh
-. $TOOLKIT/include//extra_sshd.sh
-. $TOOLKIT/include//extra_vncserver.sh
-. $TOOLKIT/include//extra_patcher.sh
+. $TOOLKIT/include/add_plugin.sh
+. $TOOLKIT/include/extra_dropbear.sh
+. $TOOLKIT/include/extra_sshd.sh
+. $TOOLKIT/include/extra_vncserver.sh
+. $TOOLKIT/include/extra_patcher.sh
 . $TOOLKIT/include/bootstrap_linux.sh
 
 # RunHelp

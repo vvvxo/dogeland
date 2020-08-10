@@ -1,5 +1,5 @@
 #
-# DogeLand-AppShell-Init
+# dogeland-shell
 #
 run="$1"
 #
@@ -32,7 +32,7 @@ export platform=$(sh $TOOLKIT/cli.sh platform)
 
 export PROOT_TMP_DIR="$TMPDIR"
 export PROOT_LOADER="$PREFIX/lib/lib_loader.so"
-if [[ "$platform" != "x86_64" ]] && [[ "$platform" != "arm_64" ]]
+if [[ "$platform" != "x86_64" ]] && [[ "$platform" != "arm64" ]]
 then
 echo "">/dev/null
 else
