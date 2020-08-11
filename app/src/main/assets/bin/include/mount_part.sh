@@ -42,6 +42,12 @@ if [ -d "$rootfs/dev/block/" ];then
   mount -o bind /dev/ $rootfs/dev
 fi
 
+if [ -d "$rootfs/dev/net/tun" ];then
+  echo "">/dev/null
+  else
+  echo "- /dev ..."
+  mount -o bind /dev/net/tun $rootfs/dev/net/tun
+fi
 
 if [ ! -e "/dev/tty0" ]; then
   echo "">/dev/null

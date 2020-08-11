@@ -9,11 +9,11 @@ if [ -f "$TOOLKIT/install_bin_done" ];then
 quit
 else
 echo "- 正在初始化(报错属于正常🐳现象)"
-mkdir $PREFIX/lib
-ln -s $TOOLKIT/libs/$platform/* $PREFIX/lib/
+busybox_$platform mkdir $PREFIX/lib
+busybox_$platform ln -s $TOOLKIT/libs/$platform/* $PREFIX/lib/
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
-  mkdir $DATA2_DIR/
+  busybox_$platform mkdir $DATA2_DIR/
   else
   echo "">/dev/null
 fi
@@ -34,8 +34,8 @@ if [[ ! "$TOOLKIT" = "" ]]; then
     cd "$TOOLKIT"
     if [[ ! -f arch ]]; then
     export platform=$(sh $TOOLKIT/cli.sh platform)
-    rm -rf $TOOLKIT/busybox
-    mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
+    busybox_$platform rm -rf $TOOLKIT/busybox
+    busybox_$platform mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
     busybox_install
     fi
 fi
@@ -68,6 +68,18 @@ fi
 # Proot
 if [[ ! -f $TOOLKIT/proot ]]; then
 ln -s $TOOLKIT/libs/$platform/lib_proot.so $TOOLKIT/proot
+fi
+# Bash
+if [[ "$platform" != "arm" ]] && [[ "$platform" != "arm64" ]]
+then
+if [[ "$platform" != "x86" ]] && [[ "$platform" != "x86_64" ]]
+then
+echo "">/dev/null
+else
+ln -s $TOOLKIT/bash_x86 $TOOLKIT/bash
+fi
+else
+ln -s $TOOLKIT/bash_arm $TOOLKIT/bash
 fi
 # Other
 if [[ ! -f $START_DIR/LICENSE ]]; then

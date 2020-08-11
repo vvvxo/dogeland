@@ -19,5 +19,15 @@
     </text>
 </group>
 <group>
+        <text>
+            <title>WARNNING:</title>
+            <slices>
+                <slice>当前版本为</slice>
+                <slice bold="true" color="#dd5500">快照版</slice>
+                <slice>,并不保证功能的完整性和兼容性</slice>
+            </slices>
+        </text>
+    </group>
+<group>
 <page config="pages/EMT9DJAH.xml" title="快速开始↗" />
 </group>
