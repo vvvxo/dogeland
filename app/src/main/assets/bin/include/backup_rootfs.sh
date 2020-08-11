@@ -4,7 +4,7 @@
 # license: GPL-v2.0
 #
 backup_rootfs(){
-echo "正在关闭容器"
+echo "- 正在关闭容器"
 stop_rootfs
 umount_part
 echo "- 正在导出系统"

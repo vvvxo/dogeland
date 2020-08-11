@@ -116,9 +116,8 @@ echo "$type">$CONFIG_DIR/cmd.conf
 rm -rf $CONFIG_DIR/rootfs.conf
 echo "$rootfs2" >$CONFIG_DIR/rootfs.conf
 # mkdir
-mkdir $rootfs2/sys
-mkdir $rootfs2/dev
-mkdir $rootfs2/proc
+mkdir $rootfs2/sys $rootfs2/dev $rootfs2/dev/pts $rootfs2/proc
+mkdir -p $rootfs2/dev/net/tun/
 # Clean old dropbear key
 rm -rf $rootfs2/etc/dropbear
 mkdir $rootfs2/etc/dropbear

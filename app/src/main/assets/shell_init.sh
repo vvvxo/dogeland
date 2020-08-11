@@ -52,7 +52,7 @@ if [[ -f "$TOOLKIT/install_bin.sh" ]]; then
 fi
 if [[ -f "$run" ]]; then
     chmod 755 "$run"
-    bash "$run"
+    sh "$run"
 else
     echo "!运行命令时出现异常"
 fi

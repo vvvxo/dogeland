@@ -69,18 +69,7 @@ fi
 if [[ ! -f $TOOLKIT/proot ]]; then
 ln -s $TOOLKIT/libs/$platform/lib_proot.so $TOOLKIT/proot
 fi
-# Bash
-if [[ "$platform" != "arm" ]] && [[ "$platform" != "arm64" ]]
-then
-if [[ "$platform" != "x86" ]] && [[ "$platform" != "x86_64" ]]
-then
-echo "">/dev/null
-else
-ln -s $TOOLKIT/bash_x86 $TOOLKIT/bash
-fi
-else
-ln -s $TOOLKIT/bash_arm $TOOLKIT/bash
-fi
+
 # Other
 if [[ ! -f $START_DIR/LICENSE ]]; then
 mv $TOOLKIT/LICENSE $START_DIR/
@@ -89,7 +78,4 @@ fi
 echo "- 初始化完成🍉"
 echo "" >$TOOLKIT/install_bin_done
 rm -rf $TOOLKIT/install_bin.sh && rm -rf $TOOLKIT/install_bin.sh
-echo ""
-echo ""
-echo ""
 fi
