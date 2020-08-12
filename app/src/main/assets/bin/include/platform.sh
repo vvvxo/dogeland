@@ -10,7 +10,7 @@ platform()
         arch=$(uname -m)
     fi
     case "${arch}" in
-    arm64|aarch64)
+    arm64|aarch64|armv8l)
         echo "arm64"
     ;;
     arm*)

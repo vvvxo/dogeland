@@ -28,12 +28,7 @@ if [ -d "$rootfs/mnt/sdcard" ];then
   mount -o bind $SDCARD_PATH $rootfs/mnt/sdcard
 fi
 
-if [ -e "$rootfs/dev/pts/0" ];then
-  echo "">/dev/null
-  else
-  echo "- /dev/pts ..."
-  mount -t devpts devpts $rootfs/dev/pts
-fi
+
 
 if [ -d "$rootfs/dev/block/" ];then
   echo "">/dev/null
@@ -42,12 +37,25 @@ if [ -d "$rootfs/dev/block/" ];then
   mount -o bind /dev/ $rootfs/dev
 fi
 
-if [ -d "$rootfs/dev/net/tun" ];then
+if [ -e "$rootfs/dev/pts/0" ];then
+  echo "">/dev/null
+  else
+  echo "- /dev/pts ..."
+  mount -t devpts devpts $rootfs/dev/pts
+fi
+if [ -d "/dev/net/tun" ];then
+  # Mount Network
+  if [ -d "$rootfs/dev/net/tun" ];then
   echo "">/dev/null
   else
   echo "- /dev ..."
   mount -o bind /dev/net/tun $rootfs/dev/net/tun
+  fi
+  #
+  else
+  echo "">/dev/null
 fi
+
 
 if [ ! -e "/dev/tty0" ]; then
   echo "">/dev/null
