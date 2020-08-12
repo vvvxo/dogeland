@@ -4,14 +4,6 @@
 # license: GPL-v2.0
 #
 mount_part(){
-if [ -e "$rootfs/dogeland/mount" ];then
-  echo "">/dev/null
-  else
-  cmd2="mount -o bind / /"
-  exec_chroot >>/dev/null
-  echo "">$rootfs/dogeland/mount
-  unset cmd2
-fi
 if [ -d "$rootfs/proc/1/" ];then
  echo "">/dev/null
   else
