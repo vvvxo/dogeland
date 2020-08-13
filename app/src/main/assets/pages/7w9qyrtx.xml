@@ -15,15 +15,7 @@
             </desc>
         </text>
     </group>
-    
-        <group>
-        <text>
-            <title> Q: 什么时候支持debootstrap?</title>
-            <desc> A: 马上.
-            </desc>
-        </text>
-    </group>
-    
+
       <group>
         <text>
             <title> Q: 安装桌面环境后连接VNC只有X和灰色背景?</title>
