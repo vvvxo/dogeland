@@ -34,10 +34,20 @@
                 <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
                 <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
                 <param name="datas" label="安装到私有数据目录" type="bool" />
+                 <param name="language">
+                <option value="zh_CN.UTF-8">中文简体zh_CN.UTF-8</option>
+                <option value="zh_TW.UTF-8">中文繁体zh_TW.UTF-8</option>
+                <option value="英文en_US.UTF-8">英文en_US.UTF-8</option>
+            </param>
                 <param name="type">
                 <option value="/bin/sh /dogeland/cli.sh dropbear_start">dropbear</option>
                 <option value="/bin/sh /dogeland/cli.sh sshd_start">sshd</option>
                 <option value="/bin/sh /dogeland/cli.sh vncserver_start">vncserver</option>
+            </param>
+              <param name="language">
+                <option value="zh_CN.UTF-8">中文简体zh_CN.UTF-8</option>
+                <option value="zh_TW.UTF-8">中文繁体zh_TW.UTF-8</option>
+                <option value="英文en_US.UTF-8">英文en_US.UTF-8</option>
             </param>
             <set>
             sh $TOOLKIT/cli.sh deploy_linux1

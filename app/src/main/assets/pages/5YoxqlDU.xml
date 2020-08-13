@@ -124,15 +124,7 @@
                 value="" />
            <param name="file2" label="插件包" title="注意:↓无法得到存储权限时使用" placeholder="" type="text" />
             <set>
-            echo "- 正在安装"
-            if [ ! $file2 ];then
-            unzip $file -d $START_DIR/
-            else
-            unzip $file2 -d $START_DIR/
-            fi
-            . $START_DIR/install.sh
-            rm $START_DIR/install.sh
-            echo "- 安装成功"
+            sh $TOOLKIT/cli.sh plugin_installer
             </set>
         </action>
 </group>

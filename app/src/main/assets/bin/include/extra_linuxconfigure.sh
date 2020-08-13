@@ -12,6 +12,7 @@ export rootfs="$rootfs2"
         echo '127.0.0.1 localhost' >> "$rootfs2/etc/hosts"
     fi
 [ -n "${LOCALE}" ] || LOCALE="${LANG}"
+[ -n "${LOCALE}" ] || LOCALE="$language"
 [ -n "${LOCALE}" ] || LOCALE="C"
     echo "- 正在设置 locale ... "
     if $(echo ${LOCALE} | grep -q '$rootfs2\.'); then

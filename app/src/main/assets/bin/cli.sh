@@ -73,6 +73,7 @@ fi
 . $TOOLKIT/include/extra_vncserver.sh
 . $TOOLKIT/include/extra_patcher.sh
 . $TOOLKIT/include/bootstrap_linux.sh
+. $TOOLKIT/include/plugin_installer.sh
 
 # RunHelp
 if [ ! -n "${1}" ]; then
