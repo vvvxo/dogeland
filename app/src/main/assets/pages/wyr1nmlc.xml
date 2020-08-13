@@ -71,15 +71,7 @@
             </param>
             <set>$test</set>
         </action>
-         <action>
-            <title>修改 GNU / Linux 系统密码</title>
-            <param name="username" label="" title="用户名" placeholder="" type="text" />
-            <param name="password" label="" title="密码" placeholder="" type="text" />
-            <set>
-            $TOOLKIT/cli.sh edit_passwd
-            </set>
-        </action>
-        
+     
         <action>
             <title>设置自定义 PATH 变量</title>
             <param name="Input" label="" title="" placeholder="/bin:/usr/sbin" type="text" />
@@ -123,7 +115,7 @@
         </action>
     </group>
     
-     <group>
+     <group title="Other">
     <action>
             <title>开源许可证</title>
               <param name="lang">
@@ -133,6 +125,14 @@
             </param>
             <set>
             cat $TOOLKIT/LICENSE_$lang
+            </set>
+        </action>
+            <action>
+            <title>修改 GNU / Linux 系统密码</title>
+            <param name="username" label="" title="用户名" placeholder="" type="text" />
+            <param name="password" label="" title="密码" placeholder="" type="text" />
+            <set>
+            $TOOLKIT/cli.sh edit_passwd
             </set>
         </action>
     </group>
