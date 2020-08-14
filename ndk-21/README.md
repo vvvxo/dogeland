@@ -1,1 +1,0 @@
-## Make dogeland support Android 5 at least.

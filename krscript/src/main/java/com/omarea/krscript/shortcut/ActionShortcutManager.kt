@@ -12,11 +12,20 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import android.util.Log
 import com.omarea.krscript.model.NodeInfoBase
+import com.omarea.krscript.model.PageNode
+import com.omarea.common.shared.ObjectStorage
 import java.util.*
 
 class ActionShortcutManager(private var context: Context) {
     @TargetApi(Build.VERSION_CODES.O)
     public fun addShortcut(intent: Intent, drawable: Drawable, config: NodeInfoBase): Boolean {
+        // 因为添加快捷方式时无法处理SerializableExtra，所以不得不通过应用本身存储pageNode信息
+        if (intent.hasExtra("page")) {
+            val pageNode = intent.getSerializableExtra("page") as PageNode
+            intent.putExtra("shortcutId", saveShortcutTarget(pageNode))
+            intent.removeExtra("page")
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return createShortcutOreo(intent, drawable, config)
         } else {
@@ -50,6 +59,18 @@ class ActionShortcutManager(private var context: Context) {
 
     }
 
+    // 存储快捷方式的页面信息对象
+    private fun saveShortcutTarget(pageNode: PageNode): String {
+        val id = System.currentTimeMillis().toString()
+        ObjectStorage<PageNode>(context).save(pageNode, id)
+        return id
+    }
+
+    // 读取快捷方式的页面信息对象
+    public fun getShortcutTarget(shortcutId: String): PageNode? {
+        return ObjectStorage<PageNode>(context).load(shortcutId)
+    }
+
     @TargetApi(Build.VERSION_CODES.O)
     public fun createShortcutOreo(intent: Intent, drawable: Drawable, config: NodeInfoBase): Boolean {
         try {
@@ -68,7 +89,7 @@ class ActionShortcutManager(private var context: Context) {
                         .setActivity(intent.component!!) // 只有“主要”活动 - 定义过滤器Intent#ACTION_MAIN 和Intent#CATEGORY_LAUNCHER意图过滤器的活动 - 才能成为目标活动
                         .build()
 
-                val shortcutCallbackIntent = PendingIntent.getBroadcast(context, 0, Intent(), PendingIntent.FLAG_CANCEL_CURRENT)
+                val shortcutCallbackIntent = PendingIntent.getBroadcast(context, 0, Intent(), PendingIntent.FLAG_UPDATE_CURRENT)
                 if (shortcutManager.isRequestPinShortcutSupported) {
                     val items = shortcutManager.pinnedShortcuts
                     for (item in items) {

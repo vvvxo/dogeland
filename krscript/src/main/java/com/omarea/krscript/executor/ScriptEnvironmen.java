@@ -11,12 +11,11 @@ import com.omarea.common.shared.MagiskExtend;
 import com.omarea.common.shell.KeepShell;
 import com.omarea.common.shell.KeepShellPublic;
 import com.omarea.krscript.FileOwner;
+import com.omarea.krscript.model.NodeInfoBase;
 
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -101,7 +100,7 @@ public class ScriptEnvironmen {
         }
     }
 
-    public static String md5(String string) {
+    private static String md5(String string) {
         if (string.isEmpty()) {
             return "";
         }
@@ -165,7 +164,7 @@ public class ScriptEnvironmen {
         return FileWrite.INSTANCE.writePrivateShellFile(fileName, fileName, context);
     }
 
-    public static String executeResultRoot(Context context, String script) {
+    public static String executeResultRoot(Context context, String script, NodeInfoBase nodeInfoBase) {
         if (!inited) {
             init(context);
         }
@@ -181,15 +180,37 @@ public class ScriptEnvironmen {
         } else {
             path = createShellCache(context, script);
         }
-        return executeShell(context, path);
-    }
 
-    private static String executeShell(Context context, String scriptPath) {
         if (!inited) {
             init(context);
         }
 
-        return privateShell.doCmdSync(environmentPath + " \"" + scriptPath + "\"" + " \"" + getStartPath(context) + "\"");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("\n");
+        if (nodeInfoBase != null && !nodeInfoBase.getCurrentPageConfigPath().isEmpty()) {
+            String parentPageConfigDir = nodeInfoBase.getPageConfigDir();
+            String currentPageConfigPath = nodeInfoBase.getCurrentPageConfigPath();
+            stringBuilder.append("export PAGE_CONFIG_DIR='").append(parentPageConfigDir).append("'\n");
+            stringBuilder.append("export PAGE_CONFIG_FILE='").append(currentPageConfigPath).append("'\n");
+
+            if (currentPageConfigPath.startsWith("file:///android_asset/")) {
+                stringBuilder.append("export PAGE_WORK_DIR='").append(new ExtractAssets(context).getExtractPath(parentPageConfigDir)).append("'\n");
+                stringBuilder.append("export PAGE_WORK_FILE='").append(new ExtractAssets(context).getExtractPath(currentPageConfigPath)).append("'\n");
+            } else {
+                stringBuilder.append("export PAGE_WORK_DIR='").append(parentPageConfigDir).append("'\n");
+                stringBuilder.append("export PAGE_WORK_FILE='").append(currentPageConfigPath).append("'\n");
+            }
+        } else {
+            stringBuilder.append("export PAGE_CONFIG_DIR=''\n");
+            stringBuilder.append("export PAGE_CONFIG_FILE=''\n");
+            stringBuilder.append("export PAGE_WORK_DIR=''\n");
+            stringBuilder.append("export PAGE_WORK_DIR=''\n");
+        }
+
+        stringBuilder.append("\n\n");
+        stringBuilder.append(environmentPath + " \"" + path + "\"");
+        return privateShell.doCmdSync(stringBuilder.toString());
     }
 
     private static String getStartPath(Context context) {
@@ -242,7 +263,7 @@ public class ScriptEnvironmen {
             // params.put("APP_UID", "" + android.os.Process.myPid());
             // params.put("APP_PID", "" + android.os.Process.myPid());
             // params.put("APP_TID", "" + android.os.Process.myTid());
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
 
         params.put("ANDROID_SDK", "" + Build.VERSION.SDK_INT);
@@ -290,7 +311,7 @@ public class ScriptEnvironmen {
         return envp;
     }
 
-    private static String getExecuteScript(Context context, String script) {
+    private static String getExecuteScript(Context context, String script, String tag) {
         if (!inited) {
             init(context);
         }
@@ -300,7 +321,6 @@ public class ScriptEnvironmen {
         }
 
         String script2 = script.trim();
-        String startPath = getStartPath(context);
         String cachePath = "";
         if (script2.startsWith(ASSETS_FILE)) {
             cachePath = extractScript(context, script2);
@@ -314,12 +334,10 @@ public class ScriptEnvironmen {
         }
 
 
-        // FIXME:主进程退出后，可能会有未回收的子进程（孤儿进程）
-        // pstree
-        return environmentPath + " \"" + cachePath + "\"" + " \"" + startPath + "\"";
+        return environmentPath + " \"" + cachePath + "\" \"" + tag +  "\"";
     }
 
-    public static Process getRuntime() {
+    static Process getRuntime() {
         try {
             if (rooted) {
                 return Runtime.getRuntime().exec("su");
@@ -343,7 +361,34 @@ public class ScriptEnvironmen {
             Context context,
             DataOutputStream dataOutputStream,
             String cmds,
-            HashMap<String, String> params) {
+            HashMap<String, String> params,
+            NodeInfoBase nodeInfo,
+            String tag) {
+
+        if (params == null) {
+            params = new HashMap<>();
+        }
+
+        // 页面配置文件路径
+        if (nodeInfo != null) {
+            String parentPageConfigDir = nodeInfo.getPageConfigDir();
+            String currentPageConfigPath = nodeInfo.getCurrentPageConfigPath();
+            params.put("PAGE_CONFIG_DIR", parentPageConfigDir);
+            params.put("PAGE_CONFIG_FILE", currentPageConfigPath);
+            if (currentPageConfigPath.startsWith("file:///android_asset/")) {
+                params.put("PAGE_WORK_DIR", new ExtractAssets(context).getExtractPath(parentPageConfigDir));
+                params.put("PAGE_WORK_FILE", new ExtractAssets(context).getExtractPath(currentPageConfigPath));
+            } else {
+                params.put("PAGE_WORK_DIR", parentPageConfigDir);
+                params.put("PAGE_WORK_FILE", currentPageConfigPath);
+            }
+        } else {
+            params.put("PAGE_CONFIG_DIR", "");
+            params.put("PAGE_CONFIG_FILE", "");
+            params.put("PAGE_WORK_DIR", "");
+            params.put("PAGE_WORK_FILE", "");
+        }
+
         ArrayList<String> envp = getVariables(params);
         StringBuilder envpCmds = new StringBuilder();
         if (envp.size() > 0) {
@@ -354,17 +399,14 @@ public class ScriptEnvironmen {
         try {
             dataOutputStream.write(envpCmds.toString().getBytes("UTF-8"));
 
-            dataOutputStream.write(String.format("cd \"%s\"\n\n", getStartPath(context)).getBytes("UTF-8"));
-
-            dataOutputStream.write(getExecuteScript(context, cmds).getBytes("UTF-8"));
+            dataOutputStream.write(getExecuteScript(context, cmds, tag).getBytes("UTF-8"));
 
             dataOutputStream.writeBytes("\n\n");
             dataOutputStream.writeBytes("sleep 0.2;\n");
             dataOutputStream.writeBytes("exit\n");
             dataOutputStream.writeBytes("exit\n");
             dataOutputStream.flush();
-        } catch (UnsupportedEncodingException ex) {
-        } catch (IOException ex) {
+        } catch (Exception ignored) {
         }
     }
 }

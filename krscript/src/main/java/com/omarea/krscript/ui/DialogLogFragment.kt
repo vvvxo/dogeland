@@ -56,7 +56,7 @@ class DialogLogFragment : androidx.fragment.app.DialogFragment() {
         val shellHandler = openExecutor()
 
         if (shellHandler != null) {
-            ShellExecutor().execute(this.activity, nodeInfo.interruptable, script, onExit, params, shellHandler)
+            ShellExecutor().execute(this.activity, nodeInfo, script, onExit, params, shellHandler)
         }
     }
 
@@ -233,7 +233,7 @@ class DialogLogFragment : androidx.fragment.app.DialogFragment() {
     }
 
     private var onDismissRunnable: Runnable? = null
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         onDismissRunnable?.run()
         onDismissRunnable = null

@@ -21,8 +21,9 @@ import com.omarea.common.ui.DialogHelper;
 import com.omarea.krscript.downloader.Downloader;
 import com.omarea.krscript.executor.ExtractAssets;
 import com.omarea.krscript.executor.ScriptEnvironmen;
+import com.omarea.krscript.model.NodeInfoBase;
 import com.omarea.krscript.model.ShellHandlerBase;
-import com.omarea.krscript.ui.FileChooserRender;
+import com.omarea.krscript.ui.ParamsFileChooserRender;
 
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
@@ -40,24 +41,26 @@ import java.util.UUID;
 public class WebViewInjector {
     private WebView webView;
     private Context context;
-    private FileChooserRender.FileChooserInterface fileChooser;
+    private ParamsFileChooserRender.FileChooserInterface fileChooser;
 
     @SuppressLint("SetJavaScriptEnabled")
-    public WebViewInjector(WebView webView, FileChooserRender.FileChooserInterface fileChooser) {
+    public WebViewInjector(WebView webView, ParamsFileChooserRender.FileChooserInterface fileChooser) {
         this.webView = webView;
         this.context = webView.getContext();
         this.fileChooser = fileChooser;
     }
 
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
-    public void inject(final Activity activity) {
+    public void inject(final Activity activity, final boolean credible) {
         if (webView != null) {
 
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
-            webSettings.setAllowFileAccess(true);
-            webSettings.setAllowUniversalAccessFromFileURLs(true);
-            webSettings.setAllowFileAccessFromFileURLs(true);
+            webSettings.setAllowFileAccess(credible);
+            webSettings.setAllowUniversalAccessFromFileURLs(credible);
+            webSettings.setAllowFileAccessFromFileURLs(credible);
+            webSettings.setAllowContentAccess(true);
+            webSettings.setUseWideViewPort(true);
 
             webView.addJavascriptInterface(
                     new KrScriptEngine(context),
@@ -95,6 +98,7 @@ public class WebViewInjector {
 
     private class KrScriptEngine {
         private Context context;
+        private NodeInfoBase vitualRootNode = new NodeInfoBase("");
 
         private KrScriptEngine(Context context) {
             this.context = context;
@@ -119,7 +123,7 @@ public class WebViewInjector {
         @JavascriptInterface
         public String executeShell(String script) {
             if (script != null && !script.isEmpty()) {
-                return ScriptEnvironmen.executeResultRoot(context, script);
+                return ScriptEnvironmen.executeResultRoot(context, script, vitualRootNode);
             }
             return "";
         }
@@ -155,7 +159,7 @@ public class WebViewInjector {
                     }
                 });
 
-                ScriptEnvironmen.executeShell(context, dataOutputStream, script, params);
+                ScriptEnvironmen.executeShell(context, dataOutputStream, script, params, null, null);
                 return true;
             } else {
                 return false;
@@ -177,7 +181,12 @@ public class WebViewInjector {
         @JavascriptInterface
         public boolean fileChooser(final String callbackFunction) {
             if (fileChooser != null) {
-                return fileChooser.openFileChooser(new FileChooserRender.FileSelectedInterface() {
+                return fileChooser.openFileChooser(new ParamsFileChooserRender.FileSelectedInterface() {
+                    @Override
+                    public int type() {
+                        return ParamsFileChooserRender.FileSelectedInterface.Companion.getTYPE_FILE(); // TODO
+                    }
+
                     @Nullable
                     @Override
                     public String suffix() {

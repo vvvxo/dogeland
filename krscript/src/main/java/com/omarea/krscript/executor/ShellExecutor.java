@@ -5,6 +5,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.omarea.krscript.model.RunnableNode;
 import com.omarea.krscript.model.ShellHandlerBase;
 
 import java.io.DataOutputStream;
@@ -16,13 +17,19 @@ import java.util.HashMap;
  */
 public class ShellExecutor {
     private boolean started = false;
+    private String sessionTag = "pio_" + System.currentTimeMillis();
+    private void killProcess(Context context) {
+        ScriptEnvironmen.executeResultRoot(
+                context,
+                String.format("kill -s 1 `pgrep -f %s`", sessionTag),
+                null);
+        // KeepShellPublic.INSTANCE.doCmdSync(String.format("kill -s 1 `pgrep -f %s`", sessionTag));
+    }
 
     /**
      * 执行脚本
-     *
-     * @return
      */
-    public Process execute(Context context, Boolean interruptible, String cmds, Runnable onExit, HashMap<String, String> params, ShellHandlerBase shellHandlerBase) {
+    public Process execute(final Context context, RunnableNode nodeInfo, String cmds, Runnable onExit, HashMap<String, String> params, ShellHandlerBase shellHandlerBase) {
         if (started) {
             return null;
         }
@@ -34,9 +41,34 @@ public class ShellExecutor {
                 onExit.run();
             }
         } else {
-            final Runnable forceStopRunnable = interruptible ? (new Runnable() {
+            final Runnable forceStopRunnable = (nodeInfo.getInterruptable() || nodeInfo.getShell().equals(RunnableNode.Companion.getShellModeBgTask()))? (new Runnable() {
                 @Override
                 public void run() {
+                    /*
+                    // 没啥用，这个pid和在shell创建的子进程不是父子关系，杀死此进程对shell里创建的进程毫无影响
+                    int pid = -1;
+                    if (process.getClass().getName().equals("java.lang.UNIXProcess")) {
+                        try {
+                            Class cl = process.getClass();
+                            Field field = cl.getDeclaredField("pid");
+                            field.setAccessible(true);
+                            Object pidObject = field.get(process);
+                            pid = (Integer) pidObject;
+                        } catch (Exception ignored) {}
+                    }
+                    */
+                    killProcess(context);
+
+                    try {
+                        process.getInputStream().close();
+                    } catch (Exception ignored) {}
+                    try {
+                        process.getOutputStream().close();
+                    } catch (Exception ignored) {}
+                    try {
+                        process.getErrorStream().close();
+                    } catch (Exception ignored) {}
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         try {
                             process.destroyForcibly();
@@ -62,7 +94,7 @@ public class ShellExecutor {
                 shellHandlerBase.onStart(forceStopRunnable);
                 dataOutputStream.writeBytes("sleep 0.2;\n");
 
-                ScriptEnvironmen.executeShell(context, dataOutputStream, cmds, params);
+                ScriptEnvironmen.executeShell(context, dataOutputStream, cmds, params, nodeInfo, sessionTag);
             } catch (Exception ex) {
                 process.destroy();
             }
@@ -70,5 +102,4 @@ public class ShellExecutor {
         }
         return process;
     }
-
 }

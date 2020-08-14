@@ -1,6 +1,6 @@
 package com.omarea.krscript.model
 
-open class RunnableNode : ClickableNode() {
+open class RunnableNode(currentConfigXml: String) : ClickableNode(currentConfigXml) {
 
     // 是否在开始前显示操作确认提示
     var confirm: Boolean = false
@@ -15,8 +15,14 @@ open class RunnableNode : ClickableNode() {
     // 执行完成后是否自动关闭页面
     var autoFinish = false
 
-    // 是否是后台运行的任务
-    var backgroundTask: Boolean = false
+    // 交互界面（default、bg-task、hidden）
+    var shell = shellModeDefault
+
+    companion object {
+        val shellModeDefault = "default"
+        val shellModeBgTask = "bg-task"
+        val shellModeHidden = "hidden"
+    }
 
     //
     var setState: String? = null

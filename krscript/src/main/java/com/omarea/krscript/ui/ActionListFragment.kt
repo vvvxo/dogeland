@@ -1,7 +1,6 @@
 package com.omarea.krscript.ui
 
 import android.app.AlertDialog
-import android.content.BroadcastReceiver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,7 +16,8 @@ import com.omarea.common.ui.DialogHelper
 import com.omarea.common.ui.ProgressBarDialog
 import com.omarea.common.ui.ThemeMode
 import com.omarea.krscript.R
-import com.omarea.krscript.ScriptTaskThread
+import com.omarea.krscript.BgTaskThread
+import com.omarea.krscript.HiddenTaskThread
 import com.omarea.krscript.TryOpenActivity
 import com.omarea.krscript.config.IconPathAnalysis
 import com.omarea.krscript.executor.ScriptEnvironmen
@@ -69,7 +69,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
         super.onViewCreated(view, savedInstanceState)
         this.progressBarDialog = ProgressBarDialog(this.context!!)
 
-        rootGroup = ListItemGroup(this.context!!, true)
+        rootGroup = ListItemGroup(this.context!!, true, GroupNode(""))
 
         if (actionInfos != null) {
             PageLayoutRender(this.context!!, actionInfos!!, this, rootGroup)
@@ -156,7 +156,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                                 .setMessage(String.format(getString(R.string.kr_shortcut_create_desc), clickableNode.title))
                                 .setPositiveButton(R.string.btn_confirm) { _, _ ->
                                     val result = ActionShortcutManager(context!!)
-                                            .addShortcut(intent, IconPathAnalysis().loadIcon(context!!, clickableNode), clickableNode)
+                                            .addShortcut(intent, IconPathAnalysis().loadLogo(context!!, clickableNode), clickableNode)
                                     if (!result) {
                                         Toast.makeText(context, R.string.kr_shortcut_create_fail, Toast.LENGTH_SHORT).show()
                                     } else {
@@ -186,11 +186,11 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
         Thread(Runnable {
             // 获取当前值
             if (item.getState != null) {
-                paramInfo.valueFromShell = executeScriptGetResult(item.getState!!)
+                paramInfo.valueFromShell = executeScriptGetResult(item.getState!!, item)
             }
 
             // 获取可选项（合并options-sh和静态options的结果）
-            val options = getParamOptions(paramInfo)
+            val options = getParamOptions(paramInfo, item)
 
             val labels = if (options != null) options.map { (it["item"] as ActionParamInfo.ActionParamOption).desc }.toTypedArray() else arrayOf()
             val values = if (options != null) options.map { (it["item"] as ActionParamInfo.ActionParamOption).value }.toTypedArray() else arrayOf()
@@ -222,7 +222,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                                 }
                             }
                         }
-                        pickerExecute(item, "" + result.joinToString(if (item.separator.isNotEmpty()) item.separator else "\n"), onCompleted)
+                        pickerExecute(item, "" + result.joinToString(item.separator), onCompleted)
                     }
                 } else {
                     // 单选
@@ -290,20 +290,20 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                             progressBarDialog.showDialog(this.context!!.getString(R.string.kr_param_load) + if (!actionParamInfo.label.isNullOrEmpty()) actionParamInfo.label else actionParamInfo.name)
                         }
                         if (actionParamInfo.valueShell != null) {
-                            actionParamInfo.valueFromShell = executeScriptGetResult(actionParamInfo.valueShell!!)
+                            actionParamInfo.valueFromShell = executeScriptGetResult(actionParamInfo.valueShell!!, action)
                         }
                         handler.post {
                             progressBarDialog.showDialog(this.context!!.getString(R.string.kr_param_options_load) + if (!actionParamInfo.label.isNullOrEmpty()) actionParamInfo.label else actionParamInfo.name)
                         }
-                        actionParamInfo.optionsFromShell = getParamOptions(actionParamInfo) // 获取参数的可用选项
+                        actionParamInfo.optionsFromShell = getParamOptions(actionParamInfo, action) // 获取参数的可用选项
                     }
                     handler.post {
                         progressBarDialog.showDialog(this.context!!.getString(R.string.kr_params_render))
                     }
                     handler.post {
                         val render = ActionParamsLayoutRender(linearLayout)
-                        render.renderList(actionParamInfos, object : FileChooserRender.FileChooserInterface {
-                            override fun openFileChooser(fileSelectedInterface: FileChooserRender.FileSelectedInterface): Boolean {
+                        render.renderList(actionParamInfos, object : ParamsFileChooserRender.FileChooserInterface {
+                            override fun openFileChooser(fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface): Boolean {
                                 return if (krScriptActionHandler == null) {
                                     false
                                 } else {
@@ -346,13 +346,15 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
                             dialogView.findViewById<TextView>(R.id.title).text = action.title
 
                             dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-                                dialog!!.dismiss()
+                                try {
+                                    dialog!!.dismiss()
+                                } catch (ex: java.lang.Exception) {}
                             }
                             dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
                                 try {
                                     val params = render.readParamsValue(actionParamInfos)
-                                    dialog!!.dismiss()
                                     actionExecute(action, script, onExit, params)
+                                    dialog!!.dismiss()
                                 } catch (ex: Exception) {
                                     Toast.makeText(this.context!!, "" + ex.message, Toast.LENGTH_LONG).show()
                                 }
@@ -370,11 +372,11 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
     /**
      * 获取Param的Options
      */
-    private fun getParamOptions(actionParamInfo: ActionParamInfo): ArrayList<HashMap<String, Any>>? {
+    private fun getParamOptions(actionParamInfo: ActionParamInfo, nodeInfoBase: NodeInfoBase): ArrayList<HashMap<String, Any>>? {
         val options = ArrayList<HashMap<String, Any>>()
         var shellResult = ""
         if (!actionParamInfo.optionsSh.isEmpty()) {
-            shellResult = executeScriptGetResult(actionParamInfo.optionsSh)
+            shellResult = executeScriptGetResult(actionParamInfo.optionsSh, nodeInfoBase)
         }
 
         if (!(shellResult == "error" || shellResult == "null" || shellResult.isEmpty())) {
@@ -424,28 +426,32 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
         return options
     }
 
-    private fun executeScriptGetResult(shellScript: String): String {
-        return ScriptEnvironmen.executeResultRoot(this.context!!, shellScript);
+    private fun executeScriptGetResult(shellScript: String, nodeInfoBase: NodeInfoBase): String {
+        return ScriptEnvironmen.executeResultRoot(this.context!!, shellScript, nodeInfoBase)
     }
 
-    private val taskResultReceiver = ArrayList<BroadcastReceiver>()
 
+    // 标识是否有隐藏任务在运行中
+    var hiddenTaskRunning = false
     private fun actionExecute(nodeInfo: RunnableNode, script: String, onExit: Runnable, params: HashMap<String, String>?) {
         val context = context!!
-        val applicationContext = context.applicationContext
 
-        if (nodeInfo.backgroundTask) {
-            var receiver: BroadcastReceiver? = null
+        if (nodeInfo.shell == RunnableNode.shellModeBgTask) {
             val onDismiss = Runnable {
                 krScriptActionHandler?.onActionCompleted(nodeInfo)
-                try {
-                    taskResultReceiver.remove(receiver)
-                    applicationContext.unregisterReceiver(receiver)
-                } catch (ex: java.lang.Exception) {
-                }
             }
-            receiver = ScriptTaskThread.startTask(context, script, params, nodeInfo, onExit, onDismiss)
-            taskResultReceiver.add(receiver)
+            BgTaskThread.startTask(context, script, params, nodeInfo, onExit, onDismiss)
+        } else if (nodeInfo.shell == RunnableNode.shellModeHidden) {
+            if (hiddenTaskRunning) {
+                Toast.makeText(context, getString(R.string.kr_hidden_task_running), Toast.LENGTH_SHORT).show()
+            } else {
+                hiddenTaskRunning = true
+                val onDismiss = Runnable {
+                    hiddenTaskRunning = false
+                    krScriptActionHandler?.onActionCompleted(nodeInfo)
+                }
+                HiddenTaskThread.startTask(context, script, params, nodeInfo, onExit, onDismiss)
+            }
         } else {
             val onDismiss = Runnable {
                 krScriptActionHandler?.onActionCompleted(nodeInfo)
@@ -453,7 +459,7 @@ class ActionListFragment : androidx.fragment.app.Fragment(), PageLayoutRender.On
             val darkMode = themeMode != null && themeMode!!.isDarkMode
 
             val dialog = DialogLogFragment.create(nodeInfo, onExit, onDismiss, script, params, darkMode)
-            dialog.show(fragmentManager, "")
+            dialog.show(fragmentManager!!, "")
             dialog.isCancelable = false
         }
     }
