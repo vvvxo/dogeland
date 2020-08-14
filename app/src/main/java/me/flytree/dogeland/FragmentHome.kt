@@ -69,7 +69,19 @@ class FragmentHome : androidx.fragment.app.Fragment() {
             }).start()
         }
     }
-
+    
+     fun setData(total: Float, fee: Float) {
+        if (fee == total && total == 0F) {
+            ratio = 0
+        } else {
+            val feeRatio = (fee * 100.0 / total).toInt()
+            ratio = 100 - feeRatio
+        }
+        cgangePer(ratio)
+        // ratioState = ratio
+        // invalidate()
+    }
+    
     @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
