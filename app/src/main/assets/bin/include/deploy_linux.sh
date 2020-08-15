@@ -14,7 +14,7 @@ rm -rf $rootfs2
 mkdir -p $rootfs2/
 # for tgz
 if [ `id -u` -eq 0 ];then
-    tar -xzvf $file -C $rootfs2 >/dev/null
+    $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 else
     proot --link2symlink $TOOLKIT/busybox tar -xzvf $file -C $rootfs2 >/dev/null
 fi
@@ -31,7 +31,7 @@ rm -rf $rootfs2
 mkdir -p $rootfs2/
 # for tar.xz
 if [ `id -u` -eq 0 ];then
-    tar -XfJ $file -C $rootfs2 >/dev/null
+    $TOOLKIT/busybox tar -XfJ $file -C $rootfs2 >/dev/null
 else
     proot --link2symlink $TOOLKIT/busybox tar -XfJ $file -C $rootfs2 >/dev/null
 fi
