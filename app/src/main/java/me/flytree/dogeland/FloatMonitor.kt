@@ -1,4 +1,4 @@
-package com.omarea.vtools
+package me.flytree.dogeland
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
