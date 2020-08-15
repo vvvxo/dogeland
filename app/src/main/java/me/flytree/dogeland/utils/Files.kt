@@ -1,4 +1,4 @@
-package me.flytree.dogeland
+package com.omarea.shell
 
 import android.os.StatFs
 

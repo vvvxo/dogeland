@@ -1,4 +1,4 @@
-package me.flytree.dogeland
+package com.projectkr.shell
 
 import android.Manifest
 import android.app.Activity

@@ -1,9 +1,9 @@
-package me.flytree.dogeland.units
+package com.omarea.shell.units
 
 import com.omarea.common.shell.KeepShellPublic
 import com.omarea.common.shell.KernelProrp
 import com.omarea.common.shell.RootFile
-import me.flytree.dogeland.BatteryStatus
+import com.projectkr.shell.BatteryStatus
 import java.io.File
 
 /**

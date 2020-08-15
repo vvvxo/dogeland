@@ -1,4 +1,4 @@
-package me.flytree.dogeland.utils;
+package com.projectkr.shell.utils;
 
 import com.omarea.common.shell.KernelProrp;
 import com.omarea.common.shell.RootFile;
