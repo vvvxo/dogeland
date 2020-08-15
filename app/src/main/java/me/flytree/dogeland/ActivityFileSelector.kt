@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package me.flytree.dogeland
 
 import android.Manifest
 import android.app.Activity
@@ -16,7 +16,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker
 import com.omarea.common.ui.ProgressBarDialog
-import com.projectkr.shell.ui.AdapterFileSelector
+import me.flytree.dogeland.ui.AdapterFileSelector
 import kotlinx.android.synthetic.main.activity_file_selector.*
 import java.io.File
 

@@ -1,4 +1,4 @@
-package com.projectkr.shell.ui
+package me.flytree.dogeland.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,7 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import com.projectkr.shell.R
+import me.flytree.dogeland.R
 import java.util.concurrent.LinkedBlockingQueue
 
 class CpuChartBarView : View {

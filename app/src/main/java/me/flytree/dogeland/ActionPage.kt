@@ -1,4 +1,4 @@
-package com.projectkr.shell
+package me.flytree.dogeland
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.app.Activity

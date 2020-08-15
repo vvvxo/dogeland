@@ -1,4 +1,4 @@
-package com.projectkr.shell;
+package me.flytree.dogeland;
 
 import android.content.Context;
 

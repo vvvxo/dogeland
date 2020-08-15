@@ -1,4 +1,4 @@
-package com.projectkr.shell.ui
+package me.flytree.dogeland.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.projectkr.shell.CpuCoreInfo
-import com.projectkr.shell.R
+import me.flytree.dogeland.CpuCoreInfo
+import me.flytree.dogeland.R
 import java.util.*
 
 class AdapterCpuCores(private val context: Context, private val list: ArrayList<CpuCoreInfo>?) : BaseAdapter() {
