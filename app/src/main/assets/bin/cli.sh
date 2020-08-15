@@ -72,7 +72,6 @@ fi
 . $TOOLKIT/include/extra_sshd.sh
 . $TOOLKIT/include/extra_vncserver.sh
 . $TOOLKIT/include/extra_patcher.sh
-. $TOOLKIT/include/bootstrap_linux.sh
 . $TOOLKIT/include/plugin_installer.sh
 . $TOOLKIT/include/fix_permission.sh
 # RunHelp
