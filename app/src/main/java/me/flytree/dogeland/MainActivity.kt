@@ -32,6 +32,7 @@ import com.omarea.krscript.model.*
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.ParamsFileChooserRender
 import me.flytree.dogeland.FloatMonitor
+import me.flytree.dogeland.FragmentHome
 import me.flytree.dogeland.permissions.CheckRootStatus
 import me.flytree.dogeland.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.*
