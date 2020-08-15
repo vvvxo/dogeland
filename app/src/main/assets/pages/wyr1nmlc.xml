@@ -35,7 +35,8 @@
             </set>
         </action>
         <action>
-            <title>备份已安装系统</title>
+            <title>备份Rootfs</title>
+             <param name="dir" type="folder" value="/sdcard/Download" />
             <set>$TOOLKIT/cli.sh backup_rootfs</set>
         </action>
         <action>
@@ -133,6 +134,12 @@
             <param name="password" label="" title="密码" placeholder="" type="text" />
             <set>
             $TOOLKIT/cli.sh edit_passwd
+            </set>
+        </action>
+          <action>
+            <title>修复运行环境权限</title>
+            <set>
+            $TOOLKIT/cli.sh fix_perm
             </set>
         </action>
     </group>

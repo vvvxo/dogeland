@@ -4,11 +4,12 @@
 # license: GPL-v2.0
 #
 stop_rootfs(){
+chroot="pgrep -f chroot"
+proot="pgrep -f proot"
 # Stop Service
-pkill sshd
+pkill $sshd
 pkill busybox
 pkill vncserver
-pkill xfce4
 pkill dropbear
 # Stop Shell
 pkill ash
@@ -16,9 +17,10 @@ pkill zsh
 pkill bash
 pkill ash
 # Killed
-pkill chroot
-pkill proot
+kill $chroot >/dev/null
+kill $proot >/dev/null
 # Change Status
 rm -rf $rootfs/dogeland/status
 echo "Stop">$rootfs/dogeland/status
+pkill me.flytree.dogeland >/dev/null
 }
