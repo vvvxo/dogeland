@@ -13,7 +13,7 @@ import android.view.*
 import android.view.WindowManager.LayoutParams
 import android.widget.TextView
 import android.widget.Toast
-import com.omarea.shell.units.BatteryUnit
+import me.flytree.dogeland.units.BatteryUnit
 import me.flytree.dogeland.R
 import me.flytree.dogeland.ui.FloatMonitorBatteryView
 import me.flytree.dogeland.ui.FloatMonitorChartView
