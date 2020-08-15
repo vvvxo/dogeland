@@ -9,12 +9,13 @@ stop_rootfs
 umount_part
 echo "- 正在导出系统"
 cd $rootfs/
-if [[ "$(pwd)" != "$rootfs" ]] && if [[ "$(pwd)" != "$rootfs/" ]]
+if [[ "$(pwd)" != "/" ]]
 then
-echo "!无法切换到Rootfs目录,备份失败."
-exit 1
+tar czvf "$dir/backup.tgz" --exclude='./dev' --exclude='./sys' --exclude='./proc' --exclude='./mnt'  --exclude='./sdcard'  --exclude='./dogeland' -C "$rootfs/" . >/dev/null
+echo "已保存到 $dir/backup.tgz"
 else
-tar czvf "$DATA2_DIR/backup.tgz" --exclude='./dev' --exclude='./sys' --exclude='./proc' --exclude='./mnt'  --exclude='./sdcard'  --exclude='./dogeland' -C "$rootfs/" . >/dev/null
+echo "!出现异常"
+exit 1
 fi
 echo "- 完成"
 
