@@ -36,7 +36,7 @@
         </action>
         <action>
             <title>备份Rootfs</title>
-             <param name="dir" type="folder" value="/sdcard/Download" />
+             <param name="dir" type="folder" value="/sdcard/Android/data/me.flytree.dogeland/" />
             <set>$TOOLKIT/cli.sh backup_rootfs</set>
         </action>
         <action>
