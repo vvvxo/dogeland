@@ -48,7 +48,6 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                 KeepShellPublic.doCmdSync("sync\n" + "echo 3 > /proc/sys/vm/drop_caches\n" + "echo 1 > /proc/sys/vm/compact_memory")
                 myHandler.postDelayed({
                     try {
-                        updateRamInfo()
                         Toast.makeText(context, getString(R.string.monitor_cache_cleared), Toast.LENGTH_SHORT).show()
                     } catch (ex: java.lang.Exception) {
                     }
@@ -61,7 +60,6 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                 KeepShellPublic.doCmdSync("sync\n" + "echo 1 > /proc/sys/vm/compact_memory")
                 myHandler.postDelayed({
                     try {
-                        updateRamInfo()
                         Toast.makeText(context, getString(R.string.monitor_ram_cleared), Toast.LENGTH_SHORT).show()
                     } catch (ex: java.lang.Exception) {
                     }
@@ -85,7 +83,6 @@ class FragmentHome : androidx.fragment.app.Fragment() {
                 updateInfo()
             }
         }, 0, 1000)
-        updateRamInfo()
     }
 
     private var coreCount = -1
