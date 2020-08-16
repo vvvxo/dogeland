@@ -24,9 +24,6 @@
         </slices>
     </text>
         </group>
-        
-        
-    
 <group title="补丁 ">
 <action>
             <title>Ashmem</title>
@@ -40,7 +37,6 @@
             <set>sh $TOOLKIT/cli.sh shmem_patch</set>
 </action>
 </group>
-
 
 <group>
 <action>
@@ -115,7 +111,6 @@
             </set>
         </action>
         </group>
- 
           <group>
          <action>
             <title>PulseAudio</title>
@@ -127,7 +122,6 @@
             </set>
         </action>
         </group>
-        
         <group>
          <action>
             <title>curl</title>

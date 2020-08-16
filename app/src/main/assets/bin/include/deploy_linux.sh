@@ -115,6 +115,6 @@ else
 echo "!解析系统包时出现异常,但这可能不会影响使用"
 fi
 echo "- 正在设置"
-source $TOOLKIT/include/extra_linuxconfigure.sh configure
+. $TOOLKIT/include/extra_linuxconfigure.sh configure
 echo "- 安装成功"
 }

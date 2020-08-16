@@ -15,18 +15,14 @@
                 <option value="zh_TW.UTF-8">中文繁体zh_TW.UTF-8</option>
                 <option value="英文en_US.UTF-8">英文en_US.UTF-8</option>
             </param>
-            <set>
-            sh $TOOLKIT/cli.sh deploy_linux
-            </set>
+            <set>sh $TOOLKIT/cli.sh deploy_linux</set>
               <param name="type">
                 <option value="/bin/sh /dogeland/cli.sh dropbear_start">dropbear</option>
                 <option value="/bin/sh /dogeland/cli.sh sshd_start">sshd</option>
                 <option value="/bin/sh /dogeland/cli.sh vncserver_start">vncserver</option>
             </param>
         </action>
-       
         </group>
-        
         <group title="导入非官方仓库的Rootfs可能会引发一些问题,谨慎使用">
         <action>
             <title>安装→tar.xz</title>
@@ -45,10 +41,6 @@
                 <option value="/bin/sh /dogeland/cli.sh sshd_start">sshd</option>
                 <option value="/bin/sh /dogeland/cli.sh vncserver_start">vncserver</option>
             </param>
-            <set>
-            sh $TOOLKIT/cli.sh deploy_linux1
-            </set>
+            <set>sh $TOOLKIT/cli.sh deploy_linux1</set>
         </action>
-        
-      
         </group>

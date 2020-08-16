@@ -11,25 +11,21 @@ export TOOLKIT=$START_DIR/bin
 export TMPDIR=$START_DIR/kr-script/cache/
 export SDCARD_PATH=$({SDCARD_PATH})
 export PACKAGE_NAME=$({PACKAGE_NAME})
-
 #
 # RunEnv
 #
 export PREFIX=$START_DIR/
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PREFIX/lib/"
 export PATH="$PATH:$TOOLKIT:$PREFIX/lib"
-
 #
 # DATA
 #
 export DATA2_DIR="$SDCARD_PATH/Android/data/$PACKAGE_NAME/"
 export CONFIG_DIR="$DATA2_DIR/config/"
 export platform=$(sh $TOOLKIT/cli.sh platform)
-
 #
 # PRoot
 #
-
 export PROOT_TMP_DIR="$TMPDIR"
 export PROOT_LOADER="$PREFIX/lib/lib_loader.so"
 if [[ "$platform" != "x86_64" ]] && [[ "$platform" != "arm64" ]]
@@ -51,6 +47,7 @@ if [[ -f "$TOOLKIT/install_bin.sh" ]]; then
   sh $TOOLKIT/install_bin.sh
 fi
 if [[ -f "$run" ]]; then
+    cd $START_DIR
     chmod 755 "$run"
     sh "$run"
 else

@@ -7,7 +7,6 @@
             </desc>
         </text>
     </group>
-    
     <group>
         <text>
             <title> Q: 使用过程中突然断开连接?</title>
@@ -15,7 +14,6 @@
             </desc>
         </text>
     </group>
-
       <group>
         <text>
             <title> Q: 安装桌面环境后连接VNC只有X和灰色背景?</title>
@@ -23,7 +21,6 @@
             </desc>
         </text>
     </group>
-    
     <group>
         <text>
             <title> Q: 容器启动失败?</title>
@@ -31,7 +28,6 @@
             </desc>
         </text>
     </group>
-    
      <group>
         <text>
             <title> 题外:如何使用外部的Rootfs?</title>

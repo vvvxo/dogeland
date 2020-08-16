@@ -68,7 +68,7 @@
             <title>移除运行环境</title>
              <param name="test">
                 <option value="echo 已取消">取消</option>
-                <option value="rm -rf $TOOLKIT/*">继续</option>
+                <option value="rm -rf $TOOLKIT">继续</option>
             </param>
             <set>$test</set>
         </action>
@@ -93,26 +93,18 @@
                 <option value="riscv32">qemu-riscv32</option>
                 <option value="riscv64">qemu-riscv64</option>
             </param>
-            <set>
-            sh $TOOLKIT/cli.sh set_emulator_qemu
-            </set>
+            <set>sh $TOOLKIT/cli.sh set_emulator_qemu</set>
         </action>
     </group>
     <group title="PRoot设置">
     <action>
             <title>设置容器内核版本</title>
              <param name="kernel" label="" title="" placeholder="4.19" type="text" />
-            <set>
-            sh $TOOLKIT/cli.sh proot_fake_kernel
-            </set>
+            <set>sh $TOOLKIT/cli.sh proot_fake_kernel</set>
         </action>
         <action>
             <title>杀死容器</title>
-            <set>
-            export cmd2="pkill $PACKAGE_NAME"
-            $TOOLKIT/cli.sh exec_proot
-            unset cmd2
-            </set>
+            <set>$TOOLKIT/proot -r $START_DIR -b /system /bin/pkill $PACKAGE_NAME</set>
         </action>
     </group>
     
@@ -122,23 +114,17 @@
               <param name="lang">
                 <option value="en">English</option>
             </param>
-            <set>
-            cat $TOOLKIT/LICENSE_$lang
-            </set>
+            <set>cat $TOOLKIT/LICENSE_$lang</set>
         </action>
             <action>
             <title>修改 GNU / Linux 系统密码</title>
             <param name="username" label="" title="用户名" placeholder="" type="text" />
             <param name="password" label="" title="密码" placeholder="" type="text" />
-            <set>
-            $TOOLKIT/cli.sh edit_passwd
-            </set>
+            <set>$TOOLKIT/cli.sh edit_passwd</set>
         </action>
           <action>
             <title>修复运行环境权限</title>
-            <set>
-            $TOOLKIT/cli.sh fix_perm
-            </set>
+            <set>$TOOLKIT/cli.sh fix_perm</set>
         </action>
     </group>
     </page>
