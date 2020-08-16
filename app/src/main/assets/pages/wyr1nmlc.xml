@@ -52,7 +52,7 @@
                 <option value="x86">x86</option>
                  <option value="x86_64">x86_64</option>
             </param>
-            <set>$TOOLKIT/cli.sh set_runarch</set>
+            <set>$TOOLKIT/include/extra_setrunarch.sh set_runarch</set>
              </action>
            </group>
            <group title="高级">
@@ -104,7 +104,7 @@
         </action>
         <action>
             <title>杀死容器</title>
-            <set>$TOOLKIT/proot -r $START_DIR -b /system /bin/pkill $PACKAGE_NAME</set>
+            <set>$TOOLKIT/proot -r $START_DIR -b /system -b /proc -b /sys /bin/pkill $PACKAGE_NAME</set>
         </action>
     </group>
     

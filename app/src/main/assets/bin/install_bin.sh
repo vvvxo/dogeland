@@ -37,13 +37,14 @@ if [[ ! "$TOOLKIT" = "" ]]; then
     busybox_$platform rm -rf $TOOLKIT/busybox
     busybox_$platform mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
     busybox_install
+    rm $TOOLKIT/busybox_*
     fi
 fi
 # Default Config Install
 if [ -d "$CONFIG_DIR/" ];then
   echo "">/dev/null
   else
-  mkdir $DATA2_DIR > /dev/null
+  mkdir $DATA2_DIR
   if [ -d "$DATA2_DIR/" ];then
   echo "">/dev/null
   else
@@ -54,10 +55,10 @@ if [ -d "$CONFIG_DIR/" ];then
   sleep 1000
   sleep 9999
   fi
-  mkdir $CONFIG_DIR > /dev/null
-  echo "" > $CONFIG_DIR/rootfs.conf
-  echo "" > $CONFIG_DIR/cmd.conf
-  echo "" > $CONFIG_DIR/path.conf
+  mkdir $CONFIG_DIR
+  echo "" >$CONFIG_DIR/rootfs.conf
+  echo "" >$CONFIG_DIR/cmd.conf
+  echo "" >$CONFIG_DIR/path.conf
 fi
 # Cache
 if [ -d "$DATA2_DIR/cache/" ];then
@@ -73,5 +74,5 @@ fi
 # Kill
 echo "- 初始化完成🍉"
 echo "" >$TOOLKIT/install_bin_done
-rm -rf $TOOLKIT/install_bin.sh && rm -rf $TOOLKIT/install_bin.sh
+mv $TOOLKIT/install_bin.sh $TMPDIR/install_bin.shbak
 fi
