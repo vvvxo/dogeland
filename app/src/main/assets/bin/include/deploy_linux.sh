@@ -31,9 +31,9 @@ rm -rf $rootfs2
 mkdir -p $rootfs2/
 # for tar.xz
 if [ `id -u` -eq 0 ];then
-    $TOOLKIT/busybox tar -XfJ $file -C $rootfs2 >/dev/null
+    $TOOLKIT/busybox tar -xJf $file -C $rootfs2
 else
-    proot --link2symlink $TOOLKIT/busybox tar -XfJ $file -C $rootfs2 >/dev/null
+    proot --link2symlink $TOOLKIT/busybox tar -xJf $file -C $rootfs2 >/dev/null
 fi
 deploy_linux_step2
 }
