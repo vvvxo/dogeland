@@ -5,7 +5,6 @@ run="$1"
 #
 # BasicEnv
 #
-export EXECUTOR_PATH=$({EXECUTOR_PATH})
 export START_DIR=$({START_DIR})
 export TOOLKIT=$START_DIR/bin
 export TMPDIR=$START_DIR/kr-script/cache/

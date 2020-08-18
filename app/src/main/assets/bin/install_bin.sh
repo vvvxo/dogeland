@@ -45,15 +45,15 @@ if [[ ! "$TOOLKIT" = "" ]]; then
 fi
 # Proot
 if [[ ! -f $TOOLKIT/proot ]]; then
-ln -s $TOOLKIT/libs/$platform/lib_proot.so $TOOLKIT/proot
+ln -s $PREFIX/lib/lib_proot.so $TOOLKIT/proot
 fi
 
 # DATA2_DIR
 if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
   else
-  busybox_$platform mkdir $DATA2_DIR/
-  if [ -d "$DATA2_DIR/" ];then
+  busybox_$platform mkdir -p $DATA2_DIR
+  if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
   else
   echo "!数据初始化失败"
