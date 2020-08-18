@@ -10,14 +10,12 @@ if [ `id -u` -eq 0 ];then
    exec_chroot
    exit
 else
-   echo "">/dev/null
-fi
-if [ -f "/data/data/com.termux/files/usr/bin/" ];then
+   if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   exec_proot_termux
   exit
   else
   exec_proot
   exit
+  fi
 fi
-sleep 1
 }

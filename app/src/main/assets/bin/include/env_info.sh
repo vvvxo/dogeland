@@ -4,11 +4,7 @@
 # license: GPL-v2.0
 #
 env_info() {
-    model=$(getprop ro.product.model)
-    if [ -n "$model" ]; then
-        echo -n "设备: "
-        echo "$model"
-    fi
+    
     android_version=$(getprop ro.build.version.release)
     if [ -n "$android_version" ]; then
         echo -n "安卓版本: "
@@ -35,9 +31,6 @@ env_info() {
 
     echo -n "SELinux: "
     selinux_inactive && echo "关闭" || echo "开启"
-
-    echo -n "支持 loop:"
-    loop_support && echo "是" || echo "否"
 
     echo "文件系统支持:"
     supported_fs=$(cat /proc/filesystems)

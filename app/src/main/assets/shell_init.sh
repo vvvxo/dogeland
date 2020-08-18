@@ -49,7 +49,7 @@ fi
 if [[ -f "$run" ]]; then
     cd $START_DIR
     chmod 755 "$run"
-    sh "$run"
+    $TOOLKIT/sh "$run"
 else
     echo "!运行命令时出现异常"
 fi

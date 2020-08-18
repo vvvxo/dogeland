@@ -1,10 +1,10 @@
 #
 # DogeLand CLI
-# v2.2.1
+# v2.2.3
 # 
-# license: GPL-v2.0
+# license: GPL-b3
 #
-VERSION=2.2.1_DEBUG
+VERSION=2.2.3_DEBUG
 #
 # Common
 #
@@ -41,7 +41,6 @@ fi
 . $TOOLKIT/include/platform.sh
 . $TOOLKIT/include/mount_part.sh
 . $TOOLKIT/include/umount_part.sh
-. $TOOLKIT/include/loop_support.sh
 . $TOOLKIT/include/selinux_inactive.sh
 . $TOOLKIT/include/set_all.sh
 . $TOOLKIT/include/set_env.sh

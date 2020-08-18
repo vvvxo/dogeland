@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1341
-        versionName "1.3.4_build"
+        versionName "1.3.5_build"
     }
     buildTypes {
         release {

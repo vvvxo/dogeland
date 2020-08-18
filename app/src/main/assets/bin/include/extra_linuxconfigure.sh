@@ -88,7 +88,7 @@ export rootfs="$rootfs2"
     fi
     # Add Android Group
         local aid
-        for aid in $(cat "$TOOLKIT/android_groups")
+        for aid in $(cat "$TOOLKIT/include/android_groups")
         do
             local xname=$(echo ${aid} | awk -F: '{print $1}')
             local xid=$(echo ${aid} | awk -F: '{print $2}')

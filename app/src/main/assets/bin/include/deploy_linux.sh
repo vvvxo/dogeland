@@ -98,9 +98,13 @@ echo "$rootfs2" >$CONFIG_DIR/rootfs.conf
 mkdir $rootfs2/sys $rootfs2/dev $rootfs2/dev/pts $rootfs2/proc
 mkdir -p $rootfs2/dev/net/tun/
 # Clean old dropbear key
-rm -rf $rootfs2/etc/dropbear
-mkdir $rootfs2/etc/dropbear
-chmod -R 0777 $rootfs2/etc/dropbear/
+if [ -d "$rootfs2/etc/dropbear" ];then
+  rm -rf $rootfs2/etc/dropbear
+  mkdir $rootfs2/etc/dropbear
+  chmod -R 0777 $rootfs2/etc/dropbear/
+  else
+  echo "">/dev/null
+fi
 # Install CLI
 cp $TOOLKIT/cli.sh $rootfs2/dogeland/
 mkdir $rootfs2/dogeland/include/
@@ -114,7 +118,6 @@ echo ""
 else
 echo "!解析系统包时出现异常,但这可能不会影响使用"
 fi
-echo "- 正在设置"
 . $TOOLKIT/include/extra_linuxconfigure.sh configure
 echo "- 安装成功"
 }
