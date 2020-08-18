@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 mount_part(){
 if [ -d "$rootfs/proc/1/" ];then
  echo "">/dev/null

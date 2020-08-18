@@ -32,6 +32,7 @@ export rootfs="$rootfs2"
             fi
         fi
     done
+    chmod a+s $rootfs2/bin/su
     echo "- 正在设置 timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then

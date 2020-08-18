@@ -85,4 +85,8 @@ fi
 echo "- 初始化完成🍉"
 echo "" >$TOOLKIT/install_bin_done
 mv $TOOLKIT/install_bin.sh $TMPDIR/install_bin.shbak
+echo ""
+echo ""
+echo ""
+sleep 2
 fi

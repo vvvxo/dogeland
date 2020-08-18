@@ -32,9 +32,7 @@ fi
 # LoadList
 #
 
-. $TOOLKIT/include/custom.sh
-. $TOOLKIT/include/version.sh
-. $TOOLKIT/include/help.sh
+. $TOOLKIT/include/others.sh
 . $TOOLKIT/include/stop_rootfs.sh
 . $TOOLKIT/include/del_rootfs.sh
 . $TOOLKIT/include/env_info.sh
@@ -71,7 +69,6 @@ fi
 . $TOOLKIT/include/extra_sshd.sh
 . $TOOLKIT/include/extra_vncserver.sh
 . $TOOLKIT/include/extra_patcher.sh
-. $TOOLKIT/include/plugin_installer.sh
 . $TOOLKIT/include/fix_permission.sh
 # RunHelp
 if [ ! -n "${1}" ]; then

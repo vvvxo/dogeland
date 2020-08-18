@@ -15,10 +15,9 @@ pkill zsh
 pkill bash
 pkill ash
 # Killed
-kill chroot
-kill proot
+pkill chroot
+pkill proot
 # Change Status
 rm -rf $rootfs/dogeland/status
 echo "Stop">$rootfs/dogeland/status
-pkill me.flytree.dogeland >/dev/null
 }

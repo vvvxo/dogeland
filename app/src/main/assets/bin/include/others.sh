@@ -1,8 +1,16 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
+version()
+{
+cat <<ABOUT
+
+dogeland CLI $VERSION for app
+
+license: GPL-v3.0
+
+ABOUT
+}
 help() {
 cat <<HELP
 

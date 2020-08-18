@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 backup_rootfs(){
 echo "- 正在关闭容器"
 stop_rootfs

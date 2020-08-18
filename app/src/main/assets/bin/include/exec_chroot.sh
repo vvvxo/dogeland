@@ -1,13 +1,11 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 exec_chroot(){
 
 check_rootfs
 
-# Ready Enable QEMU Emulator
+# Enable QEMU Emulator
 if [ -f "$CONFIG_DIR/emulator_qemu" ];then
 export qemu="$(cat $CONFIG_DIR/emulator_qemu)"
 export qemu_enable=1

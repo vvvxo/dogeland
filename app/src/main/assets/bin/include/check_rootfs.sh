@@ -1,13 +1,11 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 check_rootfs(){
 if [ -d "$rootfs" ];then
   echo "">/dev/null
   else
   echo "- / ...fail "
-  exit 255
+  exit 3
 fi
 }

@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 shmem_patch(){
 echo "正在安装补丁"
 sh $TOOLKIT/cli.sh check_rootfs

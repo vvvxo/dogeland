@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 del_rootfs() {
 if [ -d "$rootfs/usr/" ];then
   echo "- 正在关闭"
@@ -12,7 +10,6 @@ if [ -d "$rootfs/usr/" ];then
   rm -rf $rootfs/*
   echo "- 删除完成"
   else
-  echo "- 警告 "
   echo "- 找不到Rootfs路径"
 fi
 }

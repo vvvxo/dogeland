@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 dropbear_start(){
 echo "- dropbear::start..."
 if [ -f "/etc/dropbear/dropbear_dss_host_key" ];then

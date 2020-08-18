@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 platform()
 {
     local arch="$1"
@@ -23,7 +21,7 @@ platform()
         echo "x86"
     ;;
     *)
-        echo "unknown" && exit 255
+        echo "unknown" && exit 4
     ;;
     esac
 }

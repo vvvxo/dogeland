@@ -1,9 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
-
+# license: gpl-v3
 deploy_linux(){
 deploy_linux_step1
 #
@@ -97,14 +94,15 @@ echo "$rootfs2" >$CONFIG_DIR/rootfs.conf
 # mkdir
 mkdir $rootfs2/sys $rootfs2/dev $rootfs2/dev/pts $rootfs2/proc
 mkdir -p $rootfs2/dev/net/tun/
-# Clean old dropbear key
-if [ -d "$rootfs2/etc/dropbear" ];then
-  rm -rf $rootfs2/etc/dropbear
-  mkdir $rootfs2/etc/dropbear
-  chmod -R 0777 $rootfs2/etc/dropbear/
-  else
-  echo "">/dev/null
-fi
+# custom for linux
+
+# dropbear key
+rm -rf $rootfs2/etc/dropbear
+mkdir $rootfs2/etc/dropbear
+chmod -R 0777 $rootfs2/etc/dropbear/
+
+# the end
+
 # Install CLI
 cp $TOOLKIT/cli.sh $rootfs2/dogeland/
 mkdir $rootfs2/dogeland/include/

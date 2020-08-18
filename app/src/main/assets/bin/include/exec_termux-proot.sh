@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 exec_proot_termux(){
 check_rootfs 
 if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then

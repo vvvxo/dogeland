@@ -109,13 +109,6 @@
     </group>
     
      <group title="Other">
-    <action>
-            <title>开源许可证</title>
-              <param name="lang">
-                <option value="en">English</option>
-            </param>
-            <set>cat $TOOLKIT/LICENSE_$lang</set>
-        </action>
             <action>
             <title>修改 GNU / Linux 系统密码</title>
             <param name="username" label="" title="用户名" placeholder="" type="text" />

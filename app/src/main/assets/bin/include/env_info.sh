@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 env_info() {
     
     android_version=$(getprop ro.build.version.release)
@@ -22,10 +20,10 @@ env_info() {
     echo -n "CPU架构: "
     echo "$(uname -m)"
 
-    echo -n "内核版本: "
+    echo -n "Linux版本: "
     echo "$(uname -r)"
 
-    echo -n "内存: "
+    echo -n "RAM: "
     mem_status=$(sed -n '1,p' /proc/meminfo)
     echo "$mem_status"
 
