@@ -7,14 +7,12 @@
 ![img4.png](docs/images/img4.png)
 
 ## 依赖
-
-dash  
   
 proot  
   
 busybox  
   
-libandroid-shm  
+libandroid-shmem  
   
 libtalloc(proot)  
   
