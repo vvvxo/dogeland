@@ -52,7 +52,7 @@ fi
 if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
   else
-  busybox_$platform mkdir -p $DATA2_DIR
+  mkdir -p $DATA2_DIR
   if [ -d "$DATA2_DIR" ];then
   echo "">/dev/null
   else
