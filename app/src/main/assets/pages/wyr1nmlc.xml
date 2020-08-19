@@ -5,12 +5,12 @@
      <action>
          <title>Rootfs</title>
              <param name="Input" label="" title="" placeholder="/data/data/me.flytree.dogeland/files/linux/" type="text" />
-            <set>sh $TOOLKIT/cli.sh set_rootfsdir</set>
+            <set>$TOOLKIT/cli.sh set_rootfsdir</set>
              </action>
         <action>
             <title>初始化命令行</title>
             <param name="Input" label="" title="" placeholder="/bin/sh" type="text" />
-            <set>sh $TOOLKIT/cli.sh set_initcmd</set>
+            <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
           <action>
             <title>快速启动</title>
@@ -34,11 +34,11 @@
         <action>
             <title>备份Rootfs</title>
              <param name="dir" type="folder" value="/sdcard/Android/data/me.flytree.dogeland/" editable="true"/>
-            <set>sh $TOOLKIT/cli.sh backup_rootfs</set>
+            <set>$TOOLKIT/cli.sh backup_rootfs</set>
         </action>
         <action>
             <title>检查运行环境</title>
-            <set>sh $TOOLKIT/cli.sh env_info</set>
+            <set>$TOOLKIT/cli.sh env_info</set>
         </action>
               <action>
             <title>设置运行平台</title>
@@ -49,7 +49,7 @@
                 <option value="x86">x86</option>
                  <option value="x86_64">x86_64</option>
             </param>
-            <set>$TOOLKIT/include/extra_setrunarch.sh set_runarch</set>
+            <set>. $TOOLKIT/include/extra_setrunarch.sh set_runarch</set>
              </action>
            </group>
            <group title="高级">
@@ -59,7 +59,7 @@
                 <option value="">取消</option>
                 <option value="del_rootfs">确定删除</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh $type</set>
+            <set>$TOOLKIT/cli.sh $type</set>
         </action>
             <action>
             <title>移除运行环境</title>
@@ -73,7 +73,7 @@
         <action>
             <title>设置自定义 PATH 变量</title>
             <param name="Input" label="" title="" placeholder="/bin:/usr/sbin" type="text" />
-            <set>sh $TOOLKIT/cli.sh set_path</set>
+            <set>$TOOLKIT/cli.sh set_path</set>
         </action>
          <action>
             <title>开启QEMU-USER支持</title>
@@ -85,18 +85,18 @@
                 <option value="armeb">qemu-armeb</option>
                 <option value="0">关闭</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh set_emulator_qemu</set>
+            <set>$TOOLKIT/cli.sh set_emulator_qemu</set>
         </action>
     </group>
-    <group title="PRoot设置">
+    <group title="PRoot">
     <action>
             <title>设置容器内核版本</title>
              <param name="kernel" label="" title="" placeholder="4.19" type="text" />
-            <set>sh $TOOLKIT/cli.sh proot_fake_kernel</set>
+            <set>$TOOLKIT/cli.sh proot_fake_kernel</set>
         </action>
         <action>
             <title>杀死容器</title>
-            <set>sh $TOOLKIT/proot -r $START_DIR -b /system -b /proc -b /sys /bin/pkill $PACKAGE_NAME</set>
+            <set>$TOOLKIT/proot -r $START_DIR -b /system -b /proc -b /sys /bin/pkill $PACKAGE_NAME</set>
         </action>
     </group>
     
@@ -109,7 +109,7 @@
         </action>
           <action>
             <title>修复运行环境权限</title>
-            <set>sh $TOOLKIT/cli.sh fix_perm</set>
+            <set>$TOOLKIT/cli.sh fix_perm</set>
         </action>
     </group>
      <group title="关于">
