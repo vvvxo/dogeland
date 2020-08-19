@@ -9,8 +9,8 @@ echo "- 正在导出系统"
 cd $rootfs/
 if [[ "$(pwd)" != "/" ]]
 then
-tar cJvf "$dir/backup.tar.xz" --exclude='./dev' --exclude='./sys' --exclude='./proc' --exclude='./mnt'  --exclude='./sdcard'  --exclude='./dogeland' ./ >/dev/null
-echo "已保存到 $dir/backup.tar.xz"
+tar czvf "$dir/backup.tgz" --exclude='./dev' --exclude='./sys' --exclude='./proc' --exclude='./mnt'  --exclude='./sdcard'  --exclude='./dogeland' ./ >/dev/null
+echo "已保存到 $dir/backup.tgz"
 else
 echo "!出现异常"
 exit 1
