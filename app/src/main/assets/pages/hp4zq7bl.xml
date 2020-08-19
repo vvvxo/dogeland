@@ -23,7 +23,8 @@
         <text>
             <title>为什么要安装?</title>
             <desc>
-            DogeLand LinuxTools 扩展组件 为Linux提供扩展API支持
+            dogeland Linux扩展组件 为Linux提供快速启动,停止容器...等扩展组件支持
+            注意: 安装Rootfs时已自动安装。
             </desc>
         </text>
     </group>

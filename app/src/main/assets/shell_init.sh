@@ -48,7 +48,7 @@ fi
 if [[ -f "$run" ]]; then
     cd $START_DIR
     #chmod 755 "$run"
-    $TOOLKIT/sh "$run"
+    ash "$run"
 else
     echo "!ShellFaild"
 fi

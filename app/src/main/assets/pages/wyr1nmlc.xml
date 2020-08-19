@@ -4,7 +4,7 @@
  <group title="基础">
      <action>
          <title>Rootfs</title>
-             <param name="Input" label="" title="" placeholder="" type="text" />
+             <param name="Input" label="" title="" placeholder="/data/data/me.flytree.dogeland/files/linux/" type="text" />
             <set>sh $TOOLKIT/cli.sh set_rootfsdir</set>
              </action>
         <action>
@@ -110,6 +110,18 @@
           <action>
             <title>修复运行环境权限</title>
             <set>sh $TOOLKIT/cli.sh fix_perm</set>
+        </action>
+    </group>
+     <group title="关于">
+            <action>
+            <title>给app评价</title>
+            <desc>如果觉得好用,不妨给个star~</desc>
+            <set>am start --user 0 -a android.intent.action.VIEW -d https://github.com/dogelands/dogeland.git</set>
+        </action>
+          <action>
+            <title>版本</title>
+            <desc>dogeland 1.3.5</desc>
+             <set>am start --user 0 -a android.intent.action.VIEW -d https://github.com/dogelands/dogeland.git</set>
         </action>
     </group>
     </page>

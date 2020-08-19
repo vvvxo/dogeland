@@ -3,19 +3,16 @@
  <group title="Rootfs ">
          <action>
             <title>Alpine</title>
-            <desc>apk系,8+mb,极简,需要正常连接到Github</desc>
+            <desc>apk系,8+mb,需要正常连接到Github</desc>
             <param name="USER_NAME" label="登录用户" title="" placeholder="" type="text" />
             <param name="USER_PASSWORD" label="登录密码" title="" placeholder="" type="text" />
             <set>
-            echo "- 正在下载所需文件并自动安装..."
             curl -O https://raw.githubusercontent.com/WhiteSky-Team/dogeland-assets/master/rootfs/alpine/$platform.tgz
             export file="$(pwd)/$platform.tgz"
-            echo "- 正在安装所需文件"
             export datas=1
             export rootfs2="alpine-fs/"
             sh $TOOLKIT/cli.sh deploy_linux
             rm -rf $platform.tgz
-            echo "- 安装完成"
             </set>
         </action>
          <text>
@@ -55,7 +52,7 @@
 <action>
             <title>DebianGroupAdd</title>
             <desc>只在登录终端提示缺少group组时，才使用此补丁</desc>
-            <param name="bug" label="" title="↓请输入报错的group组id(可多次补丁)" placeholder="" type="text" />
+            <param name="bug" label="" title="请输入缺少的group组ID" placeholder="" type="text" />
             <set>sh $TOOLKIT/cli.sh debiangroup_add</set>
 </action>
 </group>
@@ -83,7 +80,7 @@
 
 <group>
 <action>
-            <title>sudo</title>
+            <title>fix-sudo</title>
             <desc>修复sudo失效问题</desc>
             <set>sh $TOOLKIT/cli.sh fix_sudo</set>
 </action>
@@ -128,21 +125,10 @@
             </set>
         </action>
         </group>
-          <group>
-         <action>
-            <title>PulseAudio</title>
-            <desc>为 GNU / Linux 提供音频支持</desc>
-            <set>
-            echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets > /dev/null
-            echo "- 完成🐳"
-            </set>
-        </action>
-        </group>
         <group>
          <action>
             <title>curl</title>
-            <desc>为 dogeland 提供内置网络下载支持</desc>
+            <desc>为 dogeland 提供网络下载支持</desc>
             <set>
             echo "- 正在尝试打开浏览器🐳"
             am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets > /dev/null
