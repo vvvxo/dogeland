@@ -12,7 +12,7 @@
                 <option value="start_proot_termux">[termux-proot]</option>
             </param>
             <param name="addcmd" label="附加参数" title="" placeholder="" type="text" />
-            <set>sh $TOOLKIT/cli.sh $start</set>
+            <set>$TOOLKIT/cli.sh $start</set>
             </action>
             </group>
             
@@ -28,7 +28,7 @@
                 <option value="exec_proot_termux">[termux-proot]</option>
                 <option value="exec_localshell">[本地Shell]</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh $exec</set>
+            <set>$TOOLKIT/cli.sh $exec</set>
         </action>
     </group>
 </items>

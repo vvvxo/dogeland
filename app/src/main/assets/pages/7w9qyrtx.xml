@@ -24,13 +24,11 @@
      <group>
         <text>
             <title> 题外:如何使用外部的Rootfs?</title>
-            <desc>
-            A: AnLinux或者termux的和其他的rootfs都可以在dogeland里面使用.
+            <desc>A: AnLinux或者termux的和其他的rootfs都可以在dogeland里面使用.
             安装步骤:
             1.导入tar.xz或者tar.gz包
             2.用运行终端命令,使用软件包管理器(apt,pacman,apk..)安装dropbear(是什么具体百度
             3.安装之后,设置-快速启动设置-选dropbear,然后商店里面GNU/LINUX扩展组件安装
-            4.启动容器使用ssh连接
-            </desc>
+            4.启动容器使用ssh连接</desc>
         </text>
     </group>

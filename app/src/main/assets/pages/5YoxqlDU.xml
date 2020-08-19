@@ -31,7 +31,7 @@
                 <option value="x86">x86</option>
                 <option value="x86_64">x86_64</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh shmem_patch</set>
+            <set>$TOOLKIT/cli.sh shmem_patch</set>
 </action>
 </group>
 
@@ -44,7 +44,7 @@
                 <option value="startlxde">lxde</option>
                 <option value="export PULSE_SERVER=tcp:0.0.0.0:4713">PulseAudio</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh xstartup_add</set>
+            <set>$TOOLKIT/cli.sh xstartup_add</set>
 </action>
 </group>
 
@@ -53,7 +53,7 @@
             <title>DebianGroupAdd</title>
             <desc>只在登录终端提示缺少group组时，才使用此补丁</desc>
             <param name="bug" label="" title="请输入缺少的group组ID" placeholder="" type="text" />
-            <set>sh $TOOLKIT/cli.sh debiangroup_add</set>
+            <set>$TOOLKIT/cli.sh debiangroup_add</set>
 </action>
 </group>
 
@@ -65,7 +65,7 @@
                 <option value="sh_patcher">安装</option>
                 <option value="">取消</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh $type</set>
+            <set>$TOOLKIT/cli.sh $type</set>
 </action>
 </group>
 
@@ -82,7 +82,7 @@
 <action>
             <title>fix-sudo</title>
             <desc>修复sudo失效问题</desc>
-            <set>sh $TOOLKIT/cli.sh fix_sudo</set>
+            <set>$TOOLKIT/cli.sh fix_sudo</set>
 </action>
 </group>
 
@@ -94,7 +94,7 @@
                 <option value="enable_proot_seccomp">安装</option>
                 <option value="">取消</option>
             </param>
-            <set>sh $TOOLKIT/cli.sh $type</set>
+            <set>$TOOLKIT/cli.sh $type</set>
 </action>
 </group>
 
@@ -104,9 +104,7 @@
             <param name="file" label="插件包" type="file"
                 suffix="zip"
                 value="" editable="true" />
-            <set>
-            sh $TOOLKIT/cli.sh plugin_installer
-            </set>
+            <set>$TOOLKIT/cli.sh plugin_installer</set>
         </action>
 </group>
 
@@ -118,21 +116,13 @@
          <action>
             <title>QEMU-User-Emulator</title>
             <desc>开启PRoot/Chroot跨平台运行工具</desc>
-            <set>
-            echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets > /dev/null
-            echo "- 完成🐳"
-            </set>
+            <set>am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets</set>
         </action>
         </group>
         <group>
          <action>
             <title>curl</title>
             <desc>为 dogeland 提供网络下载支持</desc>
-            <set>
-            echo "- 正在尝试打开浏览器🐳"
-            am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets > /dev/null
-            echo "- 完成🐳"
-            </set>
+            <set>am start --user 0 -a android.intent.action.VIEW -d https://github.com/WhiteSky-Team/dogeland-assets</set>
         </action>
         </group>
