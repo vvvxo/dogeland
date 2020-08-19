@@ -3,6 +3,7 @@
 # license: gpl-v3
 dropbear_start(){
 echo "- dropbear::start..."
+# First creact key
 if [ -f "/etc/dropbear/dropbear_dss_host_key" ];then
 echo "">/dev/null
 else
@@ -25,10 +26,5 @@ echo -n ""
 dropbear_stop()
 {
 echo "- dropbear::stop..."
-pkill sh
-pkill ash
-pkill fish
-pkill zsh
-pkill bash
 pkill dropbear
 }

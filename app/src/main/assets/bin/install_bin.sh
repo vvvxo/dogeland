@@ -89,4 +89,5 @@ echo ""
 echo ""
 echo ""
 sleep 2
+clear
 fi

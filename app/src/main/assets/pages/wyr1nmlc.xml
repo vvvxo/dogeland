@@ -3,19 +3,19 @@
   <page>
  <group title="基础">
      <action>
-         <title>Rootfs路径</title>
-             <param name="Input" label="" title="" placeholder="?" type="text" />
+         <title>Rootfs</title>
+             <param name="Input" label="" title="" placeholder="" type="text" />
             <set>$TOOLKIT/cli.sh set_rootfsdir</set>
              </action>
         <action>
             <title>初始化命令行</title>
-            <param name="Input" label="" title="" placeholder="?" type="text" />
+            <param name="Input" label="" title="" placeholder="/bin/sh" type="text" />
             <set>$TOOLKIT/cli.sh set_initcmd</set>
         </action>
           <action>
-            <title>快速启动设置</title>
+            <title>快速启动</title>
              <param name="type">
-                <option value="/bin/sh /dogeland/cli.sh sshd_start">启动sshd</option>
+                <option value="/bin/sh /dogeland/cli.sh sshd_start">启动openssh-sshd</option>
                 <option value="/bin/sh /dogeland/cli.sh dropbear_start">启动dropbear</option>
                 <option value="/bin/sh /dogeland/cli.sh vncserver_start">启动vncserver</option>
             </param>
@@ -81,17 +81,12 @@
          <action>
             <title>开启QEMU-USER支持</title>
               <param name="qemu">
-                <option value="0">关闭</option>
                 <option value="x86_64">qemu-x86_64</option>
                 <option value="x86">qemu-i386</option>
                 <option value="arm_64">qemu-aarch64</option>
                 <option value="arm">qemu-arm</option>
                 <option value="armeb">qemu-armeb</option>
-                <option value="mips">qemu-mips</option>
-                <option value="mipsel">qemu-mipsel</option>
-                <option value="mips64">qemu-mips64</option>
-                <option value="riscv32">qemu-riscv32</option>
-                <option value="riscv64">qemu-riscv64</option>
+                <option value="0">关闭</option>
             </param>
             <set>sh $TOOLKIT/cli.sh set_emulator_qemu</set>
         </action>

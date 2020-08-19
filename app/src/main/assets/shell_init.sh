@@ -6,14 +6,14 @@ run="$1"
 # BasicEnv
 #
 export START_DIR=$({START_DIR})
-export TOOLKIT=$START_DIR/bin
-export TMPDIR=$START_DIR/kr-script/cache/
 export SDCARD_PATH=$({SDCARD_PATH})
 export PACKAGE_NAME=$({PACKAGE_NAME})
+export TOOLKIT=$START_DIR/bin
+export TMPDIR=$START_DIR/kr-script/cache/
 #
 # RunEnv
 #
-export PREFIX=$START_DIR/
+export PREFIX=$START_DIR
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PREFIX/lib/"
 export PATH="$PATH:$TOOLKIT:$PREFIX/lib"
 #
@@ -47,8 +47,8 @@ if [[ -f "$TOOLKIT/install_bin.sh" ]]; then
 fi
 if [[ -f "$run" ]]; then
     cd $START_DIR
-    chmod 755 "$run"
+    #chmod 755 "$run"
     $TOOLKIT/sh "$run"
 else
-    echo "!运行命令时出现异常"
+    echo "!ShellFaild"
 fi

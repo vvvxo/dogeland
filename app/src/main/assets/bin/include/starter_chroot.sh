@@ -33,7 +33,5 @@ set_env
 echo "Run">$rootfs/dogeland/status
 $chroot $addcmd $rootfs $cmd
 echo "- All Done"
-sleep 1
-
 fi
 }

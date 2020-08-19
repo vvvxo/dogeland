@@ -23,7 +23,7 @@
             </param>
         </action>
         </group>
-        <group title="导入非官方仓库的Rootfs可能会引发一些问题,谨慎使用">
+        <group title="Tips:导入非官方仓库的Rootfs可能会引发一些问题,谨慎使用">
         <action>
             <title>安装→tar.xz</title>
             <param name="file" label="包文件" type="file" suffix="tar.xz" value="" editable="true" />
