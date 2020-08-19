@@ -29,15 +29,12 @@
          <action bg-task="true">
             <title>开启后台锁定</title>
             <desc>保持应用前台运行和CPU唤醒,防止容器卡顿或被杀死</desc>
-            <set>
-            echo "保持后台运行中"
-            sleep 9999
-            </set>
+            <set>sleep 9999</set>
         </action>
         <action>
             <title>备份Rootfs</title>
-             <param name="dir" type="folder" value="/sdcard/Android/data/me.flytree.dogeland/" />
-            <set>$TOOLKIT/cli.sh backup_rootfs</set>
+             <param name="dir" type="folder" value="/sdcard/Android/data/me.flytree.dogeland/" editable="true"/>
+            <set>sh $TOOLKIT/cli.sh backup_rootfs</set>
         </action>
         <action>
             <title>检查运行环境</title>

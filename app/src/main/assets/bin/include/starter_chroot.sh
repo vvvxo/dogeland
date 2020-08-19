@@ -12,7 +12,7 @@ stop_rootfs
 else
 # Start
 
-# Ready Enable QEMU Emulator
+# Enable QEMU Emulator
 if [ -f "$CONFIG_DIR/emulator_qemu" ];then
 export qemu="$(cat $CONFIG_DIR/emulator_qemu)"
 export qemu_enable=1

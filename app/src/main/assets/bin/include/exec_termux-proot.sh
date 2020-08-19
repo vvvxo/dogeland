@@ -27,5 +27,4 @@ else
 echo "">/dev/null
 fi 
 /data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -b /proc/self/fd:/dev/fd -w /root $cmd2
-echo
 }

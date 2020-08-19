@@ -8,8 +8,18 @@ exit
 if [ -f "$TOOLKIT/install_bin_done" ];then
 quit
 else
+
 echo "- 正在初始化(报错属于正常🐳现象)"
 
+if [[ "$platform" != "unknown" ]]
+then
+echo "">/dev/null
+else
+echo "- 检测到 $platform ,uname不存在或者不支持你的设备"
+exit 5
+fi
+
+busybox_$platform chmod -R 0777 $TOOLKIT/
 # lib
 if [ -d "$PREFIX/lib/" ];then
   echo "">/dev/null
@@ -40,7 +50,7 @@ if [[ ! "$TOOLKIT" = "" ]]; then
     busybox_$platform rm -rf $TOOLKIT/busybox
     busybox_$platform mv $TOOLKIT/busybox_$platform $TOOLKIT/busybox
     busybox_install
-    rm $TOOLKIT/busybox_*
+    rm -rf $TOOLKIT/busybox_*
     fi
 fi
 # Proot
@@ -74,20 +84,11 @@ if [ -d "$CONFIG_DIR/" ];then
   echo "" >$CONFIG_DIR/cmd.conf
   echo "" >$CONFIG_DIR/path.conf
 fi
-# Cache
-if [ -d "$DATA2_DIR/cache/" ];then
-  echo "">/dev/null
-  else
-  mkdir $DATA2_DIR/cache/
-fi
 
 # Kill
 echo "- 初始化完成🍉"
 echo "" >$TOOLKIT/install_bin_done
 mv $TOOLKIT/install_bin.sh $TMPDIR/install_bin.shbak
-echo ""
-echo ""
-echo ""
-sleep 2
-clear
+echo && echo && echo && echo
+sleep 1
 fi

@@ -4,7 +4,6 @@
 # license: GPL-v2.0
 #
 start_auto(){
-echo
 if [ `id -u` -eq 0 ];then
    start_chroot
    exit
@@ -18,5 +17,4 @@ if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
   start_proot
   exit
 fi
-sleep 1
 }
