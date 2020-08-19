@@ -83,6 +83,14 @@
 
 <group>
 <action>
+            <title>sudo</title>
+            <desc>修复sudo失效问题</desc>
+            <set>sh $TOOLKIT/cli.sh fix_sudo</set>
+</action>
+</group>
+
+<group>
+<action>
             <title>PRootSECCOMP</title>
             <desc>开启PRootSECCOMP内核补丁</desc>
             <param name="type">

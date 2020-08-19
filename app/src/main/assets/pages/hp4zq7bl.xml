@@ -6,7 +6,6 @@
              <set>
              mkdir $rootfs/dogeland/
              cp $TOOLKIT/cli.sh $rootfs/dogeland/
-             #sed -i '1 i\unset TOOLKIT' $rootfs/dogeland/cli.sh
              cp -R $TOOLKIT/include $rootfs/dogeland/
              </set>
 </action>
