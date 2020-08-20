@@ -1,17 +1,9 @@
 # dogeland cli module
 #
 # license: gpl-v3
-exec_proot_termux(){
+exec_proot(){
 check_rootfs 
-if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
-  echo ""
-  else
-  echo "- 不支持的操作"
-  exit 255
-fi
 set_env
-echo
-echo "- Running"
 # Enable FakeKernel
 if [ -f "$CONFIG_DIR/fake_kernel" ];then
 export fake=$(cat $CONFIG_DIR/fake_kernel)
@@ -26,5 +18,12 @@ export addcmd="$addcmd -q $qemu"
 else
 echo "">/dev/null
 fi 
-/data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b $rootfs/root:/dev/shm  -b /proc/self/fd:/dev/fd -w /root $cmd2
+# Exec Command
+startcmd="$addcmd --kill-on-exit "
+startcmd+="--link2symlink -0 -r $rootfs -b /dev "
+startcmd+="-b /proc -b /sys -b /proc/self/fd:/dev/fd -b /dev/null:/dev/tty0 "
+startcmd+="-b /:/mnt/host-rootfs "
+startcmd+="-w /root $cmd2"
+/data/data/com.termux/files/bin/proot $startcmd
+unset startcmd
 }

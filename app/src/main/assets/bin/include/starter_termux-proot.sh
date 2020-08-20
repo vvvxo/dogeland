@@ -1,9 +1,8 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
-start_proot_termux(){
+# license: gpl-v3
+start_proot(){
+check_rootfs
 # Check RunStatus
 if [[ "$(cat $rootfs/dogeland/status)" != "Stop" ]]
 then
@@ -12,15 +11,6 @@ stop_rootfs
 else
 # Start
 
-check_rootfs 
-if [ -f "/data/data/com.termux/files/usr/bin/proot" ];then
-  echo ""
-  else
-  echo "- 不支持的操作"
-  exit 255
-  sleep 1000
-fi
-set_env
 # Enable FakeKernel
 if [ -f "$CONFIG_DIR/fake_kernel" ];then
 export fake=$(cat $CONFIG_DIR/fake_kernel)
@@ -35,11 +25,20 @@ export addcmd="$addcmd -q $qemu"
 else
 echo "">/dev/null
 fi 
-# Change Status and Start.
+set_env
+# Change Status and Start
 echo "Run">$rootfs/dogeland/status
-/data/data/com.termux/files/usr/bin/proot $addcmd --link2symlink -0 -r $rootfs -b /dev -b /proc -b /sys -b /sdcard -b /proc/self/fd:/dev/fd -b $rootfs/root:/dev/shm  -w /root $cmd 
+startcmd="$addcmd -0 --link2symlink "
+startcmd+="-r $rootfs -b /dev -b /sys -b /proc "
+startcmd+="-b /proc/self/fd:/dev/fd -b /dev/null:/dev/tty0 "
+startcmd+="-b /:/mnt/host-rootfs "
+startcmd+="-w /root $cmd"
+/data/data/com.termux/files/usr/bin/proot $startcmd
+unset startcmd
 echo "- Done"
 sleep 1
 
+
 fi
+
 }
