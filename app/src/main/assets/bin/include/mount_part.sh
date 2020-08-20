@@ -16,15 +16,6 @@ if [ -d "$rootfs/sys/kernel/" ];then
   mount -t sysfs sysfs $rootfs/sys
 fi
 
-if [ -L "$rootfs/mnt/host-rootfs/" ];then
-  echo "">/dev/null
-  else
-  echo "- /mnt/host-rootfs ..."
-  ln -s /proc/1/cwd/ $rootfs/mnt/host-rootfs/
-fi
-
-
-
 if [ -d "$rootfs/dev/block/" ];then
   echo "">/dev/null
   else
@@ -38,6 +29,7 @@ if [ -e "$rootfs/dev/pts/0" ];then
   echo "- /dev/pts ..."
   mount -t devpts devpts $rootfs/dev/pts
 fi
+
 if [ -d "/dev/net/tun" ];then
   # Mount Network
   if [ -d "$rootfs/dev/net/tun" ];then
@@ -51,7 +43,6 @@ if [ -d "/dev/net/tun" ];then
   echo "">/dev/null
 fi
 
-
 if [ ! -e "/dev/tty0" ]; then
   echo "">/dev/null
   else
@@ -59,4 +50,10 @@ if [ ! -e "/dev/tty0" ]; then
   ln -s /dev/null /dev/tty0
 fi
 
+if [ -L "$rootfs/mnt/host-rootfs/" ];then
+  echo "">/dev/null
+  else
+  echo "- /mnt/host-rootfs ..."
+  ln -s /proc/1/cwd $rootfs/mnt/host-rootfs
+fi
 }
