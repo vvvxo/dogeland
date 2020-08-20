@@ -5,13 +5,14 @@
 #
 umount_part(){
 echo "- Unmounting..."
+# Check NoRoot
 if [ `id -u` -eq 0 ];then
 umount $rootfs/proc
 umount $rootfs/sys
 umount $rootfs/dev/pts
 umount $rootfs/dev/shm
 umount $rootfs/dev
-umount $rootfs/mnt/sdcard/
+rm $rootfs/mnt/host-rootfs
 else
  echo "">/dev/null
 fi
