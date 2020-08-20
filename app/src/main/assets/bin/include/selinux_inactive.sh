@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 selinux_inactive()
 {
     if [ -e "/sys/fs/selinux/enforce" ]; then

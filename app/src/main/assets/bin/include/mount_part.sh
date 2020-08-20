@@ -50,7 +50,7 @@ if [ ! -e "/dev/tty0" ]; then
   ln -s /dev/null /dev/tty0
 fi
 
-if [ -L "$rootfs/mnt/host-rootfs/" ];then
+if [ -e "$rootfs/mnt/host-rootfs" ];then
   echo "">/dev/null
   else
   echo "- /mnt/host-rootfs ..."

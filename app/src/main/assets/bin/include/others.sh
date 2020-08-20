@@ -5,7 +5,7 @@ version()
 {
 cat <<ABOUT
 
-dogeland CLI $VERSION for app
+dogeland CLI $VERSION 
 
 license: GPL-v3.0
 

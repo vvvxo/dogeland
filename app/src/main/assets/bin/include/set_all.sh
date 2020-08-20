@@ -1,8 +1,6 @@
+# dogeland cli module
 #
-# DogeLand CLI Module
-# 
-# license: GPL-v2.0
-#
+# license: gpl-v3
 set_path(){
 echo "- 正在设置PATH..."
 rm -rf $CONFIG_DIR/path.conf

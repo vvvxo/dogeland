@@ -1,10 +1,10 @@
 #
-# DogeLand CLI
-# v2.2.3
+# dogeland CLI
+# v2.2.4
 # 
-# license: GPL-b3
+# license: GPL-v3.0
 #
-VERSION=2.2.3_DEBUG
+VERSION=2.2.4_DEBUG
 #
 # Common
 #
@@ -51,14 +51,12 @@ fi
 #
 . $TOOLKIT/include/starter_chroot.sh
 . $TOOLKIT/include/starter_proot.sh
-. $TOOLKIT/include/starter_termux-proot.sh
 . $TOOLKIT/include/starter_auto.sh
 #
 # Exec
 #
 . $TOOLKIT/include/exec_chroot.sh
 . $TOOLKIT/include/exec_proot.sh
-. $TOOLKIT/include/exec_termux-proot.sh
 . $TOOLKIT/include/exec_auto.sh
 . $TOOLKIT/include/exec_local-shell.sh
 #
