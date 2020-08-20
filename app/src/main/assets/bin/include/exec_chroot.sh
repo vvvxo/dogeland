@@ -14,16 +14,19 @@ echo "">/dev/null
 fi 
 
 mount_part
+
 if [[ "$qemu_enable" != "1" ]]
 then
 export chroot="$TOOLKIT/busybox chroot $addcmd "
 else
 export chroot="$TOOLKIT/qemu-$qemu $TOOLKIT/busybox_$qemu chroot $addcmd "
 fi
+
 set_env
-echo "">/dev/null
+
 echo "$cmd2">$rootfs/dogeland/runcmd.sh
 chmod 755 $rootfs/dogeland/runcmd.sh
+
 if [ -f "$rootfs/bin/su" ];then
 $chroot "$rootfs" /bin/su -c /dogeland/runcmd.sh
 else

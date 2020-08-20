@@ -21,8 +21,9 @@ fi
 # Exec Command
 startcmd="$addcmd --kill-on-exit "
 startcmd+="--link2symlink -0 -r $rootfs -b /dev "
-startcmd+="-b /proc -b /sys -b /sdcard:/mnt/sdcard -b /proc/self/fd:/dev/fd -b /dev/null:/dev/tty0"
-startcmd+=" -w /root $cmd2"
+startcmd+="-b /proc -b /sys -b /proc/self/fd:/dev/fd -b /dev/null:/dev/tty0 "
+startcmd+="-b /:/mnt/host-rootfs "
+startcmd+="-w /root $cmd2"
 $TOOLKIT/proot $startcmd
 unset startcmd
 }
