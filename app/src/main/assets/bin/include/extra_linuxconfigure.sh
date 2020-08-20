@@ -2,18 +2,25 @@
 # GNU / Linux Rootfs AutoSetupTools
 # by Flytree
 #
+
+#
+export rootfs="$rootfs2"
+#
 configure()
 {
-export rootfs="$rootfs2"
+    echo "- 正在设置 mtab ..."
+    rm -rf $rootfs2/etc/mtab
+    cp /proc/mounts $rootfs/etc/mtab
+
     echo "- 正在设置 hostname ... "
     echo 'localhost' > "$rootfs2/etc/hostname"
-    echo "- 正在设置 dns ... "
-    if ! $(grep -q "^127.0.0.1" "$rootfs2/etc/hosts"); then
-        echo '127.0.0.1 localhost' >> "$rootfs2/etc/hosts"
-    fi
-[ -n "${LOCALE}" ] || LOCALE="$language"
-[ -n "${LOCALE}" ] || LOCALE="C"
+
+    echo "- 正在设置 hosts ... "
+    echo '127.0.0.1 localhost' >"$rootfs2/etc/hosts"
+
     echo "- 正在设置 locale ... "
+   [ -n "${LOCALE}" ] || LOCALE="$language"
+   [ -n "${LOCALE}" ] || LOCALE="C"
     if $(echo ${LOCALE} | grep -q '$rootfs2\.'); then
         local inputfile=$(echo ${LOCALE} | awk -F. '{print $1}')
         local charmapfile=$(echo ${LOCALE} | awk -F. '{print $2}')
@@ -21,6 +28,7 @@ export rootfs="$rootfs2"
         exec_auto
         unset cmd2
     fi
+    
     echo "- 正在设置 su ... "
     local item pam_su
     for item in $rootfs2/etc/pam.d/su $rootfs2/etc/pam.d/su-l
@@ -33,6 +41,7 @@ export rootfs="$rootfs2"
         fi
     done
     chmod a+s $rootfs2/bin/su
+    
     echo "- 正在设置 timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then
@@ -45,9 +54,10 @@ export rootfs="$rootfs2"
         cp "$rootfs2/usr/share/zoneinfo/${timezone}" "$rootfs2/etc/localtime"
         echo ${timezone} > "$rootfs2/etc/timezone"
     fi
+
+    echo "- 正在设置 profile ... "
    [ -n "${USER_NAME}" ] || USER_NAME="root"
    [ -n "${USER_PASSWORD}" ] || USER_PASSWORD="root"
-    echo "- 正在设置 profile ... "
     if [ -z "${USER_NAME%aid_*}" ]; then
         echo "Username \"${USER_NAME}\" is reserved."; return 1
     fi

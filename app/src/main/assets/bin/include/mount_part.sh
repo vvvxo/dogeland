@@ -8,22 +8,19 @@ if [ -d "$rootfs/proc/1/" ];then
  echo "- /proc ..."
    mount -t proc proc $rootfs/proc
 fi
+
 if [ -d "$rootfs/sys/kernel/" ];then
  echo "">/dev/null
   else
  echo "- /sys ..."
   mount -t sysfs sysfs $rootfs/sys
 fi
-if [ -d "$rootfs/mnt/sdcard" ];then
+
+if [ -L "$rootfs/mnt/host-rootfs/" ];then
   echo "">/dev/null
   else
-  echo "- /sdcard ..."
-  if [ -d "$rootfs/mnt/sdcard" ];then
-  echo "">/dev/null
-  else
-  mkdir $rootfs/mnt/sdcard
-  fi
-  mount -o bind $SDCARD_PATH $rootfs/mnt/sdcard
+  echo "- /mnt/host-rootfs ..."
+  ln -s /proc/1/cwd/ $rootfs/mnt/host-rootfs/
 fi
 
 
