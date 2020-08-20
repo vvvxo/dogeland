@@ -8,11 +8,12 @@
 
 ## 依赖
   
-proot  
-  
 busybox  
+  
+proot  
   
 libandroid-shmem  
   
-libtalloc(proot)  
+libtalloc  
   
+termux-elf-cleaner  
