@@ -16,10 +16,10 @@ echo "$username:$password"|exec_auto
 unset cmd2
 }
 plugin_installer(){
-echo "- 正在解压"
+echo "- Unpacking"
 unzip $file -d $START_DIR/
-echo "- 正在安装"
+echo "- Installing"
 . $START_DIR/install.sh
 rm $START_DIR/install.sh
-echo "- 安装成功"
+echo "- Done"
 }

@@ -48,7 +48,7 @@ if [ -f "$rootfs/bin/zsh" ];then
 $chroot "$rootfs" /bin/zsh /dogeland/runcmd.sh
 pkill zsh
 else
-echo "不支持的操作"
+echo "UnSupport Shell"
 fi
 echo "">/dev/null
 fi

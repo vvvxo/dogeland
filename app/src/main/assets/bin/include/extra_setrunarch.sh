@@ -2,7 +2,7 @@
 #
 # license: gpl-v3
 set_runarch(){
-echo "- 正在设置 $type ..."
+echo "- Setting up $type ..."
 sed "24c export platform=$type" $START_DIR/shell_init.sh
 if [[ -f "$TMPDIR/install_bin.shbak" ]]; then
   . $TMPDIR/install_bin.shbak

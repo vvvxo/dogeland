@@ -2,42 +2,40 @@
 #
 # license: gpl-v3
 set_path(){
-echo "- 正在设置PATH..."
 rm -rf $CONFIG_DIR/path.conf
 echo "$Input">$CONFIG_DIR/path.conf
-echo "- 完成"
 }
 set_tempdir(){
     if [ ! -n "$Input" ]; then
-    echo "- 检测到没有输入内容,取消更改."
+    echo "- Cancel."
     else
-    echo "- 正在更改"
+    echo "- Setting up"
     sleep 1
     rm -rf $CONFIG_DIR/tmpdir.conf
     echo "$Input">$CONFIG_DIR/tmpdir.conf
-    echo "- 完成"
+    echo "- done"
     sleep 1
     exit
 fi
 }
 set_rootfsdir(){
 if [ ! -n "$Input" ]; then
-echo "- 检测到没有输入内容,取消更改."
+echo "- cancel."
     else
-    echo "- 正在修改Rootfs路径"
+    echo "- Setting up"
     rm -rf $CONFIG_DIR/rootfs.conf
     echo "$Input">$CONFIG_DIR/rootfs.conf
-    echo "- 完成,已设置 $Input"
+    echo "- done"
     fi
 }
 set_initcmd(){
 if [ ! -n "$Input" ]; then
- echo "- 检测到没有输入内容,取消更改."
+ echo "- cancel."
 else
- echo "- 正在修改"
+ echo "- Setting up"
  rm -rf $CONFIG_DIR/cmd.conf
  echo "$Input">$CONFIG_DIR/cmd.conf
- echo "- 完成,已修改 $Input"
+ echo "- done"
 fi
 }
 set_emulator_qemu(){

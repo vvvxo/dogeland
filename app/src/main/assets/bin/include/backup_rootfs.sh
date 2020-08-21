@@ -2,19 +2,19 @@
 #
 # license: gpl-v3
 backup_rootfs(){
-echo "- 正在关闭容器"
+echo "- Disabling"
 stop_rootfs
 umount_part
-echo "- 正在导出系统"
+echo "- Backuping"
 cd $rootfs/
 if [[ "$(pwd)" != "/" ]]
 then
 tar czvf "$dir/backup.tgz" --exclude='./dev' --exclude='./sys' --exclude='./proc' --exclude='./mnt'  --exclude='./sdcard'  --exclude='./dogeland' ./ >/dev/null
-echo "已保存到 $dir/backup.tgz"
+echo "Saved to $dir/backup.tgz"
 else
-echo "!出现异常"
+echo "!Error"
 exit 1
 fi
-echo "- 完成"
+echo "- Done"
 
 }

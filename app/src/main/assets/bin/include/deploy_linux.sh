@@ -6,7 +6,7 @@ deploy_linux_step1
 #
 # Install
 #
-echo "- 正在安装 $file"
+echo "- Installing $file"
 rm -rf $rootfs2
 mkdir -p $rootfs2/
 # for tgz
@@ -23,7 +23,7 @@ deploy_linux_step1
 #
 # Install
 #
-echo "- 正在安装 $file"
+echo "- Installing $file"
 rm -rf $rootfs2
 mkdir -p $rootfs2/
 # for tar.xz
@@ -38,9 +38,9 @@ deploy_linux_step2
 
 
 deploy_linux_step1(){
-echo "- 正在检查"
+echo "- Checking"
 if [ ! -n "$rootfs2" ]; then
-    echo "- 无效安装路径"
+    echo "- Invalid installation path"
     exit 255
     sleep 1000
     else
@@ -48,7 +48,7 @@ if [ ! -n "$rootfs2" ]; then
 fi
 if [ ! -n "$file" ]; then
     if [ ! -n "$file2" ]; then
-    echo "- 无效系统包文件"
+    echo "- Invalid system package file"
     exit 255
     sleep 1000
     else
@@ -61,7 +61,7 @@ if [[ "$datas" != "1" ]]
 then
 echo "">/dev/null
 else
-echo "将安装到 $START_DIR/$rootfs2/"
+echo "Will install to $START_DIR/$rootfs2/"
 sleep 3
 export rootfs2="$START_DIR/$rootfs2/"
 fi
@@ -72,14 +72,14 @@ deploy_linux_step2(){
 if [ -d "$rootfs2/bin/" ];then
   echo "">/dev/null
   else
-  echo "!解压包时出现异常,请向开发者反馈"
+  echo "!An exception occurred when unzipping the package, please report to the developer"
   exit 255
   sleep 9999
 fi
 #
 # Settings
 #
-echo "- 正在设置"
+echo "- Setting up"
 # Set CONFIG
 if [ -d "$rootfs2/dogeland/" ];then
   echo "">/dev/null
@@ -108,14 +108,14 @@ cp $TOOLKIT/cli.sh $rootfs2/dogeland/
 mkdir $rootfs2/dogeland/include/
 cp -R $TOOLKIT/include/* $rootfs2/dogeland/include/
 # ReadRootfsInfo
-echo "- 正在解析"
+echo "- Parsing"
 if [ -f "$rootfs2/info.log" ];then
 cat $rootfs2/info.log
 rm -rf $rootfs2/info.log
 echo ""
 else
-echo "!解析系统包时出现异常,但这可能不会影响使用"
+echo "!An exception occurred when parsing the system package, but this may not affect the use"
 fi
 . $TOOLKIT/include/extra_linuxconfigure.sh configure
-echo "- 安装成功"
+echo "- done"
 }

@@ -8,17 +8,17 @@ export rootfs="$rootfs2"
 #
 configure()
 {
-    echo "- 正在设置 mtab ..."
+    echo "- setting up mtab ..."
     rm -rf $rootfs2/etc/mtab
     cp /proc/mounts $rootfs/etc/mtab
 
-    echo "- 正在设置 hostname ... "
+    echo "- setting up hostname ... "
     echo 'localhost' > "$rootfs2/etc/hostname"
 
-    echo "- 正在设置 hosts ... "
+    echo "- setting up hosts ... "
     echo '127.0.0.1 localhost' >"$rootfs2/etc/hosts"
 
-    echo "- 正在设置 locale ... "
+    echo "- setting up locale ... "
    [ -n "${LOCALE}" ] || LOCALE="$language"
    [ -n "${LOCALE}" ] || LOCALE="C"
     if $(echo ${LOCALE} | grep -q '$rootfs2\.'); then
@@ -29,7 +29,7 @@ configure()
         unset cmd2
     fi
     
-    echo "- 正在设置 su ... "
+    echo "- setting up su ... "
     local item pam_su
     for item in $rootfs2/etc/pam.d/su $rootfs2/etc/pam.d/su-l
     do
@@ -42,7 +42,7 @@ configure()
     done
     chmod a+s $rootfs2/bin/su
     
-    echo "- 正在设置 timezone ... "
+    echo "- setting up timezone ... "
     local timezone
     if [ -n "$(which getprop)" ]; then
         timezone=$(getprop persist.sys.timezone)
@@ -55,7 +55,7 @@ configure()
         echo ${timezone} > "$rootfs2/etc/timezone"
     fi
 
-    echo "- 正在设置 profile ... "
+    echo "- setting up profile ... "
    [ -n "${USER_NAME}" ] || USER_NAME="root"
    [ -n "${USER_PASSWORD}" ] || USER_PASSWORD="root"
     if [ -z "${USER_NAME%aid_*}" ]; then
@@ -71,7 +71,7 @@ configure()
     export cmd2=chpasswd
     echo ${USER_NAME}:${USER_PASSWORD}|exec_auto
     unset cmd2
-    echo "- 正在设置 sudo ... "
+    echo "- setting up sudo ... "
     local sudo_str="${USER_NAME} ALL=(ALL:ALL) NOPASSWD:ALL"
     if ! grep -q "${sudo_str}" "$rootfs2/etc/sudoers"; then
         chmod 640 "$rootfs2/etc/sudoers"
@@ -82,7 +82,7 @@ configure()
         echo '[ -n "$PS1" -a "$(whoami)" = "'${USER_NAME}'" ] || return 0' > "$rootfs2/etc/profile.d/sudo.sh"
         echo 'alias su="sudo su"' >> "$rootfs2/etc/profile.d/sudo.sh"
     fi
-    echo "- 正在设置 group ... "
+    echo "- setting up group ... "
     # set min uid and gid
     local login_defs
     login_defs="$rootfs2/etc/login.defs"
