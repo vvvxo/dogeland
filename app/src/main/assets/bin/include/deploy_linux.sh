@@ -61,9 +61,9 @@ if [[ "$datas" != "1" ]]
 then
 echo "">/dev/null
 else
-echo "将安装到 /data/data/$PACKAGE_NAME/files/$rootfs2/"
+echo "将安装到 $START_DIR/$rootfs2/"
 sleep 3
-export rootfs2="/data/data/$PACKAGE_NAME/files/$rootfs2/"
+export rootfs2="$START_DIR/$rootfs2/"
 fi
 }
 
